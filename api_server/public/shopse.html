@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        html,body{margin:0 auto; font-family: 'Mukta', sans-serif;; position: relative; background: #f85032; width:100%; height:100%;}
+        body{ background:  #ffffff;}
+        .lato {font-family: 'Lato', sans-serif;}
+        #wrapper { width: 96%; margin: 0 auto; padding-top: 10px;
+            height: calc(100% - 60px);
+            overflow: scroll;}
+        .purple {color:#4a54bd}
+        .gray {color: #acacac}
+        button.btn-primary, .btn-primary:hover {
+            border-radius: 0;
+            border-color: #eb532c;
+            background: #eb532c;
+            color: white;
+        }
+        .btn-primary.disabled, .btn-primary:disabled {
+            color: #fff;
+            background-color: #cbcbcb;
+            border-color: #cbcbcb;
+        }
+        .btn-outline-primary, .btn-outline-primary:hover {
+            border-radius: 0;
+            border-color: #eb532c;
+            background: #fff;
+            color: #eb532c;
+        }
+        .btn-outline-primary.disabled, .btn-outline-primary:disabled {
+            color: #fff;
+            background-color: #cbcbcb;
+            border-color: #cbcbcb;
+        }
+    </style>
+    <style>
+        .margin-bottom-0 { margin-bottom: 0;}
+        #pre-loader{
+            background: white;
+            position: fixed;
+            width:100%;
+            height: 100%;
+            left:0;
+            top:0;
+            z-index: 4;
+        }
+    </style>
+    <style>
+        .spinner {
+            width: 40px;
+            height: 40px;
+            top:45%;
+            position: relative;
+            margin: auto auto;
+        }
+        .double-bounce1, .double-bounce2 {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #eb532c;
+            opacity: 0.6;
+            position: absolute;
+            top: 0;
+            left: 0;
+            -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+            animation: sk-bounce 2.0s infinite ease-in-out;
+        }
+        .double-bounce2 {
+            -webkit-animation-delay: -1.0s;
+            animation-delay: -1.0s;
+        }
+        @-webkit-keyframes sk-bounce {
+            0%, 100% { -webkit-transform: scale(0.0) }
+            50% { -webkit-transform: scale(1.0) }
+        }
+        @keyframes sk-bounce {
+            0%, 100% {
+                transform: scale(0.0);
+                -webkit-transform: scale(0.0);
+            } 50% {
+                  transform: scale(1.0);
+                  -webkit-transform: scale(1.0);
+              }
+        }
+    </style>
+</head>
+<body>
+    <section id="pre-loader">
+        <div class="spinner">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+    </section>
+<section id="wrapper">
+    <style>
+        .header { border-bottom: 1px solid #e2e2e2; height:50px;}
+        footer{ position: fixed; z-index: 1; left:0; bottom:0; width:100%; height: auto;}
+    </style>
+
+    <section id="get-student-details" class="main-s d-none">
+        <header class="header">
+            <div class="d-flex justify-content-between bd-highlight mb-3">
+                <div class="p-2 bd-highlight back-press">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 16 16">
+                        <path fill="#504949" fill-rule="evenodd" d="M14 7.25H4.872l4.193-4.192L8 2 2 8l6 6 1.057-1.057L4.872 8.75H14v-1.5z" clip-rule="evenodd"/>
+                    </svg>
+                </div>
+                <div id="details-page-title" class="p-2 bd-highlight fw-bold title">Apni Details Bharein</div>
+                <div class="p-2 bd-highlight close-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 16 16">
+                        <path fill="#504949" d="M13 4.007L11.993 3 8 6.993 4.007 3 3 4.007 6.993 8 3 11.993 4.007 13 8 9.007 11.993 13 13 11.993 9.007 8 13 4.007z"/>
+                    </svg>
+                </div>
+            </div>
+        </header>
+        <br>
+        <article class="w-90">
+            <form class="row g-3">
+                <div class="col-12">
+                    <input id="full-name" type="text" name="input-full-name" class="form-control" placeholder="Full Name" autocomplete="off">
+                    <div class="form-error" style = "color: red;"></div>
+                </div>
+                <div class="col-12">
+                    <input id = "mobile-number" type="number" name="input-mobile" maxlength="10" class="form-control" placeholder="Bank se linked Mobile Number" autocomplete="off" value= "">
+                    <div class="form-error" style = "color: red;"></div>
+                </div>
+                <div class="col-12">
+                    <input id="email" type="text" name="input-email" class="form-control" placeholder="Email ID" autocomplete="off">
+                    <div class="form-error" style = "color: red;"></div>
+                </div>
+            </form>
+        </article>
+        <br>
+        <br>
+        <br>
+        <div><p id="otp-message" style="text-align: center;">You will get an OTP from ShopSe to check your available payment options</p></div>
+        <div id="sww-form" style="color: red; display: none;"><p>Something went wrong</p></div>
+        <footer>
+            <div class="d-grid gap-2">
+                <button class="btn btn btn-primary btn-lg" type="button" id="add-details-submit">Confirm with OTP</button>
+            </div>
+        </footer>
+    </section>
+
+
+    <section id="otp-confirm" class="main-s d-none">
+        <style>
+            div#paperplane {
+                width: 35%;
+                margin: 0 auto;
+            }
+            .shift {height:75vh;}
+            input#otp-input {
+                border: none;
+                border-bottom: 1px solid gray;
+                background: #ffffff;
+                border-radius: 0;
+                font-size: 2rem;
+                letter-spacing: 2rem;
+            }
+        </style>
+        <header class="header">
+            <div class="d-flex justify-content-between bd-highlight mb-3">
+                <div class="p-2 bd-highlight back-press">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 16 16">
+                        <path fill="#504949" fill-rule="evenodd" d="M14 7.25H4.872l4.193-4.192L8 2 2 8l6 6 1.057-1.057L4.872 8.75H14v-1.5z" clip-rule="evenodd"/>
+                    </svg>
+                </div>
+                <div id="otp-title" class="p-2 bd-highlight fw-bold">Enter OTP</div>
+                <div class="p-2 bd-highlight close-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 16 16">
+                        <path fill="#504949" d="M13 4.007L11.993 3 8 6.993 4.007 3 3 4.007 6.993 8 3 11.993 4.007 13 8 9.007 11.993 13 13 11.993 9.007 8 13 4.007z"/>
+                    </svg>
+                </div>
+            </div>
+        </header>
+        <br>
+        <article class="w-90">
+            <div class="shift">
+                <div id="paperplane">
+                    <lottie-player
+                        src='{"v":"5.6.9","fr":60,"ip":0,"op":360,"w":800,"h":800,"nm":"Comp 1","ddd":0,"assets":[],"layers":[{"ddd":0,"ind":3,"ty":4,"nm":"Shape Layer 3","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":1,"k":[{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":62,"s":[0]},{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":119,"s":[32]},{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":170,"s":[-8]},{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":203,"s":[4]},{"t":233,"s":[0]}],"ix":10},"p":{"a":1,"k":[{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":0,"s":[400,400,0],"to":[0,0,0],"ti":[0,4.667,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":39.889,"s":[400,421,0],"to":[0,-4.667,0],"ti":[0,-11.833,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":79.777,"s":[400,372,0],"to":[0,11.833,0],"ti":[0,0,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.365,"y":0},"t":131,"s":[400,492,0],"to":[0,0,0],"ti":[0,0,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":173,"s":[400,325,0],"to":[0,0,0],"ti":[0,-3.333,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":210,"s":[400,361,0],"to":[0,3.333,0],"ti":[0,-1.467,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":239.334,"s":[400,345,0],"to":[0,1.467,0],"ti":[0,-2.1,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":279.223,"s":[400,369.8,0],"to":[0,2.1,0],"ti":[0,-5.033,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":317.941,"s":[400,357.6,0],"to":[0,5.033,0],"ti":[0,-7.067,0]},{"t":360,"s":[400,400,0]}],"ix":2},"a":{"a":0,"k":[-9.25,-61.25,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"shapes":[{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":1,"k":[{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":0,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[37,-151.5],[-58.125,-122.5],[89.5,-81.5],[-111.5,-97],[-177,-31.5],[158.5,-66]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":60,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[37,-125],[-58.125,-109.25],[95.125,-81],[-107.875,-97.75],[-177,-57.625],[158.5,-66]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":120,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[33,-156.5],[-63.125,-112.5],[89.5,-83],[-111.5,-97],[-177,-1.5],[158.5,-66]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":180,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[37,-125],[-58.125,-109.25],[95.125,-81],[-107.875,-97.75],[-177,-57.625],[158.5,-66]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":240,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[37,-151.5],[-58.125,-122.5],[89.5,-81.5],[-111.5,-97],[-177,-31.5],[158.5,-66]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":300,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[37,-125],[-58.125,-109.25],[95.125,-81],[-107.875,-97.75],[-177,-57.625],[158.5,-66]],"c":true}]},{"t":360,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[37,-151.5],[-58.125,-122.5],[89.5,-81.5],[-111.5,-97],[-177,-31.5],[158.5,-66]],"c":true}]}],"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"st","c":{"a":0,"k":[0.129411764706,0.129411764706,0.129411764706,1],"ix":3},"o":{"a":0,"k":100,"ix":4},"w":{"a":0,"k":6,"ix":5},"lc":2,"lj":2,"bm":0,"nm":"Stroke 1","mn":"ADBE Vector Graphic - Stroke","hd":false},{"ty":"fl","c":{"a":0,"k":[0.9137254901960784,0.33725490196078434,0.14901960784313725,1],"ix":4},"o":{"a":0,"k":100,"ix":5},"r":1,"bm":0,"nm":"Fill 1","mn":"ADBE Vector Graphic - Fill","hd":false},{"ty":"tr","p":{"a":0,"k":[0,0],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Shape 2","np":3,"cix":2,"bm":0,"ix":1,"mn":"ADBE Vector Group","hd":false},{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":1,"k":[{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":0,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-122.5],[-76.75,-51],[-103,-49.375],[-83.5,16.5],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":60,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-109.25],[-76.75,-63.5],[-103,-61.875],[-85.5,7],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":120,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-63.25,-112.5],[-76.75,-51],[-103,-49.375],[-83.5,16.5],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":180,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-109.25],[-76.75,-63.5],[-103,-61.875],[-85.5,7],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":240,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-122.5],[-76.75,-51],[-103,-49.375],[-83.5,16.5],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":300,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-109.25],[-76.75,-63.5],[-103,-61.875],[-85.5,7],[157,-66.5]],"c":true}]},{"t":360,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-122.5],[-76.75,-51],[-103,-49.375],[-83.5,16.5],[157,-66.5]],"c":true}]}],"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"st","c":{"a":0,"k":[0.129411764706,0.129411764706,0.129411764706,1],"ix":3},"o":{"a":0,"k":100,"ix":4},"w":{"a":0,"k":6,"ix":5},"lc":1,"lj":2,"bm":0,"nm":"Stroke 1","mn":"ADBE Vector Graphic - Stroke","hd":false},{"ty":"tr","p":{"a":0,"k":[0,0],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Shape 1","np":3,"cix":2,"bm":0,"ix":2,"mn":"ADBE Vector Group","hd":false},{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":1,"k":[{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":0,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-122.5],[-76.75,-51],[-103,-49.375],[-90.75,-8.5],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":60,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-109.25],[-76.75,-63.5],[-103,-61.875],[-96.75,-37.75],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":120,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-63.25,-112.5],[-76.75,-51],[-103,-49.375],[-90.75,-8.5],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":180,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-109.25],[-76.75,-63.5],[-103,-61.875],[-96.75,-37.75],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":240,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-122.5],[-76.75,-51],[-103,-49.375],[-90.75,-8.5],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":300,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-109.25],[-76.75,-63.5],[-103,-61.875],[-96.75,-37.75],[157,-66.5]],"c":true}]},{"t":360,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-122.5],[-76.75,-51],[-103,-49.375],[-90.75,-8.5],[157,-66.5]],"c":true}]}],"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"fl","c":{"a":0,"k":[1,0.8627450980392157,0.8196078431372549,1],"ix":4},"o":{"a":0,"k":100,"ix":5},"r":1,"bm":0,"nm":"Fill 1","mn":"ADBE Vector Graphic - Fill","hd":false},{"ty":"tr","p":{"a":0,"k":[0,0],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Shape 3","np":3,"cix":2,"bm":0,"ix":3,"mn":"ADBE Vector Group","hd":false},{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":1,"k":[{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":0,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-122.5],[-76.75,-51],[-103,-49.375],[-83.5,16.5],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":60,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-109.25],[-76.75,-63.5],[-103,-61.875],[-85.5,7],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":120,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-63.25,-112.5],[-76.75,-51],[-103,-49.375],[-83.5,16.5],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":180,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-109.25],[-76.75,-63.5],[-103,-61.875],[-85.5,7],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":240,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-122.5],[-76.75,-51],[-103,-49.375],[-83.5,16.5],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":300,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-109.25],[-76.75,-63.5],[-103,-61.875],[-85.5,7],[157,-66.5]],"c":true}]},{"t":360,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-122.5],[-76.75,-51],[-103,-49.375],[-83.5,16.5],[157,-66.5]],"c":true}]}],"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"fl","c":{"a":0,"k":[1,1,1,1],"ix":4},"o":{"a":0,"k":100,"ix":5},"r":1,"bm":0,"nm":"Fill 1","mn":"ADBE Vector Graphic - Fill","hd":false},{"ty":"tr","p":{"a":0,"k":[0,0],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Shape 4","np":3,"cix":2,"bm":0,"ix":4,"mn":"ADBE Vector Group","hd":false}],"ip":0,"op":480,"st":0,"bm":0},{"ddd":0,"ind":4,"ty":4,"nm":"line 2","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":1,"k":[{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":0,"s":[212,413.99999999999994,0],"to":[0,0,0],"ti":[0,4,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":39.889,"s":[212,438.99999999999994,0],"to":[0,-4,0],"ti":[0,-11.833,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":79.777,"s":[212,390,0],"to":[0,11.833,0],"ti":[0,0,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.365,"y":0},"t":131,"s":[212,509.99999999999994,0],"to":[0,0,0],"ti":[0,0,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":173,"s":[212,343,0],"to":[0,0,0],"ti":[0,-3.333,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":210,"s":[212,379,0],"to":[0,3.333,0],"ti":[0,-1.467,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":239.334,"s":[212,363,0],"to":[0,1.467,0],"ti":[0,-2.1,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":279.223,"s":[212,387.8,0],"to":[0,2.1,0],"ti":[0,-4.367,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":317.941,"s":[212,375.6,0],"to":[0,4.367,0],"ti":[0,0,0]},{"t":360,"s":[212,413.99999999999994,0]}],"ix":2},"a":{"a":0,"k":[-157,-41,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"shapes":[{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":1,"k":[{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":98,"s":[{"i":[[0,0],[0,0]],"o":[[0,0],[0,0]],"v":[[-49,-41],[-265,-41]],"c":false}]},{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":115,"s":[{"i":[[0,0],[34,-29.891]],"o":[[-63,35.109],[0,0]],"v":[[-49,-41],[-265,-41]],"c":false}]},{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":136,"s":[{"i":[[0,0],[47,27.267]],"o":[[-68,-11.733],[0,0]],"v":[[-49,-41],[-265,-41]],"c":false}]},{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":158,"s":[{"i":[[0,0],[51,7.729]],"o":[[-68,-11.733],[0,0]],"v":[[-49,-41],[-265,-41]],"c":false}]},{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":175,"s":[{"i":[[0,0],[51,-19.308]],"o":[[-61,35.692],[0,0]],"v":[[-49,-41],[-265,-41]],"c":false}]},{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":208,"s":[{"i":[[0,0],[57,-5.829]],"o":[[-58,0.171],[0,0]],"v":[[-49,-41],[-265,-41]],"c":false}]},{"t":230,"s":[{"i":[[0,0],[0,0]],"o":[[0,0],[0,0]],"v":[[-49,-41],[-265,-41]],"c":false}]}],"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"st","c":{"a":0,"k":[0.129411764706,0.129411764706,0.129411764706,1],"ix":3},"o":{"a":0,"k":100,"ix":4},"w":{"a":0,"k":6,"ix":5},"lc":2,"lj":1,"ml":4,"bm":0,"d":[{"n":"d","nm":"dash","v":{"a":0,"k":57.6,"ix":1}},{"n":"g","nm":"gap","v":{"a":0,"k":20.2,"ix":2}},{"n":"d","nm":"dash2","v":{"a":0,"k":71,"ix":3}},{"n":"o","nm":"offset","v":{"a":1,"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":0,"s":[0]},{"t":360,"s":[-2975.7]}],"ix":7}}],"nm":"Stroke 1","mn":"ADBE Vector Graphic - Stroke","hd":false},{"ty":"tr","p":{"a":0,"k":[0,0],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Shape 1","np":3,"cix":2,"bm":0,"ix":1,"mn":"ADBE Vector Group","hd":false}],"ip":0,"op":480,"st":0,"bm":0},{"ddd":0,"ind":5,"ty":4,"nm":"line","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":1,"k":[{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":0,"s":[247.00000000000003,354,0],"to":[0,0,0],"ti":[0,4,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":39.889,"s":[247.00000000000003,379,0],"to":[0,-4,0],"ti":[0,-11.833,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":79.777,"s":[247.00000000000003,330,0],"to":[0,11.833,0],"ti":[0,0,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.365,"y":0},"t":131,"s":[247.00000000000003,450,0],"to":[0,0,0],"ti":[0,0,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":173,"s":[247.00000000000003,283,0],"to":[0,0,0],"ti":[0,-3.333,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":210,"s":[247.00000000000003,319,0],"to":[0,3.333,0],"ti":[0,-1.467,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":239.334,"s":[247.00000000000003,303,0],"to":[0,1.467,0],"ti":[0,-2.1,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":279.223,"s":[247.00000000000003,327.8,0],"to":[0,2.1,0],"ti":[0,-4.367,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":317.941,"s":[247.00000000000003,315.6,0],"to":[0,4.367,0],"ti":[0,0,0]},{"t":360,"s":[247.00000000000003,354,0]}],"ix":2},"a":{"a":0,"k":[-157,-41,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"shapes":[{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":1,"k":[{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":80,"s":[{"i":[[0,0],[0,0]],"o":[[0,0],[0,0]],"v":[[-49,-41],[-265,-41]],"c":false}]},{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":97,"s":[{"i":[[0,0],[34,-29.891]],"o":[[-63,35.109],[0,0]],"v":[[-49,-41],[-265,-41]],"c":false}]},{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":118,"s":[{"i":[[0,0],[47,27.267]],"o":[[-68,-11.733],[0,0]],"v":[[-49,-41],[-265,-41]],"c":false}]},{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":140,"s":[{"i":[[0,0],[51,7.729]],"o":[[-68,-11.733],[0,0]],"v":[[-49,-41],[-265,-41]],"c":false}]},{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":157,"s":[{"i":[[0,0],[51,-19.308]],"o":[[-61,35.692],[0,0]],"v":[[-49,-41],[-265,-41]],"c":false}]},{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":190,"s":[{"i":[[0,0],[57,-5.829]],"o":[[-58,0.171],[0,0]],"v":[[-49,-41],[-265,-41]],"c":false}]},{"t":212,"s":[{"i":[[0,0],[0,0]],"o":[[0,0],[0,0]],"v":[[-49,-41],[-265,-41]],"c":false}]}],"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"st","c":{"a":0,"k":[0.129411764706,0.129411764706,0.129411764706,1],"ix":3},"o":{"a":0,"k":100,"ix":4},"w":{"a":0,"k":6,"ix":5},"lc":2,"lj":1,"ml":4,"bm":0,"d":[{"n":"d","nm":"dash","v":{"a":0,"k":34.6,"ix":1}},{"n":"g","nm":"gap","v":{"a":0,"k":22.9,"ix":2}},{"n":"d","nm":"dash2","v":{"a":0,"k":23,"ix":3}},{"n":"o","nm":"offset","v":{"a":1,"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":0,"s":[0]},{"t":360,"s":[-2254.3]}],"ix":7}}],"nm":"Stroke 1","mn":"ADBE Vector Graphic - Stroke","hd":false},{"ty":"tr","p":{"a":0,"k":[0,0],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Shape 1","np":3,"cix":2,"bm":0,"ix":1,"mn":"ADBE Vector Group","hd":false}],"ip":0,"op":480,"st":0,"bm":0}],"markers":[]}'
+                        background="transparent"  speed="1" loop autoplay >
+                    </lottie-player>
+                </div>
+                <h5 id="enter-otp-message">Enter the OTP sent to you at
+                    <br>+91-<span id="user_rmn"></span> by ShopSe to proceed.
+                </h5>
+                <br><br>
+                <input id="otp-input" class="form-control" autocomplete="off" maxlength="6">
+                <div class="otp-error" style= "color: red;"></div>
+            </div>
+        </article>
+        <footer>
+            <span class="d-grid">
+                <button class="btn btn btn-primary btn-lg" type="button" id="confirm-otp-final-submit" disabled>Check Eligibility</button>
+            </span>
+        </footer>
+    </section>
+
+
+    <section id="eligibility-page" class="main-s d-none">
+        <style>
+            .green-order-tick {
+                background: #54b726;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                margin: auto;
+            }
+            .light-gray-color { color: #504949}
+        </style>
+            <header class="header">
+                <div class="d-flex justify-content-between bd-highlight mb-3">
+                    <div class="p-2 bd-highlight back-press"  data-val='{ "type": "deeplink", "data": { "value": "###deeplink###" } }'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 16 16">
+                            <path fill="#504949" fill-rule="evenodd" d="M14 7.25H4.872l4.193-4.192L8 2 2 8l6 6 1.057-1.057L4.872 8.75H14v-1.5z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div id='enquiry-confirmed' class="p-2 bd-highlight fw-bold">Eligibility Response</div>
+                    <div class="p-2 bd-highlight close-button"  data-val='{ "type": "deeplink", "data": { "value": "###deeplink###" } }'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 16 16">
+                            <path fill="#504949" d="M13 4.007L11.993 3 8 6.993 4.007 3 3 4.007 6.993 8 3 11.993 4.007 13 8 9.007 11.993 13 13 11.993 9.007 8 13 4.007z"/>
+                        </svg>
+                    </div>
+                </div>
+            </header>
+        <br>
+        <article class="w-90">
+            <br>
+            <br>
+            <div class="text-center">
+                <div class="green-order-tick text-center" style= "display: inherit;">
+                    <div style="padding-top: 10px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" fill="none" viewBox="0 0 29 29">
+                            <path fill="#fff" d="M10.649 22.592l14.37-14.475-1.696-1.708-12.674 12.796-5.001-5.037-1.667 1.708 6.668 6.716z"/>
+                        </svg>
+                    </div>
+                </div>
+                <br>
+                <h4 id="eligible-heading" class="fw-bold" style= "display: inherit;">Congratulations! Aap EMI ke liye eligible hain</h4>
+                <h4 id="ineligible-heading" class="fw-bold" style= "display: inherit;">Sorry! Aap EMI ke liye eligible nahi hain</h4>
+                <br>
+                <br>
+                <br>
+                <br>
+                <h4 id="redirecting" class="fw-bold" style= "display: inherit;">Redirecting to ShopSe...</h4>
+                <h4 id="sww-create-txn" class="fw-bold" style= "color: red; display: none;">Something Went Wrong</h4>
+            </div>
+        </article>
+    </section>
+
+
+    <section id="payment-complete" class="main-s d-none">
+        <style>
+            .green-order-tick {
+                background: #54b726;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                margin: auto;
+            }
+            .light-gray-color { color: #504949}
+        </style>
+        <header class="header">
+            <div class="d-flex justify-content-between bd-highlight mb-3">
+                <div class="p-2 bd-highlight close-button"  data-val='{ "type": "deeplink", "data": { "value": "###deeplink###" } }'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 16 16">
+                        <path fill="#504949" fill-rule="evenodd" d="M14 7.25H4.872l4.193-4.192L8 2 2 8l6 6 1.057-1.057L4.872 8.75H14v-1.5z" clip-rule="evenodd"/>
+                    </svg>
+                </div>
+                <div id='enquiry-confirmed' class="p-2 bd-highlight fw-bold">Post Purchase</div>
+                <div class="p-2 bd-highlight close-button"  data-val='{ "type": "deeplink", "data": { "value": "###deeplink###" } }'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 16 16">
+                        <path fill="#504949" d="M13 4.007L11.993 3 8 6.993 4.007 3 3 4.007 6.993 8 3 11.993 4.007 13 8 9.007 11.993 13 13 11.993 9.007 8 13 4.007z"/>
+                    </svg>
+                </div>
+            </div>
+        </header>
+        <br>
+        <article class="w-90">
+            <br>
+            <br>
+            <div class="text-center">
+                <div  class="green-order-tick text-center" style= "display: inherit;">
+                    <div style="padding-top: 10px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" fill="none" viewBox="0 0 29 29">
+                            <path fill="#fff" d="M10.649 22.592l14.37-14.475-1.696-1.708-12.674 12.796-5.001-5.037-1.667 1.708 6.668 6.716z"/>
+                        </svg>
+                    </div>
+                </div>
+                <br>
+                <h4 id="payment-complete-message" class="fw-bold" style= "display: inherit;"></h4>
+                <br>
+                <button id="start-studying-button" class="btn btn btn-primary btn-lg view-course-deeplink" style= "display: inherit; text-align: center;" type="button" data-val='{ "type": "deeplink", "data": { "value": "###deeplink###" } }'>Start Studying</button>
+            </div>
+        </article>
+    </section>
+</section>
+<style></style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/js/bootstrap.min.js" integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    let back_stack =[];
+    // let domain = 'https://api.doubtnut.com';
+    let domain = window.location.protocol + "//"+window.location.hostname;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    let token = urlParams.get('token');
+    let info = urlParams.get('info');
+
+    const shopseDetails = JSON.parse(info);
+    const amount = shopseDetails.amount;
+    const studentId = shopseDetails.student_id;
+    const variantId = shopseDetails.variant_id;
+    const courseName = shopseDetails.course_name;
+    const locale = shopseDetails.locale;
+    const version_code = shopseDetails.version_code;
+    let shopSeRefNo;
+    let mobile;
+    let consumerName;
+    let email;
+    let ccEmiAvailability;
+    let instantEmiEligibility;
+    let otp_input;
+
+    if (locale == 'hi') {
+        $('#full-name').attr('placeholder','पूरा नाम');
+        $('#mobile-number').attr('placeholder','मोबाइल नंबर');
+        $('#email').attr('placeholder','ईमेल');
+        $('#details-page-title').html('अपनी जानकारी भरे');
+        $('#otp-message').html('अपनी पेमेंट विधि की जानकारी के लिए आपको ShopSe की तरफ से एक OTP आएगा');
+        $('#add-details-submit').html('OTP के साथ पुष्टि करें');
+        $('#otp-title').html('OTP डालो');
+        $('#enter-otp-message').html('अपने नंबर +91-<span id="user_rmn"></span> पे भेजा गया OTP डालें');
+        $('#eligible-heading').html('वाह! आप EMI के लिए eligible हैं');
+        $('#ineligible-heading').html('Sorry! आप EMI के लिए eligible नहीं हैं');
+    }
+
+    $(document).ready(async function() {
+        $(".main-s").addClass("d-none");
+        $("#get-student-details.main-s").removeClass("d-none");
+        $("#pre-loader").hide();
+    });
+
+    $("#add-details-submit").click(async function () {
+        consumerName = $('[name="input-full-name"]').val();
+        mobile = $('[name="input-mobile"]').val();
+        email = $('[name="input-email"]').val();
+        let error_in_form = false;
+        if(consumerName.length==0) {
+            if (locale=='hi') {
+                $('[name="input-full-name"] + .form-error').html("नाम ज़रूरी है");
+            }
+            else {
+                $('[name="input-full-name"] + .form-error').html("Name zaroori he");
+            }
+            error_in_form = true;
+        }
+
+        if(!(mobile.match(/^\d{10}$/))) {
+            if (locale=='hi') {
+                $('[name="input-mobile"] + .form-error').html("आपने गलत मोबाइल नंबर डाला है।  कृपया दोबारा चेक करें।");
+            }
+            else {
+                $('[name="input-mobile"] + .form-error').html("Phone number galat he. Dobara check karen.");
+            }
+            error_in_form = true;
+        }
+
+        if(!(email.toLowerCase().match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))) {
+            if (locale=='hi') {
+                $('[name="input-mobile"] + .form-error').html("आपने गलत Email ID डाला है।  कृपया दोबारा चेक करें।");
+            }
+            else {
+                $('[name="input-email"] + .form-error').html("Email galat he. Dobara check karen.");
+            }
+            error_in_form = true;
+        }
+
+        if(!error_in_form) {
+            $("#add-details-submit").attr("disabled", true);
+            $("#get-student-details.main-s").addClass("d-none");
+            $("#pre-loader").show();
+            const payload = {
+                consumerName,
+                amount,
+                mobile,
+                email,
+                customParams: {
+                    studentId,
+                },
+                products: [
+                    {
+                        productId: variantId,
+                        name: courseName,
+                        amount,
+                        category: 'course',
+                        quantity: '1',
+                    },
+                ],
+            };
+            const response = await getOtp(payload);
+            console.log(response);
+            if (response.meta.success) {
+                shopSeRefNo = response.data.shopSeRefNo;
+                $("#pre-loader").hide();
+                back_stack_push($(this).closest(".main-s").attr("id"));
+                $("#otp-confirm.main-s").removeClass("d-none");
+                $("#user_rmn").html(mobile);
+            } else {
+                $("#get-student-details.main-s").removeClass("d-none");
+                $("#pre-loader").hide();
+                $('#sww-form').css("display", "inherit");
+                setTimeout(function () {
+                    Android.handleAction('{ "type": "close", "data": { } }');
+                }, 3000);
+            }
+        }
+    });
+
+           
+    $("#wrapper").on("keyup change", "#otp-input",async function(e) {
+        otp_input = $("#otp-input").val();
+        if(otp_input.length==6) {
+            $("#confirm-otp-final-submit").attr("disabled",false);
+        }
+        if(otp_input.length!=6) {
+            $("#confirm-otp-final-submit").attr("disabled",true);
+        }
+    });
+
+    $("#confirm-otp-final-submit").click(async function () {
+        $("#pre-loader").show();
+        $(".main-s").addClass("d-none");
+        $("#confirm-otp-final-submit").attr("disabled", true);
+        const payload = {
+            otp: otp_input,
+            shopSeRefNo,
+        };
+        const response = await checkEmiEligibility(payload);
+        if (response.meta.success) {
+            instantEmiEligibility = response.data.instantEmiEligibility;
+            ccEmiAvailability = response.data.ccEmiAvailability;
+            $("#pre-loader").hide();
+            back_stack_push($(this).closest(".main-s").attr("id"));
+            $("#eligibility-page.main-s").removeClass("d-none");
+            if (instantEmiEligibility == 'Y' || ccEmiAvailability == 'Y') {
+                $('#ineligible-heading').css("display", "none");
+                setTimeout(async function () {
+                    $("#pre-loader").show();
+                    $("#eligibility-page.main-s").addClass("d-none");
+                    const createTxnPayload = {
+                        amount,
+                        mobile,
+                        email,
+                        consumerName,
+                        customParams: {
+                            studentId,
+                        },
+                        products: [
+                            {
+                                productId: variantId,
+                                name: courseName,
+                                amount,
+                                category: 'course',
+                                quantity: '1',
+                            },
+                        ],
+                    };
+                    const createTxnResponse = await createShopseTransaction(createTxnPayload);
+                    if (createTxnResponse.meta.success) {
+                        $("#pre-loader").hide();
+                        window.location.replace(createTxnResponse.data.paymentRedirectUrl);
+                    } else {
+                        $("#eligibility-page.main-s").removeClass("d-none");
+                        $("#pre-loader").hide();
+                        $('#sww-create-txn').css("display", "inherit");
+                        setTimeout(function () {
+                            Android.handleAction('{ "type": "close", "data": { } }');
+                        }, 3000);
+                    }
+                    $("#pre-loader").hide();
+                }, 3000);
+            } else {
+                $('.green-order-tick').css("display", "none");
+                $('#eligible-heading').css("display", "none");
+                $('#redirecting').css("display", "none");
+                setTimeout(function () {
+                    Android.handleAction('{ "type": "close", "data": { } }');
+                }, 3000);
+            }
+        } else {
+            $("#otp-confirm.main-s").removeClass("d-none");
+            $("#pre-loader").hide();
+            $("#confirm-otp-final-submit").attr("disabled", false);
+            if (response.data && response.data.message) {
+                $(".otp-error").html(response.data.message);
+            } else {
+                $(".otp-error").html("Something went wrong");
+            }
+        }
+    });
+
+    async function getOtp(obj) {
+        var settings = {
+            "url": domain+"/v1/payment/shopse/get-otp",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "x-auth-token": token,
+                "version_code": version_code,
+                "Content-Type": "application/json"
+            },
+            "data": JSON.stringify(obj),
+        };
+
+        return new Promise((async (resolve, reject) => {
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+                resolve(response);
+            });
+        }));
+    }
+
+    async function checkEmiEligibility(obj) {
+        var settings = {
+            "url": domain+"/v1/payment/shopse/verify-otp-eligibility",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "x-auth-token": token,
+                "version_code": version_code,
+                "Content-Type": "application/json"
+            },
+            "data": JSON.stringify(obj),
+        };
+
+        return new Promise((async (resolve, reject) => {
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+                resolve(response);
+            });
+        }));
+    }
+
+    async function createShopseTransaction(obj) {
+        var settings = {
+            "url": domain+"/v1/payment/shopse/create-transaction",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "x-auth-token": token,
+                "version_code": version_code,
+                "Content-Type": "application/json"
+            },
+            "data": JSON.stringify(obj),
+        };
+
+        return new Promise((async (resolve, reject) => {
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+                resolve(response);
+            });
+        }));
+    }
+
+    async function shopsePaymentComplete(obj) {
+        var settings = {
+            "url": domain+"/v1/payment/shopse/payment-complete",
+            "method": "GET",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "data": JSON.stringify(obj),
+        };
+
+        return new Promise((async (resolve, reject) => {
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+                resolve(response);
+            });
+        }));
+    }
+
+    $(".close-button").click(function() {
+        Android.handleAction('{ "type": "close", "data": { } }');
+    });
+
+    $(".back-press").click(function() {
+        if(back_stack.length==0) {
+            $(".close-button").click();
+        } else {
+            let id = back_stack.pop();
+            $(".main-s").addClass("d-none");
+            $("#"+id).removeClass("d-none");
+            $("#"+id+" button.btn").attr("disabled",false);
+            back_stack.push();
+        }
+    });
+
+    function back_stack_push(screen){
+        back_stack.push(screen);
+    }
+</script>
+</html>

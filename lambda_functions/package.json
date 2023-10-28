@@ -1,0 +1,22 @@
+{
+  "name": "practiceexpress",
+  "version": "1.0.0",
+  "description": "for testing api testing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Saayon",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.364.0",
+    "axios": "^0.21.1",
+    "bluebird": "^3.7.2",
+    "ioredis": "^4.19.4",
+    "jimp": "^0.5.6",
+    "lodash": "^4.17.20",
+    "mysql": "^2.18.1",
+    "q": "^1.5.1",
+    "request": "^2.88.2"
+  }
+}

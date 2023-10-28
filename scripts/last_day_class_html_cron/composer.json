@@ -1,0 +1,21 @@
+{
+  "name": "root/doubtnut",
+  "description": "this is for doubtnut",
+  "require": {
+    "google/apiclient": "^2.0.0@RC",
+    "microsoft/windowsazure": "^0.4.3",
+    "google/cloud-vision": "^0.4.1",
+    "google/cloud-core": "^1.14",
+    "google/cloud-translate": "^1.1",
+    "aws/aws-sdk-php": "2.8.*",
+    "spipu/html2pdf": "^5.2",
+    "mikehaertl/phpwkhtmltopdf": "^2.3"
+  },
+  "include-path": [ "vendor/pear/http_request2" ],
+  "authors": [
+    {
+      "name": "Prabhat Shankar",
+      "email": "p.shankar@advanskills.com"
+    }
+  ]
+}

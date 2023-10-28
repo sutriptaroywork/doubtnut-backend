@@ -1,0 +1,19 @@
+{
+  "name": "yt_upload",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/local-auth": "^1.0.1",
+    "aws-sdk": "^2.1011.0",
+    "axios": "^0.23.0",
+    "dotenv": "^10.0.0",
+    "google-auth-library": "^7.10.1",
+    "googleapis": "^89.0.0"
+  }
+}

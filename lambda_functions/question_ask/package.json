@@ -1,0 +1,21 @@
+{
+  "name": "qask_lambda",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/translate": "^4.1.3",
+    "async": "^3.1.0",
+    "aws-sdk": "^2.560.0",
+    "bluebird": "^3.5.5",
+    "image-to-base64": "^2.0.1",
+    "ioredis": "^4.14.1",
+    "redis": "^2.8.0",
+    "request": "^2.88.0"
+  }
+}

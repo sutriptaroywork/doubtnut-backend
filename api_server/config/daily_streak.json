@@ -1,0 +1,26 @@
+[
+  {
+    "id": 13,
+    "name":"Daily Ninja",
+    "description":"Regular Check-in for 2 Days",
+    "requirement_type":"DAILY_STREAK",
+    "requirement":"2",
+    "image_url":"https://d10lpgp6xz60nq.cloudfront.net/engagement_framework/EDD67B94-FFD8-9471-063F-2E379F9996C0.webp"
+  },
+  {
+    "id": 14,
+    "name":"Super Ninja",
+    "description":"Regular Check-in for 5 Days",
+    "requirement_type":"DAILY_STREAK",
+    "requirement":"5",
+    "image_url":"https://d10lpgp6xz60nq.cloudfront.net/engagement_framework/266A0E5B-10EB-EA22-81D0-AD23B1715634.webp"
+  },
+  {
+    "id": 15,
+    "name":"Hunter Ninja",
+    "description":"Regular Check-in for 7 Days",
+    "requirement_type":"DAILY_STREAK",
+    "requirement":"7",
+    "image_url":"https://d10lpgp6xz60nq.cloudfront.net/engagement_framework/FCB50D59-35FA-4024-F51F-7C14D3CDA99C.webp"
+  }
+]

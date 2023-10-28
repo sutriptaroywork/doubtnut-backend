@@ -1,0 +1,20 @@
+{
+  "name": "qask_lambda",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.7.1",
+    "firebase-admin": "^8.2.0",
+    "ioredis": "^4.10.0",
+    "lodash": "^4.17.11",
+    "mysql": "^2.17.1",
+    "request": "^2.88.0",
+    "aws-sdk": "^2.560.0"
+  }
+}

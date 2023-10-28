@@ -1,0 +1,14 @@
+{
+    "name": "neil/scripts",
+    "authors": [
+        {
+            "name": "vivek",
+            "email": "vivek29vivek@gmail.com"
+        }
+    ],
+    "require": {
+        "jenssegers/mongodb": "^3.5",
+        "mongodb/mongodb": "^1.5",
+        "aws/aws-sdk-php": "^3.133"
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "name": "root/doubtnut",
+    "description": "this is for doubtnut",
+    "require": {
+        "elasticsearch/elasticsearch": "~5.0",
+        "php-http/client-common": "^2.1",
+        "sendgrid/php-http-client": "~3.10.0",
+        "sendgrid/sendgrid": "~7",
+        "massivescale/celery-php": "^2.1",
+        "php-amqplib/php-amqplib": "^2.6"
+    },
+    "authors": [
+        {
+            "name": "Uday Khatry",
+            "email": "udaykhatry91@gmail.com"
+        }
+    ]
+
+
+}

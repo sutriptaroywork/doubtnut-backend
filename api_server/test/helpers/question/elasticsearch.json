@@ -1,0 +1,12 @@
+[
+    {
+        "input": {
+            "language": "english",
+            "studentId": 7781577,
+            "ocr": "(a+b)^2"
+        },
+        "output": {
+            "query_ocr_text": "(a+b)^2"
+        }
+    }
+]

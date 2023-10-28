@@ -1,0 +1,15 @@
+{
+    "name": "whatsapp",
+    "version": "1.0.0",
+    "description": "sending whatsapp message through lambda function",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "gaurang",
+    "dependencies": {
+      "mongodb": "^3.4.1",
+      "request": "^2.88.0"
+    }
+  }
+  

@@ -1,0 +1,52 @@
+[
+    {
+        "input": {
+            "studentClass": 12,
+            "limit": 5,
+            "page": 1,
+            "versionCode": 630
+        },
+        "output": [
+            {
+                "id": 2,
+                "type": "board",
+                "data_type": "GRID_SINGLE_SELECT",
+                "default_type": 0,
+                "title": "Select your Board",
+                "locale": "en",
+                "image": "https://d10lpgp6xz60nq.cloudfront.net/images/boards.webp",
+                "sharing_message": "Now get Home Feed Personalised according to homefeed , just do it on doubtnut.",
+                "mapped_playlist_id": null,
+                "scroll_type": "Grid",
+                "scroll_size": "10",
+                "view_all": "0",
+                "submit_url_endpoint": "v7/homepage/submit-selected-widget-data",
+                "data_limit": 0,
+                "is_active": 1,
+                "background_color": "",
+                "is_multi_select": 0,
+                "widget_order": 0
+            },
+            {
+                "id": 1,
+                "type": "exam",
+                "data_type": "GRID_MULTI_SELECT",
+                "default_type": 0,
+                "title": "Select the exam you are preparing for",
+                "locale": "en",
+                "image": "https://d10lpgp6xz60nq.cloudfront.net/images/exams.webp",
+                "sharing_message": "Choose your exam and get personalised home feed now only at doubtnut",
+                "mapped_playlist_id": null,
+                "scroll_type": "Grid",
+                "scroll_size": "10",
+                "view_all": "0",
+                "submit_url_endpoint": "v7/homepage/submit-selected-widget-data",
+                "data_limit": 0,
+                "is_active": 1,
+                "background_color": "",
+                "is_multi_select": 1,
+                "widget_order": 0
+            }
+        ]
+    }
+]

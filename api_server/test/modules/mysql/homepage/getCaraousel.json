@@ -1,0 +1,62 @@
+[
+    {
+        "input": {
+            "studentClass": 12,
+            "limit": 5,
+            "page": 1,
+            "versionCode": 630
+        },
+        "output": [
+            {
+                "type": "BOOKS_93",
+                "data_type": "topic_id",
+                "title": "Sirf Aapke Liye!",
+                "scroll_type": "Horizontal",
+                "scroll_size": "1.5x",
+                "data_limit": 3,
+                "sharing_message": "Doubtnut से ये Download करें और अपनी Padhai बनाएं और भी Mazedaar -",
+                "mapped_playlist_id": "116473,116474,116475"
+            },
+            {
+                "type": "BOOKS_94",
+                "data_type": "library_video",
+                "title": "Motivational Videos for You",
+                "scroll_type": "Horizontal",
+                "scroll_size": "1.5x",
+                "data_limit": 10,
+                "sharing_message": "Waah! क्या बढ़िया तरीके से इस question ko Doubtnut ...",
+                "mapped_playlist_id": "114226"
+            },
+            {
+                "type": "BOOKS_93",
+                "data_type": "library_video",
+                "title": "Toppers Talk",
+                "scroll_type": "Horizontal",
+                "scroll_size": "1.5x",
+                "data_limit": 5,
+                "sharing_message": "Waah! क्या बढ़िया तरीके से इस question ko Doubtnut ...",
+                "mapped_playlist_id": "114227"
+            },
+            {
+                "type": "LATEST_FROM_DOUBTNUT",
+                "data_type": "video",
+                "title": "Latest from Doubtnut",
+                "scroll_type": "Horizontal",
+                "scroll_size": "1.5x",
+                "data_limit": 5,
+                "sharing_message": "ये है आज के सबसे viral videos :D इसे अभी dekho Doubtnut app pe -",
+                "mapped_playlist_id": "101270"
+            },
+            {
+                "type": "TRICKY_QUESTION",
+                "data_type": "video",
+                "title": "Tricky Questions for You",
+                "scroll_type": "Horizontal",
+                "scroll_size": "1.5x",
+                "data_limit": 5,
+                "sharing_message": "Waah! क्या बढ़िया तरीके से इस question ko Doubtnut App ने समझाया hai :D Khud dekho...maan jaaoge :D -",
+                "mapped_playlist_id": ""
+            }
+        ]
+    }
+]

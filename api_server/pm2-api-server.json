@@ -1,0 +1,12 @@
+[{
+  "script": "index.js",
+  "instances": 2,
+  "output": "/dev/null",
+  "error": "/dev/null",
+  "exec_mode" : "cluster",
+  "env": {
+    "NODE_PORT": 3000,
+    "NODE_ENV":"production"
+  }
+}]
+

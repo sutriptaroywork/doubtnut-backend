@@ -1,0 +1,5 @@
+# mocha.opts
+  --reporter spec
+  --ui bdd
+  --colors
+  --exit

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://d3plus.org/js/d3.js"></script>
+    <script src="https://d3plus.org/js/d3plus.js"></script>
+
+    <style>
+      * {font-family: Avenir, sans-serif;}
+      html, body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        height: 211px;
+        width: 300px;
+      }
+      .main-div {
+        width: 300px;
+        height: 211px;
+        background-image: linear-gradient(to right, #baf1d4, #bae4e9);
+        padding: 0;
+        text-align: left;
+        display: block;
+        overflow: hidden;
+        line-height: 1;
+        position: relative;
+      }
+      svg {
+        font-family: Avenir, sans-serif;
+        font-weight: bold;
+        height: 88px;
+        margin: 0px;
+      }
+      .wrapDiv {
+        position: relative;
+        z-index: 3;
+      }
+      .div01 {
+        height: 28px;
+        width: auto;
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        color: #000000;
+        font-weight: normal;
+        padding: 12px 0px 0px 12px;
+        font-family: Avenir, sans-serif;
+        font-size: 18px;
+        overflow: hidden;
+      }
+      .div02 {
+        height: 88px;
+        width: 276px;
+        color: #000000;
+        font-family: Avenir, sans-serif;
+        display: flex;
+        align-items: center;
+        padding: 0px 12px;
+      }
+      .div03 {
+        height: 22px;
+        display: flex;
+        padding: 21px 12px 9px 12px;
+        font-weight: normal;
+        font-size: 18px;
+        overflow: hidden;
+      }
+      .div04 {
+        height: 31px;
+        display: flex;
+        align-items: center;
+        padding: 0 12px;
+        font-size: 18px;
+        font-weight: bold;
+        background-color: rgba(255, 255, 255, 0.4);
+        overflow: hidden;
+      }
+      .shape {
+        fill: none;
+      }
+      .biology-image {
+        height: 86px;
+        position: absolute;
+        z-index: 1;
+        bottom: 25px;
+        right: 55px;
+      }
+      .playlist-div {
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 4;
+        padding-top: 9px;
+        width: 72px;
+        height: 211px;
+        background-color: rgba(0, 0, 0, 0.6);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+      }
+      .playlist-num {
+        font-size: 34px;
+        font-weight: bold;
+      }
+      .playlist-videos {
+        font-size: 18px;
+      }
+      .playlist-icon {
+        height: 36px;
+        margin: 20px 0 0 5px;
+      }
+      .play-circle-wrap {
+        position: absolute;
+        z-index: 3;
+        width: 300px;
+        height: 211px;
+        top: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .play-circle{
+        height: 76px;
+        width: 76px;
+        border-radius: 44PX;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(255, 0, 0, 0.4);
+        border: 2px solid #ffffff;
+      }
+      .play-circle:before{
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 13px 0 13px 26px;
+        border-color: transparent transparent transparent #ffffff;
+        position: absolute;
+        margin: 2px 0 0 3px;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <!-- dimensions 300 × 211 -->
+    <div class="main-div">
+
+      <img class="biology-image" src="http://d10lpgp6xz60nq.cloudfront.net/images/topic_ias.png" />
+
+      <div class="wrapDiv">
+        <div class="div01">##t2##</div>
+
+        <div class="div02">
+          <svg style="width: 276px;">
+            <rect class="shape" height="88px" width="276px"></rect>
+            <text id="chapterResize" class="wrap" font-size="12">
+              ##t1##
+            </text>
+          </svg>
+        </div>
+  
+        <div class="div03">##t4##</div>
+        
+        <div class="div04">##t3##</div>
+      </div>
+
+      <div class="playlist-div">
+        <div class="playlist-num">##t5##</div>
+        <div class="playlist-videos">Videos</div>
+        <img class="playlist-icon" src="https://d10lpgp6xz60nq.cloudfront.net/images/icon_playlist_for_thumbnail.svg" />
+      </div>
+    </div>
+  </body>
+
+  <script>
+    d3plus.textwrap()
+    .container(d3.select("#chapterResize"))
+    .resize(true)
+    .align("left")
+    .valign("middle")
+    .draw();
+  </script>
+
+</html>
+

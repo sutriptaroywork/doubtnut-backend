@@ -1,0 +1,18 @@
+{
+  "name": "profanity_checker",
+  "version": "1.0.0",
+  "description": "profanity_checker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "xesloohc god",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/vision": "^1.7.2",
+    "enum": "^2.5.0",
+    "lodash": "^4.17.15",
+    "mongodb": "^3.3.5",
+    "mysql": "^2.17.1"
+  }
+}

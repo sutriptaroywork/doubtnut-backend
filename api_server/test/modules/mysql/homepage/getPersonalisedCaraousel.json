@@ -1,0 +1,80 @@
+[
+    {
+        "input": {
+            "studentId": 2364890,
+            "studentClass": null,
+            "studentLocale": null,
+            "cemString": null,
+            "limit": 5,
+            "page": 1,
+            "versionCode": 630
+        },
+        "output": [
+            {
+                "type": "BOOKS_94",
+                "data_type": "library_video",
+                "title": "Motivational Videos for You",
+                "scroll_type": "Horizontal",
+                "scroll_size": "1.5x",
+                "data_limit": 10,
+                "view_all": 1,
+                "is_active": 1,
+                "sharing_message": "Waah! क्या बढ़िया तरीके से इस question ko Doubtnut ...",
+                "mapped_playlist_id": "114226",
+                "caraousel_order": -200
+            },
+            {
+                "type": "LATEST_FROM_DOUBTNUT",
+                "data_type": "video",
+                "title": "Latest from Doubtnut",
+                "scroll_type": "Horizontal",
+                "scroll_size": "1.5x",
+                "data_limit": 5,
+                "view_all": 1,
+                "is_active": 1,
+                "sharing_message": "ये है आज के सबसे viral videos :D इसे अभी dekho Doubtnut app pe -",
+                "mapped_playlist_id": "101270",
+                "caraousel_order": 1
+            },
+            {
+                "type": "TRICKY_QUESTION",
+                "data_type": "video",
+                "title": "Tricky Questions for You",
+                "scroll_type": "Horizontal",
+                "scroll_size": "1.5x",
+                "data_limit": 5,
+                "view_all": 1,
+                "is_active": 1,
+                "sharing_message": "Waah! क्या बढ़िया तरीके से इस question ko Doubtnut App ने समझाया hai :D Khud dekho...maan jaaoge :D -",
+                "mapped_playlist_id": "",
+                "caraousel_order": 2
+            },
+            {
+                "type": "MATHS_NCERT_SOLUTIONS",
+                "data_type": "topic_parent",
+                "title": "Maths NCERT Solutions",
+                "scroll_type": "Horizontal",
+                "scroll_size": "1.5x",
+                "data_limit": 5,
+                "view_all": 1,
+                "is_active": 1,
+                "sharing_message": "Doubtnut से ये Download करें और अपनी Padhai बनाएं और भी Mazedaar -",
+                "mapped_playlist_id": "108897",
+                "caraousel_order": 3
+            },
+            {
+                "type": "CHEMISTRY_NCERT_SOLUTIONS",
+                "data_type": "topic_parent",
+                "title": "Chemistry NCERT Solutions",
+                "scroll_type": "Horizontal",
+                "scroll_size": "1.5x",
+                "data_limit": 5,
+                "view_all": 1,
+                "is_active": 1,
+                "sharing_message": "Doubtnut से ये Download करें और अपनी Padhai बनाएं और भी Mazedaar -",
+                "mapped_playlist_id": "108896",
+                "caraousel_order": 4
+            }
+        ]
+    }
+]

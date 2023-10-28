@@ -1,0 +1,86 @@
+module.exports = [
+    {
+        min_marks: 0,
+        max_marks: 25,
+        min_rank: '',
+        max_rank: '11 lakh +',
+    },
+    {
+        min_marks: 26,
+        max_marks: 50,
+        min_rank: '9 lakh to',
+        max_rank: '11 lakh',
+    },
+    {
+        min_marks: 51,
+        max_marks: 75,
+        min_rank: '5.5 lakh to',
+        max_rank: '9.5 lakh',
+    },
+    {
+        min_marks: 76,
+        max_marks: 100,
+        min_rank: '1 lakh to',
+        max_rank: '5 lakh',
+    },
+    {
+        min_marks: 101,
+        max_marks: 125,
+        min_rank: '41,000 -',
+        max_rank: '80,000',
+    },
+    {
+        min_marks: 126,
+        max_marks: 150,
+        min_rank: '27,000 -',
+        max_rank: '46,000',
+    },
+    {
+        min_marks: 151,
+        max_marks: 175,
+        min_rank: '18,000 -',
+        max_rank: '32,000',
+    },
+    {
+        min_marks: 176,
+        max_marks: 200,
+        min_rank: '10,000 -',
+        max_rank: '22,000',
+    },
+    {
+        min_marks: 201,
+        max_marks: 225,
+        min_rank: '7,000 -',
+        max_rank: '15,000',
+    },
+    {
+        min_marks: 226,
+        max_marks: 250,
+        min_rank: '3,500 -',
+        max_rank: '6,500',
+    },
+    {
+        min_marks: 251,
+        max_marks: 275,
+        min_rank: '2,500 -',
+        max_rank: '3,700',
+    },
+    {
+        min_marks: 276,
+        max_marks: 300,
+        min_rank: '1,000 -',
+        max_rank: '2,200',
+    },
+    {
+        min_marks: 301,
+        max_marks: 325,
+        min_rank: '250 -',
+        max_rank: '1,000',
+    },
+    {
+        min_marks: 326,
+        max_marks: 99999,
+        min_rank: '0 -',
+        max_rank: '500',
+    },
+];

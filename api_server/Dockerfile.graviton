@@ -1,0 +1,18 @@
+FROM 942682721582.dkr.ecr.ap-south-1.amazonaws.com/base:node-v12.13.0-arm64
+
+WORKDIR /opt/app
+
+
+COPY package*.json /opt/app
+RUN npm i
+
+ARG DD_VERSION
+ENV DD_VERSION=$DD_VERSION
+ENV PORT=3000
+ENV STARTCMD="pm2 start index.js --max-memory-restart 1560M --log-date-format 'DD-MM HH:mm:ss.SSS' --no-daemon"
+
+COPY . /opt/app
+
+EXPOSE 3000
+
+CMD ["supervisord"]

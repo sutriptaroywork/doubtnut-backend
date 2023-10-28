@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /*body { height: 100vh; width:100vw;}*/
+        html,body{margin:0 auto; font-family: 'Mukta', sans-serif;; position: relative; text-align: center; background: #f85032; width:100%; height:100%;}
+        body{ background:  #f7f7f7;}
+        .lato {font-family: 'Lato', sans-serif;}
+        #wrapper { width: 96%; margin: 0 auto; padding-top: 10px;
+            height: calc(100% - 60px);
+            overflow: scroll;}
+
+        .purple {color:#4a54bd}
+        .gray {color: #acacac}
+    </style>
+
+    <style>
+
+        .margin-bottom-0 { margin-bottom: 0;}
+        #pre-loader{
+            background: gray; /* fallback for old browsers */
+            /*background: -webkit-linear-gradient(to bottom, #eb5028, #e73827); !* Chrome 10-25, Safari 5.1-6 *!*/
+            /*background: linear-gradient(to bottom, #eb5028, #e73827); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
+            position: fixed;
+            width:100%;
+            height: 100%;
+            left:0;
+            top:0;
+            z-index: 4;
+        }
+
+
+    </style>
+
+    <style>
+        .spinner {
+            width: 40px;
+            height: 40px;
+            top:45%;
+            position: relative;
+            margin: auto auto;
+        }
+
+        .double-bounce1, .double-bounce2 {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #ffffff;
+            opacity: 0.6;
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+            animation: sk-bounce 2.0s infinite ease-in-out;
+        }
+
+        .double-bounce2 {
+            -webkit-animation-delay: -1.0s;
+            animation-delay: -1.0s;
+        }
+
+        @-webkit-keyframes sk-bounce {
+            0%, 100% { -webkit-transform: scale(0.0) }
+            50% { -webkit-transform: scale(1.0) }
+        }
+
+        @keyframes sk-bounce {
+            0%, 100% {
+                transform: scale(0.0);
+                -webkit-transform: scale(0.0);
+            } 50% {
+                  transform: scale(1.0);
+                  -webkit-transform: scale(1.0);
+              }
+        }
+    </style>
+
+</head>
+<body>
+<section id="pre-loader">
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</section>
+
+<div id="bbps-logo" style="
+    position: fixed;
+    z-index: 2;
+    width: 32px;
+    height: auto;
+    bottom: 14px;
+    right: 10px;
+"><img src="https://d10lpgp6xz60nq.cloudfront.net/images/payment/bbps_logo.png" style="
+    width: inherit;    background: #f7f7f7;
+
+"> </div>
+
+<div id="modi-logo" style="
+    position: fixed;
+    z-index: 0;
+    width: 34%;
+    height: auto;
+    bottom: 0px;
+    left: 0;
+    opacity: 0.6;
+"><img src="https://d10lpgp6xz60nq.cloudfront.net/images/payment/modi.webp" style="
+    width: 100%;
+    vertical-align: bottom;
+"> </div>
+
+
+<div id="emblem" style="
+    position: fixed;
+    right: 14px;
+    bottom: 60px;
+    width: 26px;
+    height: auto;
+">
+    <img src="https://d10lpgp6xz60nq.cloudfront.net/images/payment/emblem.png" style="
+    width: 100%;
+    vertical-align: bottom;
+">
+</div>
+
+<style>
+    .board {font-size: 1.1rem; margin-bottom: 1rem;}
+
+    .board > .title { font-size: 0.9rem; color : #333333; margin-bottom: 0;}
+    .board p { font-size: 0.95rem;}
+    .board p.lato { font-size: 0.8rem;}
+    .board .card-body {padding: 0.4rem 0.8rem;}
+    .board .card {background:white;}
+    .board td {
+        font-size: 0.9rem;
+        padding: 0.2rem 0;
+        color: #555;
+        border-bottom: 0;
+    }
+    .board tr:last-child {
+        border-top-width:1px;
+    }
+    .board table { margin:0;}
+    .btn-check:focus+.btn, .btn:focus {box-shadow: none;}
+    .card-img-top {width: 2rem;
+    height: 2rem;}
+    .card-title {font-size: 0.7rem;}
+    .board li.list-group-item {
+        font-size: 1rem;
+        padding: 0.3rem;
+    }
+
+/*    .video-section{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        background: rgb(0 0 0 / 70%);
+        display:none;
+    }*/
+</style>
+<div id="wrapper" class="">
+    <div class="w-100">
+
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </symbol>
+        </svg>
+        <div class="alert alert-success d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+            <div>
+                Payment Linked To 📱<span class="fw-bold phone_number"></span>
+            </div>
+        </div>
+
+        <div class="board">
+            <p class="title text-start">Course Info</p>
+            <div class="card">
+                <div class="card text-start" >
+                    <div class="card-body">
+                        <p class="card-title margin-bottom-0">Payment For: <span class= "purple fw-bold" id ="course_name"></span></p>
+                        <p class="card-title margin-bottom-0">Phone Number/Bill No: <span class ="phone_number purple fw-bold"></span></p>
+                        <p class="card-subtitle ">Amount To Pay: <span class="purple net_amount fw-bold"></span><a class="btn btn-link btn-sm" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">View Payment Details</a></p>
+                        <div class="collapse" id="collapseExample">
+                            <div class="card-body">
+                                <table class="table">
+                                    <tbody>
+                                    <tr>
+                                        <td class="text-start">Original</td>
+                                        <td class="text-end"><span class="total_amount"></span></td>
+                                    </tr>
+                                    <tr class="discount-s">
+                                        <td class="text-start">Discount</td>
+                                        <td class="text-end"><span class="discount"></span></td>
+                                    </tr>
+                                    <tr class="wallet-amount-s">
+                                        <td class="text-start">DN Wallet</td>
+                                        <td class="text-end"><span class="wallet_amount"></span></td>
+                                    </tr>
+                                    <tr class="coupon-amount-s">
+                                        <td class="text-start">Coupon Code</td>
+                                        <td class="text-end"><span class="coupon_amount"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-start fw-bold">Final Amount</td>
+                                        <td class="text-end fw-bold"><span class="net_amount"></span></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="board">
+            <p class="title text-start">Recharge Shop/ Bill Payment se payment kese karen? </p>
+            <div class="card">
+                <div class="card text-start" >
+                    <div class="card-body">
+                        <p class="card-title margin-bottom-0 lato">• Jaise aap apni bijli,paani,gas ka bill bharte hai, ussi tarah ab DN ki fees bhariye.</p>
+                        <p class="card-title margin-bottom-0 lato">• Recharge shop ya bill bharne ki shop pe jae aur bataen ki : <span class="net_amount"></span></span> ki education fees bharni he Doubtnut ki is number par - <span class="phone_number">.</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="board">
+            <p class="title text-start">How To Pay [Videos]</p>
+            <div class="card">
+                <div class="card text-start" >
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush video-container">
+                            <li class="list-group-item" data-video="https://d10lpgp6xz60nq.cloudfront.net/images/payment/bbps_paytm.mp4" data-label="PAYTM APP">
+                                <div class="align-self-center">
+                                    <div class="">
+                                        <div class="float-start">PAYTM APP <img src="https://d10lpgp6xz60nq.cloudfront.net/images/payment/paytm-226448.webp" class="card-img-top" alt="PayTM UPI"></div>
+                                        <div class="float-end"><img class= "card-img-top" src="https://d10lpgp6xz60nq.cloudfront.net/images/payment/icon_small_play_small.webp"></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item" data-video="https://d10lpgp6xz60nq.cloudfront.net/images/payment/bbps_phonepe.mp4" data-label="PhonePe APP">
+                                <div class="align-self-center">
+                                    <div class="">
+                                        <div class="float-start">PhonePe APP <img src="https://cdn.razorpay.com/wallet-sq/phonepe.png" class="card-img-top" alt="PhonePe UPI"></div>
+                                        <div class="float-end"><img class= "card-img-top" src="https://d10lpgp6xz60nq.cloudfront.net/images/payment/icon_small_play_small.webp"></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item" data-video="https://d10lpgp6xz60nq.cloudfront.net/images/payment/bbps_bhim.mp4" data-label="BHIM APP">
+                                <div class="align-self-center">
+                                    <div class="" >
+                                    <div class="float-start">BHIM APP <img src="https://d10lpgp6xz60nq.cloudfront.net/images/payment/bhim-3-69845.webp" class="card-img-top" alt="BHIM UPI"></div>
+                                        <div class="float-end"><img class= "card-img-top" src="https://d10lpgp6xz60nq.cloudfront.net/images/payment/icon_small_play_small.webp"></div>
+                                    </div>
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</div>
+    <!-- Button trigger modal -->
+    <button id = "modal" type="button" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <section class="video-section">
+                        <!-- Modal -->
+                        <div id=""></div>
+                        <video width="100%" height="auto" controls>
+                            <source src="" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<marquee style="
+    position: fixed;
+    width: 100%;
+    height: auto;
+    bottom: 0px;
+    left: 0;
+    font-size: 10px;
+    background: #f7f7f7;
+    z-index: 1;
+">Powered by Bharat Bill Payment System (BBPS), National Payments Corporation of India (NPCI), Goverment Of India</marquee>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/js/bootstrap.min.js" integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+
+    let domain = window.location.protocol + "//"+window.location.hostname;
+    $( document ).ready(function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        $.ajax({url: domain+"/v1/payment/bbps/info?token="+urlParams.get('token'), success: function(result){
+
+            if(!result.data.bbps)
+            {
+                $("body").html("<div style='padding-top:20px; position: relative;'>You have sufficient wallet balance for this payment<br>You cannot use this payment method</div>");
+            }
+            let order_info = result.data.order_info;
+            // console.log(order_info);
+            let course_title = order_info.title;
+            let title = order_info.title.trim() +" | " +order_info.package_duration.trim();
+                $("#course_name").html(title);
+                $(".phone_number").html(order_info.phone_number);
+
+                $(".net_amount").html("₹"+order_info.net_amount);
+                $(".total_amount").html("₹"+order_info.total_amount);
+                if(!order_info.discount)
+                {
+                    $(".discount-s").remove();
+                }
+                else {
+                    $(".discount").html(order_info.discount);
+                }
+                if(!order_info.coupon_amount)
+                {
+                    $(".coupon-amount-s").remove();
+
+                }
+                else {
+                    $(".coupon_amount").html(order_info.coupon_amount);
+
+                }
+
+                if(!order_info.wallet_amount)
+                {
+                    $(".wallet-amount-s").remove();
+                }
+                else{
+                    $(".wallet_amount").html(order_info.wallet_amount);
+
+                }
+
+                $("#pre-loader").hide();
+
+            }});
+
+
+
+    });
+
+    $(".video-container li").click(function(){
+
+        $('#modal').click();
+        let src = $(this).data('video');
+        $('video source').attr("src",src);
+        $('#exampleModalLabel').html($(this).data('label'));
+        $("video")[0].load();
+        $('video')[0].play();
+    });
+
+
+    $(".btn-close").click(function(){
+
+        $('video source').attr("src","");
+        $("video")[0].load();
+
+    });
+
+    var myModalEl = document.getElementById('exampleModal')
+    myModalEl.addEventListener('hidden.bs.modal', function (event) {
+        $('video source').attr("src","");
+        $("video")[0].load();
+
+    })
+
+</script>
+</html>

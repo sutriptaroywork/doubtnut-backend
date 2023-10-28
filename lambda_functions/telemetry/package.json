@@ -1,0 +1,13 @@
+{
+  "name": "telemetry",
+  "version": "1.0.0",
+  "description": "Push api server telemetry results from sqs to influxdb",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Abhishek Sinha",
+  "dependencies": {
+    "influx": "^5.5.1"
+  }
+}

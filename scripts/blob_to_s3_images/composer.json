@@ -1,0 +1,16 @@
+{
+    "name": "root/doubtnut",
+    "description": "this is for doubtnut",
+    "require": {
+        "aws/aws-sdk-php": "2.8.*",
+        "microsoft/windowsazure": "^0.4.3"
+    },
+    "authors": [
+        {
+            "name": "Uday Khatry",
+            "email": "udaykhatry91@gmail.com"
+        }
+    ]
+
+
+}

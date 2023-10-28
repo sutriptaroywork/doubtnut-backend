@@ -1,0 +1,12 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ubuntu/doubtnut_backend
+hooks:
+  BeforeInstall:
+    - location: script/stop-pm2.sh
+      runas: ubuntu
+  AfterInstall:
+    - location: script/start-pm2.sh
+      runas: ubuntu

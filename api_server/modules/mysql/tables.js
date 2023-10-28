@@ -1,0 +1,15 @@
+module.exports = {
+    homeCarousels: 'home_caraousels',
+    scm: 'student_course_mapping',
+    homeWidgetsTest: 'homepage_widgets_test',
+    students: 'students',
+    questions: 'questions',
+    viewDownloadStatsNew: 'view_download_stats_new',
+    videoViewStats: 'video_view_stats',
+    languages: 'languages',
+    courseBrowseHistory: 'course_browse_history',
+    classDisplayMapping: 'class_display_mapping',
+    whatsAppPush: 'whatsapp_push',
+    inAppSearchFilter: 'inapp_search_filter',
+    questionsBookMeta: 'questions_book_meta',
+};

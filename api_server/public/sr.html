@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /*body { height: 100vh; width:100vw;}*/
+        html,body{margin:0 auto; font-family: 'Mukta', sans-serif;; position: relative; background: #f85032; width:100%; height:100%;}
+        body{ background:  #ffffff;}
+        .lato {font-family: 'Lato', sans-serif;}
+        #wrapper { width: 96%; margin: 0 auto; padding-top: 10px;
+            height: calc(100% - 60px);
+            overflow: scroll;}
+        .purple {color:#4a54bd}
+        .gray {color: #acacac}
+        button.btn-primary, .btn-primary:hover {
+            border-radius: 0;
+            border-color: #eb532c;
+            background: #eb532c;
+            color: white;
+        }
+        .btn-primary.disabled, .btn-primary:disabled {
+            color: #fff;
+            background-color: #cbcbcb;
+            border-color: #cbcbcb;
+        }
+        .btn-outline-primary, .btn-outline-primary:hover {
+            border-radius: 0;
+            border-color: #eb532c;
+            background: #fff;
+            color: #eb532c;
+        }
+        .btn-outline-primary.disabled, .btn-outline-primary:disabled {
+            color: #fff;
+            background-color: #cbcbcb;
+            border-color: #cbcbcb;
+        }
+        .form-check-input:checked {
+            background-color: #eb532c;
+            border-color: #eb532c;
+        }
+    </style>
+    <style>
+        .margin-bottom-0 { margin-bottom: 0;}
+        #pre-loader{
+            background: white; /* fallback for old browsers */
+            /*background: -webkit-linear-gradient(to bottom, #eb5028, #e73827); !* Chrome 10-25, Safari 5.1-6 *!*/
+            /*background: linear-gradient(to bottom, #eb5028, #e73827); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
+            position: fixed;
+            width:100%;
+            height: 100%;
+            left:0;
+            top:0;
+            z-index: 4;
+        }
+    </style>
+    <style>
+        .spinner {
+            width: 40px;
+            height: 40px;
+            top:45%;
+            position: relative;
+            margin: auto auto;
+        }
+        .double-bounce1, .double-bounce2 {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #eb532c;
+            opacity: 0.6;
+            position: absolute;
+            top: 0;
+            left: 0;
+            -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+            animation: sk-bounce 2.0s infinite ease-in-out;
+        }
+        .double-bounce2 {
+            -webkit-animation-delay: -1.0s;
+            animation-delay: -1.0s;
+        }
+        @-webkit-keyframes sk-bounce {
+            0%, 100% { -webkit-transform: scale(0.0) }
+            50% { -webkit-transform: scale(1.0) }
+        }
+        @keyframes sk-bounce {
+            0%, 100% {
+                transform: scale(0.0);
+                -webkit-transform: scale(0.0);
+            } 50% {
+                  transform: scale(1.0);
+                  -webkit-transform: scale(1.0);
+              }
+        }
+    </style>
+</head>
+<body>
+    <section id="pre-loader">
+        <div class="spinner">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+    </section>
+<section id="wrapper">
+    <style>
+        .header { border-bottom: 1px solid #e2e2e2; height:50px;}
+        footer{ position: fixed; z-index: 1; left:0; bottom:0; width:100%; height: auto;}
+        .form-error { color: red;}
+    </style>
+    <section id="add-address" class="main-s d-none">
+        <header class="header">
+            <div class="d-flex justify-content-between bd-highlight mb-3">
+                <div class="p-2 bd-highlight back-press">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 16 16">
+                        <path fill="#504949" fill-rule="evenodd" d="M14 7.25H4.872l4.193-4.192L8 2 2 8l6 6 1.057-1.057L4.872 8.75H14v-1.5z" clip-rule="evenodd"/>
+                    </svg>
+                </div>
+                <div id="new-address-title" class="p-2 bd-highlight fw-bold title">Add Your Address</div>
+                <div class="p-2 bd-highlight close-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 16 16">
+                        <path fill="#504949" d="M13 4.007L11.993 3 8 6.993 4.007 3 3 4.007 6.993 8 3 11.993 4.007 13 8 9.007 11.993 13 13 11.993 9.007 8 13 4.007z"/>
+                    </svg>
+                </div>
+            </div>
+        </header>
+        <br>
+        <article class="w-90">
+            <form class="row g-3">
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1" style="background: white;">+91</span>
+                    <input id = "mobile-number" type="number" name="input-mobile" maxlength="10" class="form-control" placeholder="Mobile Number" autocomplete="off" value= "">
+                    <div class="form-error"></div>
+                </div>
+                <div class="col-12">
+                    <input id="full-name" type="text" name="input-full-name" class="form-control" placeholder="Full Name" autocomplete="off">
+                    <div class="form-error"></div>
+                </div>
+                <div class="col-12">
+                    <input name="input-pin-code" type="number" id= "pincode-input" maxlength="6" class="form-control" placeholder="Pin Code" autocomplete="off">
+                    <div id="pincode-form-error" class="form-error" style="display: inherit";></div>
+                </div>
+                <div class="col-12">
+                    <input id="address-line-1" type="text" name="input-address-line-1" class="form-control" placeholder="Flat, House No., Building, Apartment" autocomplete="off">
+                    <div class="form-error"></div>
+                </div>
+                <div class="col-12">
+                    <input id="address-line-2" type="text" name="input-address-line-2" class="form-control" placeholder="Area, Colony, Street, Sector, Village" autocomplete="off">
+                    <div class="form-error"></div>
+                </div>
+                <div class="col-12">
+                    <input id="land-mark" type="text" name="input-landmark"  class="form-control" placeholder="Landmark eg. Near Reliance Mart" autocomplete="off">
+                    <div class="form-error"></div>
+                </div>
+                <div class="col-6">
+                    <input type="text" name="input-city" disabled id="city-input" style="visibility: hidden;" class="form-control" placeholder="Town/ City">
+                </div>
+                <div class="col-6">
+                    <input type="text" name="input-state" disabled id="state-input" style="visibility: hidden;" class="form-control" placeholder="STATE">
+                </div>
+            </form>
+        </article>
+        <footer>
+            <div class="d-grid gap-2">
+                <button class="btn btn btn-primary btn-lg" type="button" id="add-address-submit">Add My Address</button>
+            </div>
+        </footer>
+    </section>
+    <section id="select-address" class="main-s d-none">
+        <style>
+            .address-list { border:1px solid #e2e2e2; padding: 1rem 1.5rem; margin-bottom: 1rem;}
+            #add-new-address {margin-top:1.5rem;}
+        </style>
+        <header class="header">
+            <div class="d-flex justify-content-between bd-highlight mb-3">
+                <div class="p-2 bd-highlight back-press">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 16 16">
+                        <path fill="#504949" fill-rule="evenodd" d="M14 7.25H4.872l4.193-4.192L8 2 2 8l6 6 1.057-1.057L4.872 8.75H14v-1.5z" clip-rule="evenodd"/>
+                    </svg>
+                </div>
+                <div id="select-address-title" class="p-2 bd-highlight fw-bold">Select Your Address</div>
+                <div class="p-2 bd-highlight close-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 16 16">
+                        <path fill="#504949" d="M13 4.007L11.993 3 8 6.993 4.007 3 3 4.007 6.993 8 3 11.993 4.007 13 8 9.007 11.993 13 13 11.993 9.007 8 13 4.007z"/>
+                    </svg>
+                </div>
+            </div>
+        </header>
+        <br>
+        <article class="w-90">
+            <div id="address-list-wrapper">
+            </div>
+            <div class="">
+                <div class="row">
+                    <div class="col">
+                        <div class="d-grid gap-2">
+                            <button id="add-new-address" type="button" class="btn btn-outline-primary">Add a new address</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <footer>
+            <div class="d-grid gap-2">
+                <button class="btn btn btn-primary btn-lg" type="button" id="review-order-submit" disabled>Review My Order</button>
+            </div>
+        </footer>
+    </section>
+    <section id="order-review" class="main-s d-none">
+        <style>
+            .purple {color:#4a54bd}
+            .board {font-size: 1.1rem; margin-bottom: 1rem;}
+            .board > .title { font-size: 0.9rem; color : #333333; margin-bottom: 0;}
+            .board p { font-size: 0.95rem; margin-bottom : 0.6rem;}
+            .board p.lato { font-size: 0.8rem;}
+            .board .card-body {padding: 0.4rem 0.8rem;}
+            .board .card {background:white;}
+            .board td {
+                font-size: 0.9rem;
+                padding: 0.2rem 0;
+                color: #555;
+                border-bottom: 0;
+            }
+            .board tr:last-child {
+                border-top-width:1px;
+            }
+            .board table { margin:0;}
+            .btn-check:focus+.btn, .btn:focus {box-shadow: none;}
+            .card-img-top {width: 2rem;
+                height: 2rem;}
+            .card-title {font-size: 0.7rem;}
+            .board li.list-group-item {
+                font-size: 1rem;
+                padding: 0.3rem;
+            }
+            .bd-callout {
+                padding: 0.4rem 0.6rem;
+                margin-top: 1rem;
+                margin-bottom: 1.25rem;
+                border: 1px solid #e9ecef;
+                border-left-width: .25rem;
+                border-radius: .25rem;
+                background: #fff2ee;
+            }
+            .bd-callout-info {
+                border-left-color: #ffbcbc;
+            }
+            .red { color: #ff0000;}
+            div#review-animation {
+                width: 35%;
+                margin: 0 auto;
+            }
+            .shift {height:75vh;}
+            input#otp-input {
+                border: none;
+                border-bottom: 1px solid gray;
+                background: #ffffff;
+                border-radius: 0;
+                font-size: 2rem;
+                letter-spacing: 2rem;
+            }
+            .animation-container {
+                position: fixed;
+                z-index: 100;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgb(0,0,0);
+                background-color: rgba(0,0,0,0.8);
+            }
+            .w-less {
+                position: absolute;
+                width: 75vw;
+                height: 75vw;
+                margin: 0;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .animation-text {
+                position: fixed;
+                z-index: 100;
+                left: 50%;
+                top: 25%;
+                color: yellow;
+                width:100%;
+                text-align:center;
+                transform: translate(-50%, -50%);
+            }
+        </style>
+        <header class="header">
+            <div class="d-flex justify-content-between bd-highlight mb-3">
+                <div class="p-2 bd-highlight review-back-press">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 16 16">
+                        <path fill="#504949" fill-rule="evenodd" d="M14 7.25H4.872l4.193-4.192L8 2 2 8l6 6 1.057-1.057L4.872 8.75H14v-1.5z" clip-rule="evenodd"/>
+                    </svg>
+                </div>
+                <div id="review-order-title" class="p-2 bd-highlight fw-bold">Review Order</div>
+                <div class="p-2 bd-highlight close-button" >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 16 16">
+                        <path fill="#504949" d="M13 4.007L11.993 3 8 6.993 4.007 3 3 4.007 6.993 8 3 11.993 4.007 13 8 9.007 11.993 13 13 11.993 9.007 8 13 4.007z"/>
+                    </svg>
+                </div>
+            </div>
+        </header>
+        <br>
+        <div id="animation-modal">
+            <div id="animation-container" class="animation-container">
+                <h3 class="animation-text">COD me aapko kya milne wala hai</h3>
+                <lottie-player class="w-less" src = './animation.json'
+                background="transparent"  speed="1" loop autoplay >
+                </lottie-player>
+            </div>
+        </div>
+        <article class="w-90">
+            <b><p id="course-name" style="color: #273de9; font-size: 20px; font-family: lato;"></p></b>
+            <div class="board" id="coupon-code-div" style="display: none;">
+                <p id="coupon-code-title" class="title text-start fw-bold" style="font-family: lato; font-size: 12px; color: #808080;">COUPON CODE</p>
+                <div class="card" id="coupon-code-card">
+                    <div class="card text-start" >
+                        <div class="card-body">
+                            <div id="coupon-placeholder">
+                                <span style="vertical-align: middle; display: table-cell;"><img style="vertical-align: middle; display: table-cell; width:25px;height:25px;" src="https://d10lpgp6xz60nq.cloudfront.net/images/payment/coupon_code.webp" /></span>
+                                <span style="padding-left: 5px; vertical-align: middle; display: table-cell; color: #808080; font-size: 14px; font-family: lato;">Select Coupon</span>
+                                <span style="position: absolute; right: 5%; transform: translate(0, -110%); display: table-cell; color: #eb532c; font-size: 14px; font-family: lato; font-weight: 700;">Select Coupon</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="board">
+                <p id="deliver-to" class="title text-start fw-bold" style="font-family: lato; font-size: 12px; color: #808080;">DELIVER TO</p>
+                <div class="card">
+                    <div class="card text-start" >
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <p class="card-title margin-bottom-0 w-100"><span class= "fw-bold " id="ship_name"></span></p>
+                            </div>
+                            <p id="ship_address"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="board">
+                <p id="get-it-by" class="title text-start fw-bold" style="font-family: lato; font-size: 12px; color: #808080;">GET IT BY</p>
+                <div class="card">
+                    <div class="card text-start" >
+                        <div class="card-body">
+                            <div id="delivery_date">23rd June 2021</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="board">
+                <p id="payment-details" class="title text-start fw-bold" style="font-family: lato; font-size: 12px; color: #808080;">PAYMENT DETAILS</p>
+                <div class="card">
+                    <div class="card text-start" >
+                        <div class="card-body">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <td id="original" class="text-start">Original</td>
+                                    <td class="text-end"><span class="total_amount"></span></td>
+                                </tr>
+                                <tr class="discount-s">
+                                    <td id="discount" class="text-start">Discount</td>
+                                    <td class="text-end"><span class="discount"></span></td>
+                                </tr>
+                                <tr class="wallet-amount-s">
+                                    <td id="dn-wallet" class="text-start">DN Wallet</td>
+                                    <td class="text-end"><span class="wallet_amount"></span></td>
+                                </tr>
+                                <tr class="coupon-amount-s">
+                                </tr>
+                                <tr>
+                                    <td id="final-amount" class="text-start fw-bold">Final Amount</td>
+                                    <td class="text-end fw-bold"><span class="net_amount"></span></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <footer>
+            <div class="bd-callout bd-callout-info">
+                <div id="note-1" class="red"><b>Note:</b></div>
+                <div id="note-body-1" class="red">Ye order place hone ke baad cancel ya badla nahi ja sakta hai</div>
+            </div>
+            </div>
+            <div class="d-grid gap-2">
+                <button class="btn btn btn-primary btn-lg" type="button" id="confirm-otp-submit">Confirm With OTP</button>
+            </div>
+        </footer>
+    </section>
+    <section id="otp-confirm" class="main-s d-none">
+        <style>
+            div#paperplane {
+                width: 35%;
+                margin: 0 auto;
+            }
+            .shift {height:75vh;}
+            input#otp-input {
+                border: none;
+                border-bottom: 1px solid gray;
+                background: #ffffff;
+                border-radius: 0;
+                font-size: 2rem;
+                letter-spacing: 2rem;
+            }
+        </style>
+        <header class="header">
+            <div class="d-flex justify-content-between bd-highlight mb-3">
+                <div class="p-2 bd-highlight back-press">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 16 16">
+                        <path fill="#504949" fill-rule="evenodd" d="M14 7.25H4.872l4.193-4.192L8 2 2 8l6 6 1.057-1.057L4.872 8.75H14v-1.5z" clip-rule="evenodd"/>
+                    </svg>
+                </div>
+                <div id="otp-title" class="p-2 bd-highlight fw-bold">Enter OTP</div>
+                <div class="p-2 bd-highlight close-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 16 16">
+                        <path fill="#504949" d="M13 4.007L11.993 3 8 6.993 4.007 3 3 4.007 6.993 8 3 11.993 4.007 13 8 9.007 11.993 13 13 11.993 9.007 8 13 4.007z"/>
+                    </svg>
+                </div>
+            </div>
+        </header>
+        <br>
+        <article class="w-90">
+            <div class="shift">
+                <div id="paperplane">
+                    <lottie-player
+                        src='{"v":"5.6.9","fr":60,"ip":0,"op":360,"w":800,"h":800,"nm":"Comp 1","ddd":0,"assets":[],"layers":[{"ddd":0,"ind":3,"ty":4,"nm":"Shape Layer 3","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":1,"k":[{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":62,"s":[0]},{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":119,"s":[32]},{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":170,"s":[-8]},{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":203,"s":[4]},{"t":233,"s":[0]}],"ix":10},"p":{"a":1,"k":[{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":0,"s":[400,400,0],"to":[0,0,0],"ti":[0,4.667,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":39.889,"s":[400,421,0],"to":[0,-4.667,0],"ti":[0,-11.833,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":79.777,"s":[400,372,0],"to":[0,11.833,0],"ti":[0,0,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.365,"y":0},"t":131,"s":[400,492,0],"to":[0,0,0],"ti":[0,0,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":173,"s":[400,325,0],"to":[0,0,0],"ti":[0,-3.333,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":210,"s":[400,361,0],"to":[0,3.333,0],"ti":[0,-1.467,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":239.334,"s":[400,345,0],"to":[0,1.467,0],"ti":[0,-2.1,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":279.223,"s":[400,369.8,0],"to":[0,2.1,0],"ti":[0,-5.033,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":317.941,"s":[400,357.6,0],"to":[0,5.033,0],"ti":[0,-7.067,0]},{"t":360,"s":[400,400,0]}],"ix":2},"a":{"a":0,"k":[-9.25,-61.25,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"shapes":[{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":1,"k":[{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":0,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[37,-151.5],[-58.125,-122.5],[89.5,-81.5],[-111.5,-97],[-177,-31.5],[158.5,-66]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":60,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[37,-125],[-58.125,-109.25],[95.125,-81],[-107.875,-97.75],[-177,-57.625],[158.5,-66]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":120,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[33,-156.5],[-63.125,-112.5],[89.5,-83],[-111.5,-97],[-177,-1.5],[158.5,-66]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":180,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[37,-125],[-58.125,-109.25],[95.125,-81],[-107.875,-97.75],[-177,-57.625],[158.5,-66]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":240,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[37,-151.5],[-58.125,-122.5],[89.5,-81.5],[-111.5,-97],[-177,-31.5],[158.5,-66]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":300,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[37,-125],[-58.125,-109.25],[95.125,-81],[-107.875,-97.75],[-177,-57.625],[158.5,-66]],"c":true}]},{"t":360,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[37,-151.5],[-58.125,-122.5],[89.5,-81.5],[-111.5,-97],[-177,-31.5],[158.5,-66]],"c":true}]}],"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"st","c":{"a":0,"k":[0.129411764706,0.129411764706,0.129411764706,1],"ix":3},"o":{"a":0,"k":100,"ix":4},"w":{"a":0,"k":6,"ix":5},"lc":2,"lj":2,"bm":0,"nm":"Stroke 1","mn":"ADBE Vector Graphic - Stroke","hd":false},{"ty":"fl","c":{"a":0,"k":[0.9137254901960784,0.33725490196078434,0.14901960784313725,1],"ix":4},"o":{"a":0,"k":100,"ix":5},"r":1,"bm":0,"nm":"Fill 1","mn":"ADBE Vector Graphic - Fill","hd":false},{"ty":"tr","p":{"a":0,"k":[0,0],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Shape 2","np":3,"cix":2,"bm":0,"ix":1,"mn":"ADBE Vector Group","hd":false},{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":1,"k":[{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":0,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-122.5],[-76.75,-51],[-103,-49.375],[-83.5,16.5],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":60,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-109.25],[-76.75,-63.5],[-103,-61.875],[-85.5,7],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":120,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-63.25,-112.5],[-76.75,-51],[-103,-49.375],[-83.5,16.5],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":180,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-109.25],[-76.75,-63.5],[-103,-61.875],[-85.5,7],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":240,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-122.5],[-76.75,-51],[-103,-49.375],[-83.5,16.5],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":300,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-109.25],[-76.75,-63.5],[-103,-61.875],[-85.5,7],[157,-66.5]],"c":true}]},{"t":360,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-122.5],[-76.75,-51],[-103,-49.375],[-83.5,16.5],[157,-66.5]],"c":true}]}],"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"st","c":{"a":0,"k":[0.129411764706,0.129411764706,0.129411764706,1],"ix":3},"o":{"a":0,"k":100,"ix":4},"w":{"a":0,"k":6,"ix":5},"lc":1,"lj":2,"bm":0,"nm":"Stroke 1","mn":"ADBE Vector Graphic - Stroke","hd":false},{"ty":"tr","p":{"a":0,"k":[0,0],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Shape 1","np":3,"cix":2,"bm":0,"ix":2,"mn":"ADBE Vector Group","hd":false},{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":1,"k":[{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":0,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-122.5],[-76.75,-51],[-103,-49.375],[-90.75,-8.5],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":60,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-109.25],[-76.75,-63.5],[-103,-61.875],[-96.75,-37.75],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":120,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-63.25,-112.5],[-76.75,-51],[-103,-49.375],[-90.75,-8.5],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":180,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-109.25],[-76.75,-63.5],[-103,-61.875],[-96.75,-37.75],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":240,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-122.5],[-76.75,-51],[-103,-49.375],[-90.75,-8.5],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":300,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-109.25],[-76.75,-63.5],[-103,-61.875],[-96.75,-37.75],[157,-66.5]],"c":true}]},{"t":360,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-122.5],[-76.75,-51],[-103,-49.375],[-90.75,-8.5],[157,-66.5]],"c":true}]}],"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"fl","c":{"a":0,"k":[1,0.8627450980392157,0.8196078431372549,1],"ix":4},"o":{"a":0,"k":100,"ix":5},"r":1,"bm":0,"nm":"Fill 1","mn":"ADBE Vector Graphic - Fill","hd":false},{"ty":"tr","p":{"a":0,"k":[0,0],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Shape 3","np":3,"cix":2,"bm":0,"ix":3,"mn":"ADBE Vector Group","hd":false},{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":1,"k":[{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":0,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-122.5],[-76.75,-51],[-103,-49.375],[-83.5,16.5],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":60,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-109.25],[-76.75,-63.5],[-103,-61.875],[-85.5,7],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":120,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-63.25,-112.5],[-76.75,-51],[-103,-49.375],[-83.5,16.5],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":180,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-109.25],[-76.75,-63.5],[-103,-61.875],[-85.5,7],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":240,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-122.5],[-76.75,-51],[-103,-49.375],[-83.5,16.5],[157,-66.5]],"c":true}]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":300,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-109.25],[-76.75,-63.5],[-103,-61.875],[-85.5,7],[157,-66.5]],"c":true}]},{"t":360,"s":[{"i":[[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-58.25,-122.5],[-76.75,-51],[-103,-49.375],[-83.5,16.5],[157,-66.5]],"c":true}]}],"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"fl","c":{"a":0,"k":[1,1,1,1],"ix":4},"o":{"a":0,"k":100,"ix":5},"r":1,"bm":0,"nm":"Fill 1","mn":"ADBE Vector Graphic - Fill","hd":false},{"ty":"tr","p":{"a":0,"k":[0,0],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Shape 4","np":3,"cix":2,"bm":0,"ix":4,"mn":"ADBE Vector Group","hd":false}],"ip":0,"op":480,"st":0,"bm":0},{"ddd":0,"ind":4,"ty":4,"nm":"line 2","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":1,"k":[{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":0,"s":[212,413.99999999999994,0],"to":[0,0,0],"ti":[0,4,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":39.889,"s":[212,438.99999999999994,0],"to":[0,-4,0],"ti":[0,-11.833,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":79.777,"s":[212,390,0],"to":[0,11.833,0],"ti":[0,0,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.365,"y":0},"t":131,"s":[212,509.99999999999994,0],"to":[0,0,0],"ti":[0,0,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":173,"s":[212,343,0],"to":[0,0,0],"ti":[0,-3.333,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":210,"s":[212,379,0],"to":[0,3.333,0],"ti":[0,-1.467,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":239.334,"s":[212,363,0],"to":[0,1.467,0],"ti":[0,-2.1,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":279.223,"s":[212,387.8,0],"to":[0,2.1,0],"ti":[0,-4.367,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":317.941,"s":[212,375.6,0],"to":[0,4.367,0],"ti":[0,0,0]},{"t":360,"s":[212,413.99999999999994,0]}],"ix":2},"a":{"a":0,"k":[-157,-41,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"shapes":[{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":1,"k":[{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":98,"s":[{"i":[[0,0],[0,0]],"o":[[0,0],[0,0]],"v":[[-49,-41],[-265,-41]],"c":false}]},{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":115,"s":[{"i":[[0,0],[34,-29.891]],"o":[[-63,35.109],[0,0]],"v":[[-49,-41],[-265,-41]],"c":false}]},{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":136,"s":[{"i":[[0,0],[47,27.267]],"o":[[-68,-11.733],[0,0]],"v":[[-49,-41],[-265,-41]],"c":false}]},{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":158,"s":[{"i":[[0,0],[51,7.729]],"o":[[-68,-11.733],[0,0]],"v":[[-49,-41],[-265,-41]],"c":false}]},{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":175,"s":[{"i":[[0,0],[51,-19.308]],"o":[[-61,35.692],[0,0]],"v":[[-49,-41],[-265,-41]],"c":false}]},{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":208,"s":[{"i":[[0,0],[57,-5.829]],"o":[[-58,0.171],[0,0]],"v":[[-49,-41],[-265,-41]],"c":false}]},{"t":230,"s":[{"i":[[0,0],[0,0]],"o":[[0,0],[0,0]],"v":[[-49,-41],[-265,-41]],"c":false}]}],"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"st","c":{"a":0,"k":[0.129411764706,0.129411764706,0.129411764706,1],"ix":3},"o":{"a":0,"k":100,"ix":4},"w":{"a":0,"k":6,"ix":5},"lc":2,"lj":1,"ml":4,"bm":0,"d":[{"n":"d","nm":"dash","v":{"a":0,"k":57.6,"ix":1}},{"n":"g","nm":"gap","v":{"a":0,"k":20.2,"ix":2}},{"n":"d","nm":"dash2","v":{"a":0,"k":71,"ix":3}},{"n":"o","nm":"offset","v":{"a":1,"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":0,"s":[0]},{"t":360,"s":[-2975.7]}],"ix":7}}],"nm":"Stroke 1","mn":"ADBE Vector Graphic - Stroke","hd":false},{"ty":"tr","p":{"a":0,"k":[0,0],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Shape 1","np":3,"cix":2,"bm":0,"ix":1,"mn":"ADBE Vector Group","hd":false}],"ip":0,"op":480,"st":0,"bm":0},{"ddd":0,"ind":5,"ty":4,"nm":"line","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":1,"k":[{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":0,"s":[247.00000000000003,354,0],"to":[0,0,0],"ti":[0,4,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":39.889,"s":[247.00000000000003,379,0],"to":[0,-4,0],"ti":[0,-11.833,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":79.777,"s":[247.00000000000003,330,0],"to":[0,11.833,0],"ti":[0,0,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.365,"y":0},"t":131,"s":[247.00000000000003,450,0],"to":[0,0,0],"ti":[0,0,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":173,"s":[247.00000000000003,283,0],"to":[0,0,0],"ti":[0,-3.333,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":210,"s":[247.00000000000003,319,0],"to":[0,3.333,0],"ti":[0,-1.467,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":239.334,"s":[247.00000000000003,303,0],"to":[0,1.467,0],"ti":[0,-2.1,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":279.223,"s":[247.00000000000003,327.8,0],"to":[0,2.1,0],"ti":[0,-4.367,0]},{"i":{"x":0.667,"y":1},"o":{"x":0.333,"y":0},"t":317.941,"s":[247.00000000000003,315.6,0],"to":[0,4.367,0],"ti":[0,0,0]},{"t":360,"s":[247.00000000000003,354,0]}],"ix":2},"a":{"a":0,"k":[-157,-41,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"shapes":[{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":1,"k":[{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":80,"s":[{"i":[[0,0],[0,0]],"o":[[0,0],[0,0]],"v":[[-49,-41],[-265,-41]],"c":false}]},{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":97,"s":[{"i":[[0,0],[34,-29.891]],"o":[[-63,35.109],[0,0]],"v":[[-49,-41],[-265,-41]],"c":false}]},{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":118,"s":[{"i":[[0,0],[47,27.267]],"o":[[-68,-11.733],[0,0]],"v":[[-49,-41],[-265,-41]],"c":false}]},{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":140,"s":[{"i":[[0,0],[51,7.729]],"o":[[-68,-11.733],[0,0]],"v":[[-49,-41],[-265,-41]],"c":false}]},{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":157,"s":[{"i":[[0,0],[51,-19.308]],"o":[[-61,35.692],[0,0]],"v":[[-49,-41],[-265,-41]],"c":false}]},{"i":{"x":0.833,"y":0.833},"o":{"x":0.167,"y":0.167},"t":190,"s":[{"i":[[0,0],[57,-5.829]],"o":[[-58,0.171],[0,0]],"v":[[-49,-41],[-265,-41]],"c":false}]},{"t":212,"s":[{"i":[[0,0],[0,0]],"o":[[0,0],[0,0]],"v":[[-49,-41],[-265,-41]],"c":false}]}],"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"st","c":{"a":0,"k":[0.129411764706,0.129411764706,0.129411764706,1],"ix":3},"o":{"a":0,"k":100,"ix":4},"w":{"a":0,"k":6,"ix":5},"lc":2,"lj":1,"ml":4,"bm":0,"d":[{"n":"d","nm":"dash","v":{"a":0,"k":34.6,"ix":1}},{"n":"g","nm":"gap","v":{"a":0,"k":22.9,"ix":2}},{"n":"d","nm":"dash2","v":{"a":0,"k":23,"ix":3}},{"n":"o","nm":"offset","v":{"a":1,"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":0,"s":[0]},{"t":360,"s":[-2254.3]}],"ix":7}}],"nm":"Stroke 1","mn":"ADBE Vector Graphic - Stroke","hd":false},{"ty":"tr","p":{"a":0,"k":[0,0],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Shape 1","np":3,"cix":2,"bm":0,"ix":1,"mn":"ADBE Vector Group","hd":false}],"ip":0,"op":480,"st":0,"bm":0}],"markers":[]}'
+                        background="transparent"  speed="1" loop autoplay >
+                    </lottie-player>
+                </div>
+                <h5 id="user-self-confirm">Hum confirm karte hai ke delivery ke samay course ka amount pay karenge.</h5>
+                <h5 id="enter-otp-message">Enter the OTP sent to you at
+                    <br>+91-<span id="user_rmn"></span>  to confirm.
+                </h5>
+                <br><br>
+                <input id="otp-input" class="form-control" autocomplete="off" maxlength="4">
+                <div class="d-flex justify-content-end">
+                    <div style="color: #eb532c; padding: 1rem;" class="timer"></div>
+                    <button style="color:#969696" type="button" id="resend-otp-submit" class="btn btn-link">Resend OTP</button>
+                </div>
+                <div class="otp-error"></div>
+            </div>
+        </article>
+        <footer>
+            <div class="bd-callout bd-callout-info">
+                <div id="note-2" class="red"><b>Note: </b>Ye order place hone ke baad cancel ya badla nahi ja sakta hai</div>
+            </div>
+            <span class="d-grid">
+                <button class="btn btn btn-primary btn-lg" type="button" id="confirm-otp-final-submit" disabled>Confirm Purchase</button>
+            </span>
+        </footer>
+    </section>
+    <section id="order-confirm" class="main-s d-none">
+        <style>
+            .green-order-tick {
+                background: #54b726;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                margin: auto;
+            }
+            .light-gray-color { color: #504949}
+        </style>
+            <header class="header">
+                <div class="d-flex justify-content-between bd-highlight mb-3">
+                    <div class="p-2 bd-highlight close-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 16 16">
+                            <path fill="#504949" fill-rule="evenodd" d="M14 7.25H4.872l4.193-4.192L8 2 2 8l6 6 1.057-1.057L4.872 8.75H14v-1.5z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div id='order-confirmed' class="p-2 bd-highlight fw-bold">Order Confirmed</div>
+                    <div class="p-2 bd-highlight close-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 16 16">
+                            <path fill="#504949" d="M13 4.007L11.993 3 8 6.993 4.007 3 3 4.007 6.993 8 3 11.993 4.007 13 8 9.007 11.993 13 13 11.993 9.007 8 13 4.007z"/>
+                        </svg>
+                    </div>
+                </div>
+            </header>
+        <br>
+        <article class="w-90">
+            <br>
+            <br>
+            <div class="text-center">
+                    <div style="padding-top: 10px;">
+                        <img style= "border: none;" class="img-fluid" src="https://d10lpgp6xz60nq.cloudfront.net/engagement_framework/7FE608E9-E2B4-F423-2078-572F8EE908C2.webp">
+                    </div>
+                <br>
+                <h4 id="order-success" class="fw-bold">Order Successful!</h4>
+                <p id="delivery-message-amount" class="light-gray-color">Delivery ke din aapko delivery man ko ₹<span class="fw-bold" id="amount"></span> pay karna hai aur unse code lena hai.</p>
+                <p id="course-purchase-message" class="light-gray-color">Aapne <span id="purchased-course-name"></span> ka course <span id="course-validity"></span> ke liye khareeda hai.</p>
+            </div>
+            <footer>
+                <div style="background: #f6f6f6; max-width:400px; margin-left: 15px; margin-right: 15px; margin-bottom: 10px; text-align: center;">
+                    <button id="course-view-button" class="btn btn btn-lg view-course-deeplink" type="button" data-val='{ "type": "deeplink", "data": { "value": "###deeplink###" } }' style="color: #eb532c; font-family: lato; font-size: 16px; font-weight: 600;">Start Studying</button>
+                </div>
+            </footer>
+        </article>
+    </section>
+
+    <!----Order tracking---->
+    <section id="order-in-progress" class="main-s d-none">
+        <style>
+            .w-91{
+                display:flex;
+                padding-top:25px;
+                justify-content:left;
+                transform:scale(0.8) translateY(-50px);
+            }
+        </style>
+        <header class="header">
+            <div class="d-flex justify-content-between bd-highlight mb-3">
+                <div class="p-2 bd-highlight back-press">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 16 16">
+                        <path fill="#504949" fill-rule="evenodd" d="M14 7.25H4.872l4.193-4.192L8 2 2 8l6 6 1.057-1.057L4.872 8.75H14v-1.5z" clip-rule="evenodd"/>
+                    </svg>
+                </div>
+                <div id="order-track-title" class="p-2 bd-highlight fw-bold">Track My Order</div>
+                <div class="p-2 bd-highlight close-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 16 16">
+                        <path fill="#504949" d="M13 4.007L11.993 3 8 6.993 4.007 3 3 4.007 6.993 8 3 11.993 4.007 13 8 9.007 11.993 13 13 11.993 9.007 8 13 4.007z"/>
+                    </svg>
+                </div>
+            </div>
+        </header>
+        <br>
+        <h4><b><center><span id="tracking-message-main" style="font-family: lato; font-size:20px;">
+            <span id="tracking-message-start">Yayy! Aapka </span><span id="course-name-oip"></span> <span id="ka-code">ka code</span> <br><span id="estimated-delivery-date" style="color: #eb532c"></span> <span id="tracking-message-end"></span>
+        </span></center></h4>
+        <p><center><span id="amount-message-main" style="font-family: lato; color: #504949; font-weight: 400;font-size: 14px;">
+            Delivery ke time aapko delivery man ko ₹<span class="fw-bold" id="amount-to-pay"></span> pay<br> karna hai aur unse code lena hai.</span></center></p>
+        <article class="w-91">
+            <div id="tracking-list-wrapper">
+            </div>
+            <style>
+                *{
+                    margin:0;
+                    padding:0;
+                    outline:none;
+                    text-decoration:none;
+                    list-style:none;
+                }
+
+                    .lines{
+                        margin-left:-15px;
+                        margin-top:6px;
+                    }
+
+                    .dot{
+                        width:14px;
+                        height:14px;
+                        background: rgb(206, 200, 200);
+                        border-radius:7px;
+                    }
+
+                    .dot-done{
+                        width:14px;
+                        height:14px;
+                        background: #54b726;
+                        border-radius:7px;
+                    }
+
+                    .dot-current{
+                        width:14px;
+                        height:14px;
+                        background: #273de9;
+                        border-radius:7px;
+                    }
+
+                    .dot-false{
+                        width:14px;
+                        height:14px;
+                        background: #ff0000;
+                        border-radius:7px;
+                    }
+
+                    .line{
+                        height:53px;
+                        width:2px;
+                        background: rgb(206, 200, 200);
+                        margin-left:5.3px;
+                    }
+
+                    .line-current{
+                        height:103px;
+                        width:2px;
+                        background: rgb(206, 200, 200);
+                        margin-left:5.3px;
+                    }
+
+                    .line-done{
+                        height:73px;
+                        width:2px;
+                        background: #54b726;
+                        margin-left:5.3px;
+                    }
+
+                    .cards{
+                        margin-left:12px;
+                        transform:translateY(-10px);
+                    }
+                    .card-none{
+                        width:350px;
+                        height:50px;
+                        padding-top:10px;
+                        padding-left: 15px;
+                        background:  #ffffff;
+                        border: none;
+                        color: #969696;
+                        margin-bottom:16px;
+                    }
+                    .card-done{
+                        width:350px;
+                        height:70px;
+                        padding-top:10px;
+                        padding-left: 15px;
+                        background:  #ffffff;
+                        border: none;
+                        margin-bottom:16px;
+                    }
+                    .card-current{
+                        width:350px;
+                        height:105px;
+                        padding-top:10px;
+                        padding-left: 15px;
+                        background: #273de9;
+                        border-radius: 2px;
+                        box-shadow:0 2px 2px 0  #eeeeee40;
+                        box-shadow: 0px 16px 15px -10px rgba(105, 96, 215, 0.0944602);
+                        margin-bottom:16px;
+                        color: white;
+                    }
+                    .card-false{
+                        width:350px;
+                        height:105px;
+                        padding-top:10px;
+                        padding-left: 15px;
+                        background:  #ff0000;
+                        border-radius: 2px;
+                        box-shadow:0 2px 2px 0  #eeeeee40;
+                        box-shadow: 0px 16px 15px -10px rgba(105, 96, 215, 0.0944602);
+                        margin-bottom:16px;
+                        color: white;
+                    }
+            </style>
+                    <div class="lines">
+                      <div class="dot" id="tracking-dot-1"></div>
+                      <div class="line" id="tracking-line-1" style="height: 73px;"></div>
+                      <div class="dot" id="tracking-dot-2"></div>
+                      <div class="line" id="tracking-line-2"></div>
+                      <div class="dot" id="tracking-dot-3"></div>
+                      <div class="line" id="tracking-line-3"></div>
+                      <div class="dot" id="tracking-dot-4"></div>
+                    </div>
+
+                    <div class="cards">
+                      <div class="card-none" id="tracking-div-1" style="height: 70px;">
+                        <h4 id="tracking-1" style = "font-family: lato; letter-spacing:1px;font-style: normal;font-weight: bold;font-size: 20px;line-height: 24px;margin-bottom:5px;">Order Placed</h4>
+                        <p id="tracking-date-1" style="font-family: lato; letter-spacing:1px;font-style: normal;font-weight: normal;font-size: 15px;line-height: 19px; visibility: hidden;"></p>
+                      </div>
+                      <div class="card-none" id="tracking-div-2">
+                        <h4 id="tracking-2" style = "font-family: lato; letter-spacing:1px;font-style: normal;font-weight: bold;font-size: 20px;line-height: 24px;margin-bottom:5px;">Shipped</h4>
+                        <p id="tracking-date-2" style="font-family: lato; letter-spacing:1px;font-style: normal;font-weight: normal;font-size: 15px;line-height: 19px; visibility: hidden;"></p>
+                        <h5 id="tracking-status-2" style = "font-family: lato; letter-spacing:1px;font-style: normal;font-weight: 600;font-size: 18px;line-height: 20px; display: none;"><button class="shiprocket-tracking-deeplink" type="button" data-val='{ "type": "deeplink", "data": { "value": "###deeplink###" } }' style="background: #273de9; color:white; border:none;">More Details ></button></h5>
+                      </div>
+                      <div class="card-none" id="tracking-div-3">
+                            <h4 id="tracking-3" style = "font-family: lato; letter-spacing:1px;font-style: normal;font-weight: bold;font-size: 20px;line-height: 24px;margin-bottom:5px;">Out for delivery</h4>
+                            <p id="tracking-date-3" style="font-family: lato; letter-spacing:1px;font-style: normal;font-weight: normal;font-size: 15px;line-height: 19px; visibility: hidden;"></p>
+                            <div id="tracking-status-3" style="background: rgb(0, 0, 180); color: #ffdc5f; width: 350px; margin-left: -15px; padding-left:15px; padding-top: 5px; padding-bottom: 5px; display: none;"><span id="delivery-message" style="font-family: lato; font-style: normal;font-weight: 550; font-size: 17px;">Please pay ₹<span id="cod-amount"></span> to the delivery man</span></div>
+                      </div>
+                        <div class="card-none" style="height: 150px;" id="tracking-div-4">
+                            <h4 id="tracking-4" style = "font-family: lato; letter-spacing:1px;font-style: normal;font-weight: bold;font-size: 20px;line-height: 24px;margin-bottom:5px;">Course Activation</h4>
+                            <p id="tracking-date-4" style="font-family: lato; letter-spacing:1px;font-style: normal;font-weight: normal;font-size: 15px;line-height: 19px; visibility: hidden;"></p>
+                            <div style="border-style:solid; border-width: 2px; border-color:#eb532c; text-align: center; background:  #ffffff; margin-right: 15px; margin-top: 10px; margin-bottom: 10px; box-shadow:0 2px 2px 0  #eeeeee40; box-shadow: 0px 16px 15px -10px rgba(105, 96, 215, 0.0944602); display: none;" id="activation-button">
+                                <button id="activate-course-now" class="btn btn btn-lg activate-course-deeplink" type="button" data-val='{ "type": "deeplink", "data": { "value": "###deeplink###" } }' style="color: #eb532c; font-weight: 600;">Activate Course Now</button>
+                            </div>
+                      </div>
+                    </div>
+        </article>
+        <footer>
+            <div style="background: #f6f6f6; max-width:400px; margin-left: 15px; margin-right: 15px; margin-bottom: 10px; text-align: center;">
+                <button id="course-activation-video" class="btn btn btn-lg view-activation-video-deeplink" type="button" data-val='{ "type": "deeplink", "data": { "value": "###deeplink###" } }' style="color: #eb532c; font-family: lato; font-size: 16px; font-weight: 600;">▶ See how to activate course?</button>
+            </div>
+        </footer>
+    </section>
+    <!--/Order tracking-->
+
+    <section id="cannot-place-order" class="main-s d-none">
+        <style>
+            .green-order-tick {
+                background: #54b726;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                margin: auto;
+            }
+            .light-gray-color { color: #504949}
+        </style>
+        <article class="w-90">
+            <br>
+            <br>
+            <div class="text-center">
+                <div class="text-center w-10" style="width: 15%;margin: 0 auto;">
+                    <div style="padding-top: 10px;">
+                        <svg id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16" style="color: #842029;">
+                            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <br>
+                <h4 id="multiple-order-error" class="">Aap ek se jyada COD order nahi kar sakte</h4>
+                <!--                <p class="light-gray-color">Aapka order deliver hone ke baad aap apna course activate kar sakte hai.</p>-->
+                <br>
+                <button class="btn btn btn-outline-primary btn-lg close-button w-90" type="button">Close</button>
+            </div>
+        </article>
+    </section>
+    <section id="activate-course" class="main-s d-none">
+        <style>
+            .green-order-tick {
+                background: #54b726;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                margin: auto;
+            }
+            .light-gray-color { color: #504949}
+        </style>
+        <article class="w-90">
+            <br>
+            <br>
+            <div class="text-center">
+                <br>
+                <h4 id="activate-course-msg" class="fw-bold">Apna Course Activate Karein</h4>
+                <br>
+                <img style= "border: 1px solid gray;" class="img-fluid" src="https://d10lpgp6xz60nq.cloudfront.net/images/payment/activate_card.webp">
+                <br><br>
+                <form class="text-start">
+                    <div class="mb-3">
+                        <label id="enter-code" class="form-label">Apna code enter karo</label>
+                        <input type="email" class="form-control" id="course-code">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg text-center" id="activate-course-submit">Activate Course</button>
+                </form>
+            </div>
+        </article>
+    </section>
+    <section id="activation-complete" class="main-s d-none">
+        <style>
+            .green-order-tick {
+                background: #54b726;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                margin: auto;
+            }
+            .light-gray-color { color: #504949}
+        </style>
+        <article class="w-90">
+            <br>
+            <br>
+            <div class="text-center">
+                <div  class="green-order-tick text-center">
+                    <div style="padding-top: 10px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" fill="none" viewBox="0 0 29 29">
+                            <path fill="#fff" d="M10.649 22.592l14.37-14.475-1.696-1.708-12.674 12.796-5.001-5.037-1.667 1.708 6.668 6.716z"/>
+                        </svg>
+                    </div>
+                </div>
+                <br>
+                <h4 id="course-activated" class="fw-bold">Course Activated</h4>
+                <p id="course-activated-message" class="light-gray-color">Congratulations, aapka course active ho gaya he</p>
+                <br>
+                <button id="start-studying-button" class="btn btn btn-primary btn-lg view-course-deeplink" type="button" data-val='{ "type": "deeplink", "data": { "value": "###deeplink###" } }'>Start Studying</button>
+            </div>
+        </article>
+    </section>
+    <section id="apply-coupon-page" class="main-s d-none">
+        <style>
+            .board {font-size: 1.1rem; margin-bottom: 1rem;}
+            .board > .title { font-size: 0.9rem; color : #333333; margin-bottom: 0;}
+            .board p { font-size: 0.95rem; margin-bottom : 0.6rem;}
+            .board p.lato { font-size: 0.8rem;}
+            .board .card-body {padding: 0.4rem 0.8rem;}
+            .board .card {background:white;}
+            .board td {
+                font-size: 0.9rem;
+                padding: 0.2rem 0;
+                color: #555;
+                border-bottom: 0;
+            }
+            .board tr:last-child {
+                border-top-width:1px;
+            }
+            .board table { margin:0;}
+            .btn-check:focus+.btn, .btn:focus {box-shadow: none;}
+            .card-img-top {width: 2rem;
+                height: 2rem;}
+            .card-title {font-size: 0.7rem;}
+            .board li.list-group-item {
+                font-size: 1rem;
+                padding: 0.3rem;
+            }
+            .bd-callout {
+                padding: 0.4rem 0.6rem;
+                margin-top: 1rem;
+                margin-bottom: 1.25rem;
+                border: 1px solid #e9ecef;
+                border-left-width: .25rem;
+                border-radius: .25rem;
+                background: #fff2ee;
+            }
+            .bd-callout-info {
+                border-left-color: #ffbcbc;
+            }
+            .red { color: #ff0000;}
+            div#review-animation {
+                width: 35%;
+                margin: 0 auto;
+            }
+            .shift {height:75vh;}
+            input#otp-input {
+                border: none;
+                border-bottom: 1px solid gray;
+                background: #ffffff;
+                border-radius: 0;
+                font-size: 2rem;
+                letter-spacing: 2rem;
+            }
+        </style>
+        <header class="header">
+            <div class="d-flex justify-content-between bd-highlight mb-3">
+                <div class="p-2 bd-highlight coupon-back-press">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 16 16">
+                        <path fill="#504949" fill-rule="evenodd" d="M14 7.25H4.872l4.193-4.192L8 2 2 8l6 6 1.057-1.057L4.872 8.75H14v-1.5z" clip-rule="evenodd"/>
+                    </svg>
+                </div>
+                <div id="apply-coupon-title" class="p-2 bd-highlight fw-bold">Apply Coupon</div>
+                <div class="p-2 bd-highlight coupon-back-press" >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 16 16">
+                        <path fill="#504949" d="M13 4.007L11.993 3 8 6.993 4.007 3 3 4.007 6.993 8 3 11.993 4.007 13 8 9.007 11.993 13 13 11.993 9.007 8 13 4.007z"/>
+                    </svg>
+                </div>
+            </div>
+        </header>
+        <br>
+        <article class="w-90">
+            <div class="board">
+                <p id="applicable-coupons" class="title text-start fw-bold" style="font-family: lato; font-size: 12px; color: #808080;">Applicable Coupons</p>
+                <div id="coupon-list-wrapper"></div>
+            </div>
+            <div id="coupon-error" style = "display: none; color: rgb(204, 7, 7); text-align: center;">Select kiya coupon valid nahi hai</div>
+        </article>
+    </section>
+</section>
+<style></style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/js/bootstrap.min.js" integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    let back_stack =[];
+    let domain = window.location.protocol + "//"+window.location.hostname;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    let token = urlParams.get('token');
+    let info = urlParams.get('info');
+
+    let purchaseInfo = JSON.parse(info);
+    let course_name = purchaseInfo.course_name;
+    let variant_id = purchaseInfo.variant_id;
+    let coupon_code = purchaseInfo.coupon_code;
+    let version_code = purchaseInfo.version_code;
+    let show_activation = purchaseInfo.show_activation;
+    let locale = purchaseInfo.locale;
+    let sessionId; let otp_input;
+    let userPhone;
+    let filledMobile;
+
+    let cod_step;
+    let address_list = [];
+    let address_id =0;
+    let add_new_address_flag = 1;
+    let payment_info_id;
+    let coupon_list = [];
+    let coupon_code_new;
+    let cDiv;
+
+    if (locale == 'hi') {
+        $('#full-name').attr('placeholder','पूरा नाम');
+        $('#mobile-number').attr('placeholder','मोबाइल नंबर');
+        $('#pincode-input').attr('placeholder','पिनकोड');
+        $('#address-line-1').attr('placeholder','फ्लैट, घर का नंबर, ईमारत, कंपनी, अपार्टमेंट');
+        $('#address-line-2').attr('placeholder','क्षेत्र, कॉलोनी, सड़क, गांव');
+        $('#land-mark').attr('placeholder','लैंडमार्क, उदहारण के लिए, बैंक के पास');
+        $('#city-input').attr('placeholder','नगर, शहर');
+        $('#state-input').attr('placeholder','राज्य');
+        $('#input-parent-mobile').attr('placeholder','माता/ पिता/ अभिभावक का मोबाइल नंबर');
+        $('#select-address-title').html('अपना पता चुनें');
+        $('#add-new-address').html('नया पता जोड़ें');
+        $('#review-order-submit').html('ऑर्डर चेक करें');
+        $('#review-order-title').html('ऑर्डर चेक करें');
+        $('#deliver-to').html('कहाँ डिलीवर करें');
+        $('#get-it-by').html('कब तक मिल जाएगा');
+        $('#payment-details').html('पेमेंट की जानकारी');
+        $('#original').html('मूल कीमत');
+        $('#discount').html('छूट');
+        $('#dn-wallet').html('DN वॉलेट');
+        $('#coupon-code').html('कूपन कोड ');
+        $('#final-amount').html('कुल मूल्य');
+        $('#note-1').html('ध्यान दें :');
+        $('#note-body-1').html('ये ऑर्डर पुष्टि के बाद बदला या रद्द नहीं किया जा सकता है');
+        $('#confirm-otp-submit').html('OTP के साथ पुष्टि करें');
+        $('.animation-text').html('COD में आपको क्या मिलने वाला है');
+        $('#otp-title').html('OTP डालो');
+        $('#user-self-confirm').html('हम पुष्टि करते है कि डिलीवरी के समय कोर्स का मूल्य भुगतान करेंगे');
+        $('#enter-otp-message').html('अपने नंबर +91-<span id="user_rmn"></span> पे भेजा गया OTP डालें');
+        $('#resend-otp-submit').html('OTP दोबारा भेजो');
+        $('#note-2').html('ध्यान दें : ये ऑर्डर पुष्टि के बाद बदला या रद्द नहीं किया जा सकता है');
+        $('#confirm-otp-final-submit').html('ऑर्डर कन्फ़र्म करें');
+        $('#order-confirmed').html('ऑर्डर कन्फर्म हुआ');
+        $('#order-success').html('आपका ऑर्डर सफल है');
+        $('#delivery-message-amount').html('डिलीवरी के दिन आपको मैल्मन को ₹<span class="fw-bold" id="amount"></span> देकर उनसे कोड लेना होगा');
+        $('#course-purchase-message').html('आपने <span id="purchased-course-name"></span> का कोर्स <span id="course-validity"></span> के लिए खरीदा है');
+        $('#course-activation-video').html('▶ देखें कि कोर्स कैसे एक्टिवेट किया जाए ');
+        $('#order-track-title').html('अपना ऑर्डर ट्रैक करें');
+        $("#tracking-message-start").html("बधाई हो आपका ");
+        $("#ka-code").html(" का कोड ");
+        $("#amount-message-main").html(`डिलीवरी के समय आपको मैल्मन को ₹<span class="fw-bold" id="amount-to-pay"></span> देकर उनसे कोड लेना होगा`);
+        $('#tracking-2').html('आपका आर्डर रास्ते में है');
+        $('#tracking-status-2').html('अधिक जानकारी');
+        $('#tracking-3').html('आज आपका ऑर्डर डेलिवर हो जाएगा');
+        $('#tracking-status-3').html('कृपया मैल्मन को ₹<span id="cod-amount"></span> दीजिए');
+        $('#tracking-4').html('कोर्स एक्टिवेशन');
+        $('#activate-course-now').html('कोर्स एक्टिवेट करें');
+        $('#course-activated').html('कोर्स एक्टिवेट हो गया');
+        $('#course-activated-message').html('शुभकामनाये आपका कोर्स एक्टिवेट हो गया है');
+        $('#multiple-order-error').html('आप एक से ज्यादा COD ऑर्डर नहीं कर सकते');
+        $('#activate-course-msg').html('अपना कोर्स एक्टिवेट करें');
+        $('#enter-code').html('अपना कोड यहाँ दर्ज करें');
+        $('#activate-course-submit').html('एक्टिवेट कोर्स');
+        $('#course-activated').html('कोर्स एक्टिवेटेड');
+        $('#course-activated-message').html('बधाई हो, आपका कोर्स ऐक्टिवेट होगाया है');
+        $('#start-studying-button').html('पढ़ना स्टार्ट करें');
+        $('#course-view-button').html('पढ़ना स्टार्ट करें');
+    }
+
+
+
+    $(document).ready(async function(){
+
+        $(".main-s").addClass("d-none");
+
+        $("#course-name").html(course_name);
+        cod_step = await getStudentOrderStatus();
+
+        if(cod_step.data.userPhone) {
+            userPhone = cod_step.data.userPhone;
+            $('#mobile-number').attr('value', userPhone);
+        }
+
+        if(cod_step.data.is_cod_order && cod_step.data.show_activation)
+        {
+            $("#activate-course").removeClass("d-none");
+        }
+        else if(cod_step.data.is_cod_order && !cod_step.data.show_activation)
+        {
+            Android.handleAction('{ "type": "event", "data": { "name": "track_order", "params": { "page_name": "Tracking page", "page_no_of_flow": "5" } } }');
+            $("#order-in-progress").removeClass("d-none");
+            $("#course-name-oip").html(cod_step.data.order_tracking.course_name);
+            $("#amount-to-pay").html(cod_step.data.order_tracking.order_amount);
+            $("#cod-amount").html(cod_step.data.order_tracking.order_amount);
+            $("#estimated-delivery-date").html(cod_step.data.order_tracking.etd);
+            $("#tracking-message-end").html(cod_step.data.order_tracking.header_text_end)
+            activation_video_deeplink = cod_step.data.activation_help_deeplink;
+            order_tracking_deeplink = cod_step.data.order_tracking.order_tracking_deeplink;
+            for(let i = 0; i < cod_step.data.order_tracking.shipment_tracking.length; i++) {
+                $("#tracking-"+(i+1)).html(cod_step.data.order_tracking.shipment_tracking[i].order_status);
+                $("#tracking-date-"+(i+1)).html(cod_step.data.order_tracking.shipment_tracking[i].date);
+                $("#tracking-date-"+(i+1)).css("visibility", "inherit");
+                if( i === cod_step.data.order_tracking.shipment_tracking.length - 1) {
+                    if(cod_step.data.order_tracking.shipment_tracking[i].order_status_no == 4) {
+                        $("#tracking-div-"+(i+1)).removeClass("card-none");
+                        $("#tracking-div-"+(i+1)).addClass("card-false");
+
+                        $("#tracking-dot-"+(i+1)).removeClass("dot");
+                        $("#tracking-dot-"+(i+1)).addClass("dot-false");
+
+                        $("#tracking-line-"+(i)).removeClass("line");
+                        $("#tracking-line-"+(i)).addClass("line-done");
+
+                        $("#tracking-line-"+(i+1)).removeClass("line");
+                        $("#tracking-line-"+(i+1)).addClass("line-current");
+
+                        if (locale == 'hi'){
+                            $("#tracking-message-start").html("आपका");
+                        }
+                        else {
+                            $("#tracking-message-start").html("Aapka");
+                        }
+                    } else {
+                        $("#tracking-div-"+(i+1)).removeClass("card-none");
+                        $("#tracking-div-"+(i+1)).addClass("card-current");
+
+                        $("#tracking-dot-"+(i+1)).removeClass("dot");
+                        $("#tracking-dot-"+(i+1)).addClass("dot-current");
+
+                        if(i > 0) {
+                            $("#tracking-line-"+(i)).removeClass("line");
+                            $("#tracking-line-"+(i)).addClass("line-done");
+                        }
+
+                        $("#tracking-line-"+(i+1)).removeClass("line");
+                        $("#tracking-line-"+(i+1)).addClass("line-current");
+
+                        $("#tracking-status-"+(i+1)).css("display", "inherit");
+
+                        // if( i >= 2) {
+                        $("#activation-button").css("display", "inherit");
+                        activation_deeplink = cod_step.data.order_tracking.shipment_tracking[i].deeplink;
+                        // }
+                    }
+                } else {
+                    $("#tracking-div-"+(i+1)).removeClass("card-none");
+                    $("#tracking-div-"+(i+1)).addClass("card-done");
+
+                    $("#tracking-dot-"+(i+1)).removeClass("dot");
+                    $("#tracking-dot-"+(i+1)).addClass("dot-done");
+
+                    if(i > 0) {
+                        $("#tracking-line-"+(i)).removeClass("line");
+                        $("#tracking-line-"+(i)).addClass("line-done");
+                    }
+                }
+            }
+        }
+        else if(cod_step.data.is_cod_order !=undefined && !cod_step.data.is_cod_order)
+        {
+            $("#cannot-place-order").removeClass("d-none");
+        }
+        else {
+            await setPricingInfo(cod_step);
+            Android.handleAction('{ "type": "event", "data": { "name": "select_address", "params": { "page_name": "Select Address Page", "page_no_of_flow": "1" } } }');
+            console.log(cod_step);
+            if (cod_step.data.addressList && cod_step.data.addressList.length == 0) {
+                $("#add-address.main-s").removeClass("d-none");
+            } else if (cod_step.data.addressList && cod_step.data.addressList.length) {
+                address_list = cod_step.data.addressList;
+                $("#select-address").removeClass("d-none");
+                let addressDiv = `<div class="address-list" data-address-id="##address_id##"><div class="form-check d-flex"> <div class="container"> <div class="row"> <div class="col-1 align-self-center "> <input class="form-check-input" type="radio" name="flexRadioDefault"> </div> <div class="col-11"> <label class="form-check-label"> <div> <div class="d-flex"> <div class="ship_name fw-bold w-100 ">##fullname##</div> <div class="edit-address-icon" data-address-id="##address_id##"> <span class="badge bg-secondary">##edit-button##</span></div> </div> <div class="ship_address">##address##</div> <div class="ship_address_landmark">##landmark##</div> </div> </label> </div> </div> </div> </div></div>`;
+
+
+                for (let i = 0; i < cod_step.data.addressList.length; i++) {
+
+                    let addressTrmplateCopy = addressDiv;
+                    addressTrmplateCopy = addressTrmplateCopy.replace(/##fullname##/g, `${cod_step.data.addressList[i].fullname}`);
+                    addressTrmplateCopy = addressTrmplateCopy.replace(/##address##/g, `${cod_step.data.addressList[i].address_line_1}, ${cod_step.data.addressList[i].address_line_2}, ${cod_step.data.addressList[i].city}, ${cod_step.data.addressList[i].state} - ${cod_step.data.addressList[i].pincode}`);
+                    addressTrmplateCopy = addressTrmplateCopy.replace(/##landmark##/g, `${cod_step.data.addressList[i].landmark}`);
+                    addressTrmplateCopy = addressTrmplateCopy.replace(/##address_id##/g, `${cod_step.data.addressList[i].id}`);
+                    // $("#addressArray").appendTo("d-none");
+                    if (locale =='hi') {
+                        addressTrmplateCopy = addressTrmplateCopy.replace(/##edit-button##/g, `संपादित करें`);
+                    }
+                    else {
+                        addressTrmplateCopy = addressTrmplateCopy.replace(/##edit-button##/g, `EDIT`);
+                    }
+                    $(addressTrmplateCopy).appendTo("#address-list-wrapper");
+                }
+
+                let first_address_div = $("#address-list-wrapper").find(`[data-address-id='${cod_step.data.addressList[0].id}']`);
+                $(".form-check-input").attr("checked", false);
+                first_address_div.find(".form-check-input").attr("checked",true);
+                address_id =  first_address_div.data('address-id');
+                console.log(address_id);
+                $("#review-order-submit").attr("disabled",false);
+            }
+        }
+        $("#pre-loader").hide();
+    });
+
+    $(".close-button").click(function(){
+
+        Android.handleAction('{ "type": "close", "data": { } }');
+
+    });
+
+    let constants = {
+        pincode_failure :"* Ye PIN Code abhi servicable nahi hai, please kahi aur ka location daal ke try karein",
+        pincode_failure_hi : "* इस पिनकोड पे डिलीवरी नहीं कर सकते| कृपया दूसरा पता दर्ज करें|",
+        pincode_success :"* Ye Pin Code servicable hai",
+        pincode_success_hi : "इस पिनकोड पर डिलीवरी कर सकते है"
+    }
+
+    async function setPricingInfo(result)
+    {
+        $("#delivery_date").html(moment().add(7,'d').format('Do MMMM YYYY'));
+        let order_info = result.data.order_info;
+        $(".net_amount").html("₹"+order_info.net_amount);
+        $(".total_amount").html(order_info.total_amount);
+        if(!order_info.discount)
+        {
+            $(".discount-s").remove();
+        }
+        else {
+            $(".discount").html(order_info.discount);
+        }
+        if(!order_info.coupon_amount)
+        {
+            $("#coupon-code-div").css("display", "inherit");
+
+        }
+        else {
+            cDiv = `<td id="coupon-code" class="text-start">Coupon Code</td><td class="text-end"><span class="coupon_amount"></span></td>`;
+            $(".coupon-amount-s").append(cDiv);
+            $("#coupon-code-div").css("display", "none");
+            $(".coupon_amount").html(order_info.coupon_amount);
+        }
+
+        if(!order_info.wallet_amount)
+        {
+            $(".wallet-amount-s").remove();
+        }
+        else{
+            $(".wallet_amount").html(order_info.wallet_amount);
+
+        }
+
+    }
+
+    $("#pincode-input").on("keyup", function(e) {
+        let pincode_input = this.value;
+        if(pincode_input.length==0)
+        {
+            $("#pincode-status-message").html("");
+        }
+        else if(pincode_input.length==6 && $.isNumeric(pincode_input))
+        {
+            var settings = {
+                "url": domain+"/v1/payment/cod/pincode-check/?delivery_postcode="+pincode_input,
+                "method": "GET",
+                "headers": {
+                    "x-auth-token": token,
+                    "version_code": version_code,
+                    "Content-Type": "application/json"
+                },
+                "timeout": 0,
+            };
+
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+                if(response.data.cod_status)
+                {
+                    // $("[name='input-pin-code'] + .form-error").css("color","green");
+                    // $("#pincode-status-message").html(constants.pincode_success);
+                    $("#city-input").val(response.data.city)
+                    $("#state-input").val(response.data.state)
+                    $("#city-input").css("visibility", "inherit")
+                    $("#state-input").css("visibility", "inherit")
+                    $("#pincode-form-error").css("display", "none")
+                }
+                else{
+                    $("#pincode-form-error").css("display", "inherit")
+                    if(locale == "hi") {
+                        $("[name='input-pin-code'] + .form-error").html(constants.pincode_failure_hi);
+                    }
+                    else {
+                        $("[name='input-pin-code'] + .form-error").html(constants.pincode_failure);
+                    }
+                }
+            });
+        }
+    })
+
+    //add address form submit
+
+    $("#add-address-submit").click(async function(){
+
+        let username = $('[name="input-full-name"]').val();
+        let mobile_number = $('[name="input-mobile"]').val();
+        let add_line_1 = $('[name="input-address-line-1"]').val();
+        let add_line_2 = $('[name="input-address-line-2"]').val();
+        let user_pincode = $('[name="input-pin-code"]').val();
+        let user_city = $('[name="input-city"]').val();
+        let user_state = $('[name="input-state"]').val();
+        let landmark = $('[name="input-landmark"]').val();
+        const phone_no_check = /^\d{10}$/;
+        const pincode_check = /^\d{6}$/;
+
+
+        let error_in_form = false;
+        if(username.length==0)
+        {
+            if (locale=='hi') {
+                $('[name="input-full-name"] + .form-error').html("नाम ज़रूरी है");
+            }
+            else {
+                $('[name="input-full-name"] + .form-error').html("Name zaroori he");
+            }
+            error_in_form = true;
+        }
+
+        if(!(mobile_number.match(phone_no_check)))
+        {
+            if (locale=='hi') {
+                $('[name="input-mobile"] + .form-error').html("आपने गलत मोबाइल नंबर डाला है।  कृपया दोबारा चेक करें।");
+            }
+            else {
+                $('[name="input-mobile"] + .form-error').html("Phone number galat he. Dobara check karen.");
+            }
+            error_in_form = true;
+        }
+
+        if(!(user_pincode.match(pincode_check))) {
+            if (locale=='hi') {
+                $('[name="input-pin-code"] + .form-error').html("आपने गलत पिनकोड डाला है।  कृपया दोबारा चेक करें।");
+            }
+            else {
+                $('[name="input-pin-code"] + .form-error').html("Pin Code galat he. Dobara check karen.");
+            }
+            error_in_form = true;
+        }
+
+        if(add_line_1.trim().length ==0)
+        {
+            if (locale=='hi') {
+                $('[name="input-address-line-1"] + .form-error').html("सही पता दर्ज करें");
+            }
+            else {
+                $('[name="input-address-line-1"] + .form-error').html("Sahi address daalen");
+            }
+            error_in_form = true;
+        }
+
+        if(!error_in_form)
+        {
+            $("#add-address-submit").attr("disabled", true);
+
+            //sumbit the form
+
+            let obj= {
+                student_name:username,
+                mobile: mobile_number,
+                pincode : user_pincode,
+                address_line_1: add_line_1,
+                address_line_2: add_line_2,
+                landmark: landmark,
+                city: user_city,
+                state: user_state,
+            };
+            let submitAddressResponse;
+            if (add_new_address_flag) {
+                submitAddressResponse = await submitNewAddress(obj);
+            } else {
+                obj.address_id = address_id;
+                submitAddressResponse = await updateAddress(obj);
+            }
+            if(submitAddressResponse.meta.success)
+            {
+                location.reload();
+            }
+        }
+
+    });
+
+
+    //select address section
+
+    $("#address-list-wrapper").on("click", ".address-list",function(){
+
+        $(".form-check-input").attr("checked", false);
+        $(this).find(".form-check-input").attr("checked",true);
+        address_id =  $(this).data('address-id');
+        console.log(address_id);
+        $("#review-order-submit").attr("disabled",false);
+
+    });
+
+    //edit address click
+    $("#wrapper").on("click", ".edit-address-icon",async function(e){
+
+        back_stack_push($(this).closest(".main-s").attr("id"));
+        e.stopPropagation();
+
+        address_id =  $(this).data('address-id');
+        add_new_address_flag = 0;
+
+        let response = await getAddressById(address_id);
+
+        let address_info = response.data;
+        $('[name="input-full-name"]').val(address_info.student_name);
+        $('[name="input-mobile"]').val(address_info.student_mobile);
+        $('[name="input-address-line-1"]').val(address_info.address_line_1);
+        $('[name="input-address-line-2"]').val(address_info.address_line_2);
+        $('[name="input-pin-code"]').val(address_info.pincode);
+        $('[name="input-city"]').val(address_info.city);
+        $('[name="input-state"]').val(address_info.state);
+        $('[name="input-landmark"]').val(address_info.landmark);
+
+        $(".main-s").addClass("d-none");
+        $("#add-address.main-s").removeClass("d-none");
+        if (locale == 'hi') {
+            $("#add-address .title").html("अपना पता संपादित करें");
+            $("#add-address #add-address-submit").html("पता दर्ज करें");
+        }
+        else {
+            $("#add-address .title").html("Edit Your Address");
+            $("#add-address #add-address-submit").html("Update Address");
+        }
+    });
+
+    function back_stack_push(screen){
+        back_stack.push(screen);
+
+    }
+
+    $("#add-new-address").click(function() {
+        add_new_address_flag = 1;
+        back_stack_push($(this).closest(".main-s").attr("id"));
+        if (locale == 'hi') {
+            $("#add-address .title").html("अपना पता दर्ज करें ");
+            $("#add-address #add-address-submit").html("पता दर्ज करें");
+        }
+        else {
+            $("#add-address .title").html("Add Your Address");
+            $("#add-address #add-address-submit").html("Add Address");
+        }
+
+        $(".main-s").addClass("d-none");
+        $("#add-address.main-s").removeClass("d-none");
+    });
+    async function submitNewAddress(obj)
+    {
+        var settings = {
+            "url": domain+"/v1/payment/cod/address",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "x-auth-token": token,
+                "version_code": version_code,
+                "Content-Type": "application/json"
+            },
+            "data": JSON.stringify(obj),
+        };
+
+        return new Promise((async (resolve, reject) => {
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+                resolve(response);
+            });
+        }));
+
+    }
+
+    async function updateAddress(obj)
+    {
+        var settings = {
+            "url": domain+"/v1/payment/cod/address",
+            "method": "PUT",
+            "timeout": 0,
+            "headers": {
+                "x-auth-token": token,
+                "version_code": version_code,
+                "Content-Type": "application/json"
+            },
+            "data": JSON.stringify(obj),
+        };
+
+        return new Promise((async (resolve, reject) => {
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+                resolve(response);
+            });
+        }));
+
+    }
+
+    $("#wrapper").on("click", "#coupon-code-card",async function() {
+        back_stack_push('apply-coupon-page');
+        $(".main-s").addClass("d-none");
+        $("#pre-loader").show();
+        let coupon_step = await getApplicableCoupons();
+        $("#pre-loader").hide();
+
+        coupon_list = coupon_step.data.coupon_list;
+
+        let couponDiv = `<div class="coupon-list" data-id="##coupon_id##"><div class="card"><div class="card text-start" ><div class="card-body"><div id="coupon-card-text"><span style="vertical-align: middle; display: table-cell; font-size: 16px; font-family: lato; font-weight: 700;">##coupon_title##</span><span style="vertical-align: middle; color: green; font-size: 14px; font-family: lato; margin-top: -10px;">##amount_saved##</span><br><span style="position: absolute; right: 5%; transform: translate(0, -110%); display: table-cell; color: #eb532c; font-size: 14px; font-family: lato; font-weight: 700;">##btn_cta##</span><span style="vertical-align: middle; color: #808080; font-size: 12px; font-family: lato;">##validity##</span></div></div></div></div></div>`;
+
+        if ($('#coupon-list-wrapper').is(':empty')) {
+            for (let i = 0; i < coupon_step.data.coupon_list.length; i++) {
+                let couponTrmplateCopy = couponDiv;
+                couponTrmplateCopy = couponTrmplateCopy.replace(/##coupon_id##/g, `${i}`);
+                couponTrmplateCopy = couponTrmplateCopy.replace(/##coupon_title##/g, `${coupon_step.data.coupon_list[i].coupon_title}`);
+                couponTrmplateCopy = couponTrmplateCopy.replace(/##amount_saved##/g, `${coupon_step.data.coupon_list[i].amount_saved}`);
+                couponTrmplateCopy = couponTrmplateCopy.replace(/##btn_cta##/g, `${coupon_step.data.coupon_list[i].btn_cta}`);
+                couponTrmplateCopy = couponTrmplateCopy.replace(/##validity##/g, `${coupon_step.data.coupon_list[i].validity}`);
+                $(couponTrmplateCopy).appendTo("#coupon-list-wrapper");
+            }
+        }
+        if (!coupon_list.length) {
+            noCouponDiv = `<h4 style="margin:auto auto;">No Available Coupons</h4>`;
+            if ($('#coupon-list-wrapper').is(':empty')) {
+                $(noCouponDiv).appendTo("#coupon-list-wrapper");
+            }
+        }
+        $("#apply-coupon-page").removeClass("d-none");
+
+        $(".coupon-list").on("click",async function(e) {
+            coupon_index = parseInt($(this).attr("data-id"));
+            coupon_code_new = coupon_list[coupon_index].coupon_title;
+            back_stack_push('order-review');
+            $(".main-s").addClass("d-none");
+            $("#pre-loader").show();
+            payment_details = await getPaymentDetails(coupon_code_new);
+            $("#pre-loader").hide();
+            if (payment_details.data.coupon_info.status) {
+                let updated_cod_step = {...cod_step};
+                $("#pre-loader").show();
+                let updated_cart_details = await updateCartDetails();
+                $("#pre-loader").hide();
+                updated_cod_step.data.order_info = updated_cart_details.data;
+                setPricingInfo(updated_cod_step);
+                $("#order-review").removeClass("d-none");
+            }
+            else {
+                $("#coupon-error").html(payment_details.data.coupon_info.message);
+                $("#coupon-error").css("display", "inherit");
+                back_stack.pop('order-review');
+                $("#apply-coupon-page").removeClass("d-none");
+            }
+        });
+    });
+
+    $("#review-order-submit").click(async function(){
+        $('.animation-container').css("display", "block");
+        back_stack_push($(this).closest(".main-s").attr("id"));
+
+        $(".main-s").addClass("d-none");
+        $("#order-review").removeClass("d-none");
+        const response = await getAddressById(address_id);
+
+        filledMobile = response.data.student_mobile;
+        $("#ship_name").html(response.data.student_name);
+        let a= `${response.data.address_line_1}, ${response.data.address_line_2}, ${response.data.landmark}, ${response.data.city}, ${response.data.state} - ${response.data.pincode}`
+        $("#ship_address").html(a);
+        response.data;
+        Android.handleAction('{ "type": "event", "data": { "name": "review_order", "params": { "page_name": "Review Page", "page_no_of_flow": "2" } } }');
+
+        if (userPhone == filledMobile) {
+            if (locale == 'hi') {
+                $('#confirm-otp-submit').html('ऑर्डर कन्फ़र्म करें');
+            }
+            else {
+                $('#confirm-otp-submit').html('Confirm Order');
+            }
+
+            $("#confirm-otp-submit").click(async function () {
+                back_stack_push($("#order-confirm"));
+                $(this).attr("disabled",true);
+
+                let settings1 = {
+                    "url": domain+"/v1/payment/cod/create-order",
+                    "method": "POST",
+                    "timeout": 0,
+                    "headers": {
+                        "x-auth-token": token,
+                        "version_code": version_code,
+                        "Content-Type": "application/json"
+                    },
+                    "data": JSON.stringify({
+                        "payment_for": "course_package",
+                        "otp_not_required": true,
+                        "payment_info": {
+                            "variant_id": variant_id,
+                            "coupon_code":coupon_code,
+                            payment_info_id,
+                        },
+                        "billing_info": {
+                            "address_id": address_id
+                        }
+                    }),
+                };
+
+                await $.ajax(settings1).done(function (response) {
+                    console.log(response);
+                    payment_info_id = response.data.payment_info_id;
+                });
+
+                let settings2 = {
+                    "url": domain+"/v1/payment/cod/confirm-order",
+                    "method": "POST",
+                    "timeout": 0,
+                    "headers": {
+                        "x-auth-token": token,
+                        "version_code": version_code,
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    "data": {
+                        "otp": otp_input,
+                        "payment_info_id": payment_info_id,
+                        "otp_not_required": true,
+                    }
+                };
+
+                await $.ajax(settings2).done(function (response) {
+                    $(".main-s").addClass("d-none");
+                    $("#order-confirm").removeClass("d-none");
+                    $("#purchased-course-name").html(response.data.course_name);
+                    $("#amount").html(response.data.amount);
+                    $("#course-validity").html(response.data.validity);
+                    course_deeplink = response.data.deeplink;
+
+                });
+
+            });
+            Android.handleAction('{ "type": "event", "data": { "name": "order_created", "params": { "page_name": "Order Confirmed", "page_no_of_flow": "7" , "otp_used": "NO"} } }');
+
+        }
+
+
+        else {
+            $("#confirm-otp-submit").click(function () {
+                $("#resend-otp-submit").attr("disabled",true);
+                back_stack_push($(this).closest(".main-s").attr("id"));
+                var start = new Date;
+
+                let intervalOtp=0;
+                let intervalShow = setInterval(function() {
+                    intervalOtp = parseInt(60 - ((new Date - start)) / 1000);
+                    if(intervalOtp >0) {
+                        $('.timer').text(intervalOtp + " sec");
+                    }
+                    else {
+                        $(this).attr("disabled",false);
+                        $('.timer').css("visibility", "hidden");
+                        $("#resend-otp-submit").attr("disabled",false);
+                        clearInterval(intervalShow);
+                    }
+                }, 1000);
+
+
+                $(this).attr("disabled",true);
+                let settings = {
+                    "url": domain+"/v1/payment/cod/create-order",
+                    "method": "POST",
+                    "timeout": 0,
+                    "headers": {
+                        "x-auth-token": token,
+                        "version_code": version_code,
+                        "Content-Type": "application/json"
+                    },
+                    "data": JSON.stringify({
+                        "payment_for": "course_package",
+                        "payment_info": {
+                            "variant_id": variant_id,
+                            "coupon_code":coupon_code,
+                            payment_info_id,
+                        },
+                        "billing_info": {
+                            "address_id": address_id
+                        }
+                    }),
+                };
+                Android.handleAction('{ "type": "event", "data": { "name": "order_created", "params": { "page_name": "OTP Page", "page_no_of_flow": "3" } } }');
+
+                $.ajax(settings).done(function (response) {
+                    console.log(response);
+                    $(".main-s").addClass("d-none");
+                    $("#otp-confirm").removeClass("d-none");
+                    sessionId = response.data.sessionId;
+                    payment_info_id = response.data.payment_info_id;
+                    $("#user_rmn").html(response.data.ship_mobile);
+                }).fail(function() {
+                    location.reload();
+                });;
+            });
+
+            $("#otp-input").on("keyup change",function(e){
+                let otp_input = $("#otp-input").val();
+                if(otp_input.length==4)
+                {
+                    $("#confirm-otp-final-submit").attr("disabled",false);
+                }
+                if(otp_input.length!=4)
+                {
+                    $("#confirm-otp-final-submit").attr("disabled",true);
+                }
+
+            });
+
+            $("#confirm-otp-final-submit").click(function () {
+                back_stack_push($(this).closest(".main-s").attr("id"));
+
+                $(this).attr("disabled",true);
+
+                otp_input = $("#otp-input").val();
+
+                var settings = {
+                    "url": domain+"/v1/payment/cod/confirm-order",
+                    "method": "POST",
+                    "timeout": 0,
+                    "headers": {
+                        "x-auth-token": token,
+                        "version_code": version_code,
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    "data": {
+                        "session_id": sessionId,
+                        "otp": otp_input,
+                        "payment_info_id": payment_info_id,
+                    }
+                };
+
+                $.ajax(settings).done(function (response) {
+
+                    if(response.meta.success) {
+                        $(".main-s").addClass("d-none");
+                        $("#order-confirm").removeClass("d-none");
+                        $("#purchased-course-name").html(response.data.course_name);
+                        $("#amount").html(response.data.amount);
+                        $("#course-validity").html(response.data.validity);
+                        course_deeplink = response.data.deeplink;
+                    }
+                    else{
+                        $("#confirm-otp-final-submit").attr("disabled",false);
+                        $(".otp-error").html("Wrong OTP");
+                    }
+
+                });
+
+            });
+
+        }
+    });
+
+    $("#animation-modal").click(function(e) {
+        if (!(e.target.className.split(/\s+/).includes('w-less'))) {
+            $('.animation-container').css("display", "none");
+        }
+    });
+
+    $("#resend-otp-submit").click(function(){
+        $("#confirm-otp-submit").click();
+        $('.timer').css("visibility", "visible");
+    });
+
+    $(".view-activation-video-deeplink").click(function () {
+        let data = JSON.stringify($(this).data('val'));
+        data = data.replace("###deeplink###", activation_video_deeplink);
+        Android.handleAction('{ "type": "event", "data": { "name": "activation_video", "params": { "page_name": "COD Activation Video", "page_no_of_flow": "6" } } }');
+        Android.handleAction(data);
+
+    });
+
+    $(".view-course-deeplink").click(function () {
+        let data = JSON.stringify($(this).data('val'));
+        data = data.replace("###deeplink###", course_deeplink);
+        Android.handleAction(data);
+
+    });
+
+    $(".activate-course-deeplink").click(function () {
+        let data = JSON.stringify($(this).data('val'));
+        data = data.replace("###deeplink###", activation_deeplink);
+        Android.handleAction(data);
+    });
+
+    $(".shiprocket-tracking-deeplink").click(function () {
+        let data = JSON.stringify($(this).data('val'));
+        data = data.replace("###deeplink###", order_tracking_deeplink);
+        Android.handleAction(data);
+    })
+
+    async function getStudentOrderStatus()
+    {
+        var settings = {
+            "url": domain+"/v1/payment/cod/status",
+            "headers": {
+                "x-auth-token": token,
+                "version_code": version_code,
+                "Content-Type": "application/json"
+            },
+            "method": "POST",
+            "data": JSON.stringify({
+                "variant_id":variant_id,
+                "show_activation": show_activation
+            }),
+        };
+
+        return new Promise((async (resolve, reject) => {
+            $.ajax(settings).done(function (response) {
+                resolve(response);
+            });
+        }));
+    }
+
+    async function updateCartDetails() {
+        var settings = {
+            "url": domain+"/v1/payment/cod/cart-details",
+            "headers": {
+                "x-auth-token": token,
+                "version_code": version_code,
+                "Content-Type": "application/json"
+            },
+            "method": "GET",
+        };
+
+        return new Promise((async (resolve, reject) => {
+            $.ajax(settings).done(function (response) {
+                resolve(response);
+            });
+        }));
+    }
+
+    async function getApplicableCoupons() {
+        var settings = {
+            "url": domain+"/v1/coupon/applicable-coupon-codes",
+            "headers": {
+                "x-auth-token": token,
+                "version_code": version_code,
+                "Content-Type": "application/json"
+            },
+            "method": "POST",
+            "data": JSON.stringify({
+                "payment_for":"course_package",
+                "variant_id": variant_id,
+            }),
+        };
+
+        return new Promise((async (resolve, reject) => {
+            $.ajax(settings).done(function (response) {
+                resolve(response);
+            });
+        }));
+    }
+
+    async function getPaymentDetails(coupon_code_new)
+    {
+        let use_wallet_reward = false;
+        let use_wallet_cash = false;
+
+        if (cod_step.data.order_info.wallet_amount){
+            use_wallet_reward = true;
+            use_wallet_cash = true;
+        }
+
+        var settings = {
+            "url": domain+"/v2/payment/checkout/payment-details",
+            "headers": {
+                "x-auth-token": token,
+                "version_code": version_code,
+                "Content-Type": "application/json"
+            },
+            "method": "POST",
+            "data": JSON.stringify({
+                "amount": "",
+                "variant_id": variant_id,
+                "use_wallet_reward": use_wallet_reward,
+                "switch_assortment": "",
+                "coupon_code": coupon_code_new,
+                "payment_for": "course_package",
+                "use_wallet_cash": use_wallet_cash,
+            }),
+        };
+
+        return new Promise((async (resolve, reject) => {
+            $.ajax(settings).done(function (response) {
+                resolve(response);
+            });
+        }));
+    }
+
+    async function getAddressById(id)
+    {
+        var settings = {
+            "url": domain+"/v1/payment/cod/address/"+id,
+            "headers": {
+                "x-auth-token": token,
+                "version_code": version_code,
+                "Content-Type": "application/json"
+            },
+            "method": "GET",
+        };
+
+        return new Promise((async (resolve, reject) => {
+            $.ajax(settings).done(function (response) {
+                resolve(response);
+            });
+        }));
+    }
+
+    $(".back-press").click(function(){
+
+        if(back_stack.length==0)
+        {
+            $(".close-button").click();
+        }
+        else {
+            let id = back_stack.pop();
+            $(".main-s").addClass("d-none");
+            $("#"+id).removeClass("d-none");
+            $("#"+id+" button.btn").attr("disabled",false);
+            back_stack.push();
+        }
+
+    });
+
+    $(".review-back-press").click(function(){
+        let id = back_stack.pop();
+        $(".main-s").addClass("d-none");
+        $("#select-address").removeClass("d-none");
+        $("#select-address button.btn").attr("disabled",false);
+        back_stack.push();
+    });
+
+    $(".coupon-back-press").click(function(){
+        $(".coupon-list").off("click");
+        let id = back_stack.pop();
+        $(".main-s").addClass("d-none");
+        $("#order-review").removeClass("d-none");
+        $("#order-review button.btn").attr("disabled",false);
+        back_stack.push();
+    });
+
+    $("#activate-course-submit").click(async function(){
+
+        $(this).attr("disabled",true);
+        $(this).html("Please Wait ...");
+
+        let response = await activateCourse($("#course-code").val());
+
+        if(response.meta.success)
+        {
+            $(".main-s").addClass("d-none");
+            $("#activation-complete").removeClass("d-none");
+            course_deeplink = response.data.deeplink;
+        }
+
+    });
+
+
+    async function activateCourse(unique_code){
+        var settings = {
+            "url": domain+"/v1/payment/complete",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "x-auth-token": token,
+                "version_code": version_code,
+                "Content-Type": "application/json"
+            },
+            "data": JSON.stringify({
+                "payment_response": {
+                    "unique_code": unique_code,
+                },
+                "source": "SHIPROCKET"
+            }),
+        };
+        return new Promise((async (resolve, reject) => {
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+                resolve(response);
+            });
+        }));
+    }
+</script>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "faraday",
+  "version": "1.0.0",
+  "description": "repo for new user questions",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/doubtnut_tech/faraday.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/doubtnut_tech/faraday#readme",
+  "dependencies": {
+    "mysql": "^2.17.1",
+    "moment": "^2.22.2"
+  }
+}

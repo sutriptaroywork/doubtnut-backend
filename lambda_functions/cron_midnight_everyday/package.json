@@ -1,0 +1,14 @@
+{
+  "name": "cron_midnight_everyday",
+  "version": "1.0.0",
+  "description": "cron on lambda run 12 am ist",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ioredis": "^4.14.1"
+  }
+}

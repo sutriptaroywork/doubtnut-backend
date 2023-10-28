@@ -1,0 +1,27 @@
+[
+    {},
+    {
+        "input": 5
+    },
+    {
+        "input": 6,
+        "output": [
+            "Maths"
+        ]
+    },
+    {
+        "input": 9,
+        "output": [
+            "Maths",
+            "Physics",
+            "Chemistry",
+            "Biology"
+        ]
+    },
+    {
+        "input": 14,
+        "output": [
+            "Maths"
+        ]
+    }
+]

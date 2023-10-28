@@ -1,0 +1,83 @@
+[
+{
+    "question_id": 1,
+    "answer_id": 1,
+    "subject":"maths",
+    "chapter": "sets",
+    "class": 12,
+    "topic": "union of sets"
+},
+{
+    "question_id": 2,
+    "answer_id": 2,
+    "subject":"maths",
+    "chapter": "sets",
+    "class": 12,
+    "topic": "union of sets"
+},
+{
+    "question_id": 3,
+    "answer_id": 3,
+    "subject":"maths",
+    "chapter": "sets",
+    "class": 12,
+    "topic": "intersection of sets"
+},
+{
+    "question_id": 4,
+    "answer_id": 4,
+    "subject":"physics",
+    "chapter": "optics",
+    "class": 12,
+    "topic": "refraction"
+},
+{
+    "question_id": 5,
+    "answer_id": 5,
+    "subject": "physics",   
+    "chapter": "optics",
+    "class": 12,
+    "topic": "refraction"
+},
+{
+    "question_id": 6,
+    "answer_id": 6,
+    "subject": "physics",    
+    "chapter": "optics",
+    "class": 12,
+    "topic": "reflection"
+},
+{
+    "question_id": 7,
+    "answer_id": 7,
+    "subject": "maths",
+    "chapter": "trigonometry",
+    "class": 12,
+    "topic": "basics"
+},
+{
+    "question_id": 8,
+    "answer_id": 8,
+    "subject":"chemistry",
+    "chapter": "alcohols",
+    "class": 12,
+    "topic": "reaction mechanism"
+},
+{
+    "question_id": 9,
+    "answer_id": 9,
+    "subject":"maths",
+    "chapter": "trigonometry",
+    "class": 11,
+    "topic": "inverse operations"
+},
+{
+    "question_id": 10,
+    "answer_id": 10,
+    "subject": "maths",
+    "chapter":"sets",
+    "class": 11,
+    "topic": "union of sets"
+}
+   
+]

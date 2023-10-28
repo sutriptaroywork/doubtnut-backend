@@ -1,0 +1,65 @@
+{
+  "_from": "mathjax-node-page",
+  "_id": "mathjax-node-page@3.0.1",
+  "_inBundle": false,
+  "_integrity": "sha512-LlkChMBprwRqiNIhQ6eSuIG/FNt7HUzy0wkm2BD9/guGRLGvYxAmUC+cGbupmmqnuv0S1p0Un04BBoZAWdPqrQ==",
+  "_location": "/mathjax-node-page",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "mathjax-node-page",
+    "name": "mathjax-node-page",
+    "escapedName": "mathjax-node-page",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/mathjax-node-page/-/mathjax-node-page-3.0.1.tgz",
+  "_shasum": "6c1cad0dbab61fbf23054889369d5a89f833fcce",
+  "_spec": "mathjax-node-page",
+  "_where": "/home/xesloohc/doubtnut/scripts",
+  "author": {
+    "name": "MathJax Consortium"
+  },
+  "bin": {
+    "mjpage": "./bin/mjpage"
+  },
+  "bugs": {
+    "url": "https://github.com/pkra/mathjax-node-page/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "mathjax-node": "^2.0.0",
+    "yargs": "^11.0.0"
+  },
+  "deprecated": false,
+  "description": "Converter for HTML fragments with mathematics using mathjax-node",
+  "devDependencies": {
+    "tape": "^4.0.0"
+  },
+  "homepage": "https://github.com/pkra/mathjax-node-page#readme",
+  "keywords": [
+    "mathjax",
+    "math",
+    "tex",
+    "mathml",
+    "png",
+    "html"
+  ],
+  "license": "Apache-2.0",
+  "main": "./lib/main.js",
+  "name": "mathjax-node-page",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pkra/mathjax-node-page.git"
+  },
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "version": "3.0.1"
+}

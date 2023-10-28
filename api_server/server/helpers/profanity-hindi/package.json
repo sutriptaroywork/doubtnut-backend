@@ -1,0 +1,59 @@
+{
+  "_from": "profanity-hindi@^1.1.0",
+  "_id": "profanity-hindi@1.1.0",
+  "_inBundle": false,
+  "_integrity": "sha1-K81tpVrgFsIwJP/tzzQnjPMND70=",
+  "_location": "/profanity-hindi",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "profanity-hindi@^1.1.0",
+    "name": "profanity-hindi",
+    "escapedName": "profanity-hindi",
+    "rawSpec": "^1.1.0",
+    "saveSpec": null,
+    "fetchSpec": "^1.1.0"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/profanity-hindi/-/profanity-hindi-1.1.0.tgz",
+  "_shasum": "2bcd6da55ae016c23024ffedcf34278cf30d0fbd",
+  "_spec": "profanity-hindi@^1.1.0",
+  "_where": "/Users/doubtnut/doubtnut_backend/api_server",
+  "author": {
+    "name": "Suraj Kumar Jha"
+  },
+  "bugs": {
+    "url": "https://github.com/surajJha/profanity-hindi/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "lodash": "^4.17.2"
+  },
+  "deprecated": false,
+  "description": "Small Utility for checking profanity (hindi and English).It supports functionality like detecting bad words and cleaning them.",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  },
+  "homepage": "https://github.com/surajJha/profanity-hindi#readme",
+  "keywords": [
+    "profanity-hindi",
+    "bad-words",
+    "hindi-bad-words",
+    "bad-words-filter"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "profanity-hindi",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/surajJha/profanity-hindi.git"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha test/"
+  },
+  "version": "1.1.0"
+}

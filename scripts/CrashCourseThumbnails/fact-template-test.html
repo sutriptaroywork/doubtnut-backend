@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Nonito&display=swap" rel="stylesheet">
+
+
+    <script>
+
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     let topic = document.getElementById("topic").innerHTML.length;
+        //     if(length > 25 && length < 40)
+        //     {
+        //         document.getElementById("topic").style.fontSize= '45px';
+        //     }
+        //     if(length >= 40)
+        //     {
+        //         document.getElementById("topic").style.fontSize= '12px';
+        //     }
+        // }, false);
+
+        window.onload = function() {
+
+            let topic = document.getElementById("topic").innerHTML.length;
+            if(topic <= 25)
+            {
+                document.getElementById("topic").style.fontSize= '60px';
+            }
+            else if(topic > 25 && topic < 40)
+            {
+                document.getElementById("topic").style.fontSize= '45px';
+            }
+            else if(topic >= 40)
+            {
+                document.getElementById("topic").style.fontSize= '35px';
+            }
+            // let flag = true;
+            // let parent = document.querySelector("#fact-wrapper");
+            // let child = document.querySelector("#topic");
+            // console.log(parent.offsetHeight)
+            // console.log(child.offsetHeight)
+            // let i = 0;
+            // while (flag) {
+            //     i++;
+            //     console.log("inside");
+            //     if (parent.offsetHeight < child.offsetHeight+250) {
+            //         document.querySelector("#topic").style.fontSize = (getLength(document.querySelector("#topic")) * 0.95) + "px";
+            //         console.log("true");
+            //     } else {
+            //         flag = false;
+            //         break;
+            //     }
+
+
+            // }
+
+
+            // function getLength(ele) {
+            //     return parseFloat(ele.style.fontSize.substring(0, ele.style.fontSize.length - 2));
+            // }
+        }
+    </script>
+    <style>
+        * {font-family: 'Nonito', sans-serif;}
+        html, body {
+            height: 100%;
+        }
+
+        /* @font-face {
+            font-family: 'Avenir';
+            src: url('https://d10lpgp6xz60nq.cloudfront.net/images/Avenir-Black.woff') format('woff');
+        } */
+
+        /* @font-face {
+            font-family: 'Avenir2';
+            src: url('Avenir-Heavy.ttf') format('ttf');
+        } */
+
+        body {
+            margin: 0;
+            background: url($);
+            height: 100vh;
+            width: 100vw;
+            background-repeat: repeat;
+            background-position: center;
+            background-size: 100%;
+        }
+
+        .flex-container {
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            /*align-items: center;*/
+            /*justify-content: center;*/
+        }
+
+        .row {
+            width: auto;
+        }
+
+        .flex-item {
+            /*background-color: rgba(0, 0, 0, 0.5);*/
+            /* padding: 6vw; */
+            width: 800px;
+            height: auto;
+            margin: 8vh;
+            margin-top: 38vh;
+            line-height: 1;
+            color: white;
+            font-size: 2em;
+            /* text-align: center; */
+            font-family: tahoma;
+            border-radius: 10px;
+            /* border: 1px solid blue; */
+        }
+
+        p {
+            padding-left: 2%;
+            /* font-weight: bold; */
+            /* border: 1px solid red; */
+            letter-spacing: 1.1px;
+            line-height: 1em;
+            margin: 3% 0;
+            text-align: left;
+            word-break: break-word;}
+
+        #topic {
+            /* font-size: 70px; */
+            font-weight: bold;
+            line-height: 1.2em;
+            font-size: 60px !important;
+        }
+    </style>
+
+</head>
+<body id="root">
+
+<div class="flex-container">
+    <div class="row">
+        <div class="flex-wrapper">
+            <div class="flex-item">
+                <div id="fact-wrapper">
+                    <p id="topic" style="color: #EA532C;">##</p>
+                    <p style="color: #193E4F; font-size: 40px; margin-top: 10%; margin-bottom: 1.5%;">#:</p>
+                    <p style="color: #193E4F; font-size: 25px; margin-top: 0;"><span>#:$</span><span>#:$:</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

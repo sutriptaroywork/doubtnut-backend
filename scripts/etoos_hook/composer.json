@@ -1,0 +1,9 @@
+{
+    "name": "root/html",
+    "require": {
+        "jenssegers/mongodb": "^3.5",
+        "mongodb/mongodb": "^1.5",
+        "aws/aws-sdk-php": "^3.133",
+        "ext-SimpleXML": "^7.4"
+     }
+}

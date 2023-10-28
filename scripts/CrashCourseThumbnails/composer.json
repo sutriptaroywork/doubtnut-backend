@@ -1,0 +1,12 @@
+{
+    "name": "neil/scripts",
+    "authors": [
+        {
+            "name": "vivek",
+            "email": "vivek29vivek@gmail.com"
+        }
+    ],
+    "require": {
+        "predis/predis": "^1.1"
+    }
+}

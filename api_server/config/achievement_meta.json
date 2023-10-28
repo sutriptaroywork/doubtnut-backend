@@ -1,0 +1,129 @@
+[
+  {
+    "id": 1,
+    "name":"Learner of Maths",
+    "description":"Watch 5 video from Library",
+    "nudge_description":"Watch 1 more Library Video to earn",
+    "requirement_type":"WATCH_LIBRARY_VIDEO",
+    "requirement":"5",
+    "image_url":"https://d10lpgp6xz60nq.cloudfront.net/engagement_framework/775CC53E-647D-9DDB-0310-74CE5C15C1F3.webp"
+  },
+  {
+    "id": 2,
+    "name":"Master of Maths",
+    "description":"Watch 20 videos from Library",
+    "nudge_description":"Watch 1 more Library Video to earn",
+    "requirement_type":"WATCH_LIBRARY_VIDEO",
+    "requirement":"20",
+    "image_url":"https://d10lpgp6xz60nq.cloudfront.net/engagement_framework/789E9E68-126D-4580-96FC-4E3FE5CA6C47.webp"
+  },
+  {
+    "id": 3,
+    "name":"Maths ka Badshaah",
+    "description":"Watch 50 videos from Library",
+    "nudge_description":"Watch 1 more Library Video to earn",
+    "requirement_type":"WATCH_LIBRARY_VIDEO",
+    "requirement":"50",
+    "image_url":"https://d10lpgp6xz60nq.cloudfront.net/engagement_framework/756D963A-E67F-567C-63A4-914C87C3712A.webp"
+  },
+  {
+    "id": 4,
+    "name":"Curious Keeda",
+    "description":"Ask first question and watch its solution video",
+    "nudge_description":"Ask 1 more question and watch its solution to earn",
+    "requirement_type":"WATCH_MATCHED_VIDEO",
+    "requirement":"1",
+    "image_url":"https://d10lpgp6xz60nq.cloudfront.net/engagement_framework/FAF46ED2-5780-9E6F-A381-A0A7B5FA68D0.webp"
+  },
+  {
+    "id": 5,
+    "name":"Studious Keeda",
+    "description":"Ask 10 question and watch its solution video",
+    "nudge_description":"Ask 1 more question and watch its solution to earn",
+    "requirement_type":"WATCH_MATCHED_VIDEO",
+    "requirement":"10",
+    "image_url":"https://d10lpgp6xz60nq.cloudfront.net/engagement_framework/08EE582A-E9F7-6949-DF86-2D567152484B.webp"
+  },
+  {
+    "id": 6,
+    "name":"Glorious Keeda",
+    "description":"Ask 25 question and watch its solution video",
+    "nudge_description":"Ask 1 more question and watch its solution to earn",
+    "requirement_type":"WATCH_MATCHED_VIDEO",
+    "requirement":"25",
+    "image_url":"https://d10lpgp6xz60nq.cloudfront.net/engagement_framework/90389C81-073D-137B-8D4E-7A04B007845A.webp"
+  },
+  {
+    "id": 7,
+    "name":"Social Buddy",
+    "description":"Post 5 Comments in Forum",
+    "nudge_description":"Post or Comment in forum to earn",
+    "requirement_type":"LIKE_POST_COMMENT",
+    "requirement":"5",
+    "image_url":"https://d10lpgp6xz60nq.cloudfront.net/engagement_framework/1BCFEBEE-B7AA-BB60-EBDE-F384B446CB42.webp"
+  },
+  {
+    "id": 11,
+    "name":"Sacha Dost",
+    "description":"Invite one Friend and your Friend joins Doubtnut",
+    "nudge_description":"Invite 1 more Friend on Doubtnut to earn",
+    "requirement_type":"INVITE",
+    "requirement":"1",
+    "image_url":"https://d10lpgp6xz60nq.cloudfront.net/engagement_framework/5A7DB258-1DF4-0882-606E-0315D93C85CD.webp"
+  },
+  {
+    "id": 12,
+    "name":"Yaaron ka Yaar",
+    "description":"Invite 5 Friends and your Friends joins Doubtnut",
+    "nudge_description":"Invite 1 more Friend on Doubtnut to earn",
+    "requirement_type":"INVITE",
+    "requirement":"1",
+    "image_url":"https://d10lpgp6xz60nq.cloudfront.net/engagement_framework/CF379C71-B81E-6BC0-73DF-64A5B5DB9EAC.webp"
+  },
+  {
+    "id": 17,
+    "name":"Master Khiladi",
+    "description":"Play 1 Quiz or Give 1 Mock Test",
+    "nudge_description":"Play 1 Daily Quiz or Give 1 Mock Test to earn",
+    "requirement_type":"SUBMIT_QUIZ",
+    "requirement":"1",
+    "image_url":"https://d10lpgp6xz60nq.cloudfront.net/engagement_framework/5B23D1D0-1B1B-08EB-D9BF-AC45BCAF66A0.webp"
+  },
+  {
+    "id": 18,
+    "name":"Autobiographer",
+    "description":"Login and Complete Your Profile",
+    "nudge_description":"Login and Complete Your Profile to earn",
+    "requirement_type":"PROFILE_COMPLETE",
+    "requirement":"1",
+    "image_url":"https://d10lpgp6xz60nq.cloudfront.net/engagement_framework/B766B30C-066E-1920-8246-FC744E8F01FF.webp"
+  },
+  {
+    "id": 19,
+    "name":"Rising Star",
+    "description":"Reach Level 3",
+    "nudge_description":"Reach Level 3 to earn",
+    "requirement_type":"LEVEL",
+    "requirement":"3",
+    "image_url":"https://d10lpgp6xz60nq.cloudfront.net/engagement_framework/DFCEB044-392F-53F6-C294-E874BEE57CE2.webp"
+  },
+  {
+    "id": 20,
+    "name":"Rockstar",
+    "description":"Reach Level 6",
+    "nudge_description":"Reach Level 6 to earn",
+    "requirement_type":"LEVEL",
+    "requirement":"6",
+    "image_url":"https://d10lpgp6xz60nq.cloudfront.net/engagement_framework/0E805FAF-954E-F58F-A54A-F83D6459E1CC.webp"
+  },
+  {
+    "id": 21,
+    "name":"Superstar",
+    "description":"Reach Level 10",
+    "nudge_description":"Reach Level 10 to earn",
+    "requirement_type":"LEVEL",
+    "requirement":"10",
+    "image_url":"https://d10lpgp6xz60nq.cloudfront.net/engagement_framework/9DE336B3-90BF-F11B-345C-C39F291DB0A6.webp"
+  }
+
+]

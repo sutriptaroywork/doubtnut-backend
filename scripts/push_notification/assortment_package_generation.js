@@ -1,0 +1,544 @@
+"use strict"
+require('dotenv').config({ path: __dirname + '/../../api_server/.env' });
+const config = require(__dirname + '/../../api_server/config/config');
+const database = require('../../api_server/config/database');
+config.read_mysql.host = 'test-db-latest.cpymfjcydr4n.ap-south-1.rds.amazonaws.com';
+//config.read_mysql.host = 'dn-prod-db-cluster.cluster-ro-cpymfjcydr4n.ap-south-1.rds.amazonaws.com';
+const mysqlR = new database(config.read_mysql);
+config.mysql_write.host = 'test-db-latest.cpymfjcydr4n.ap-south-1.rds.amazonaws.com';
+//config.mysql_write.host = 'dn-prod-db-cluster.cluster-cpymfjcydr4n.ap-south-1.rds.amazonaws.com';
+const mysqlW = new database(config.mysql_write);
+const _ = require('lodash');
+const moment = require('moment');
+
+main()
+async function main() {
+    try {
+        const chapterResources = await getVideoResources();
+        for (let i = 0; i < chapterResources.length; i++) {
+            const assortmentType = await getAssortmentType(chapterResources[i].assortment_id);
+            const check = await checkAssortmentInPackages(chapterResources[i].assortment_id);
+            if (assortmentType && assortmentType.length > 0 && !check.length) {
+                if (assortmentType[0].schedule_type == 'recorded') {
+                    const courseResource = await getCourseResource(assortmentType[0].course_resource_id);
+                    const categoryArray = chapterResources[i].category.split('|');
+                    const nameArray = chapterResources[i].display_name.split('|');
+                    const duration = await getDuration(courseResource[0].resource_reference);
+                    let minutes = 10;
+                    if (duration && duration.length > 0 && duration[0].duration != null && duration[0].duration > 0) {
+                        minutes = Math.floor(duration[0].duration / 60);
+                    }
+                    let name = 'Single Video | ' + toTitleCase(nameArray[1]) + ' | ' + toTitleCase(nameArray[2]) + ' for ' + categoryArray[0].toUpperCase();
+                    const obj = {
+                        assortment_id: chapterResources[i].assortment_id,
+                        name: name,
+                        description: toTitleCase(courseResource[0].description.replace(/\|/g, ' | ')) + ' | ' + minutes + " mins+",
+                        is_active: 1,
+                        type: 'subscription',
+                        min_limit: 19,
+                        duration_in_days: 365,
+                    }
+                    const insert = await insertPackage(obj);
+                    const varObj = {
+                        package_id: insert.insertId,
+                        base_price: 29,
+                        display_price: 29,
+                        is_default: 1,
+                        is_show: 1,
+                        is_active: 1
+                    }
+                    console.log(obj)
+                    await insertVariants(varObj);
+                } else if (assortmentType[0].schedule_type == 'scheduled') {
+                    const courseResource = await getCourseResource(assortmentType[0].course_resource_id);
+                    console.log(assortmentType);
+                    const description = toTitleCase(courseResource[0].description.replace(/\|/g, ' | '));
+                    const categoryArray = chapterResources[i].category.split('|');
+                    const nameArray = chapterResources[i].display_name.split('|');
+                    let name = 'Single Video | ' + toTitleCase(nameArray[1]) + ' | ' + toTitleCase(nameArray[2]) + ' for ' + categoryArray[0].toUpperCase();
+                    if (courseResource && courseResource[0] && courseResource[0].expert_name != null && courseResource[0].expert_name != '') {
+                        name = name + ' by ' + toTitleCase(courseResource[0].expert_name);
+                    }
+                    const obj = {
+                        assortment_id: chapterResources[i].assortment_id,
+                        name: name,
+                        description: toTitleCase(courseResource[0].description.replace(/\|/g, ' | ')) + ' | ' + " Class live on " + moment(assortmentType[0].live_at).format("dddd, MMMM Do YYYY, h:mm:ss a"),
+                        is_active: 1,
+                        type: 'subscription',
+                        min_limit: 19,
+                        duration_in_days: 365,
+                    }
+                    console.log(obj)
+                    const insert = await insertPackage(obj);
+                    const varObj = {
+                        package_id: insert.insertId,
+                        base_price: 29,
+                        display_price: 29,
+                        is_default: 1,
+                        is_show: 1,
+                        is_active: 1
+                    }
+                    await insertVariants(varObj);
+
+                }
+            }
+
+        }
+        const pdfResources = await getPDFResources();
+        for (let i = 0; i < pdfResources.length; i++) {
+            const assortmentType = await getAssortmentType(pdfResources[i].assortment_id);
+            const check = await checkAssortmentInPackages(pdfResources[i].assortment_id);
+            if (assortmentType && assortmentType.length > 0 && !check.length) {
+                if (assortmentType[0].schedule_type == 'recorded') {
+                    const courseResource = await getCourseResource(assortmentType[0].course_resource_id);
+                    const categoryArray = pdfResources[i].category.split('|');
+                    const nameArray = pdfResources[i].display_name.split('|');
+                    let name = nameArray[0] + ' | ' + toTitleCase(nameArray[1]) + ' | ' + toTitleCase(nameArray[2]) + ' for ' + categoryArray[0].toUpperCase();
+                    const obj = {
+                        assortment_id: pdfResources[i].assortment_id,
+                        name: name,
+                        description: toTitleCase(courseResource[0].description.replace(/\|/g, ' | ')),
+                        is_active: 1,
+                        type: 'subscription',
+                        min_limit: 5,
+                        duration_in_days: 365,
+                    }
+                    const insert = await insertPackage(obj);
+                    const varObj = {
+                        package_id: insert.insertId,
+                        base_price: 15,
+                        display_price: 5,
+                        is_default: 1,
+                        is_show: 1,
+                        is_active: 1
+                    }
+                    console.log(obj)
+                    await insertVariants(varObj);
+                } else if (assortmentType[0].schedule_type == 'scheduled') {
+                    const courseResource = await getCourseResource(assortmentType[0].course_resource_id);
+                    const description = toTitleCase(courseResource[0].description.replace(/\|/g, ' | '));
+                    const categoryArray = pdfResources[i].category.split('|');
+                    const nameArray = pdfResources[i].display_name.split('|');
+                    let name = nameArray[0] + ' | ' + toTitleCase(nameArray[1]) + ' | ' + toTitleCase(nameArray[2]) + ' for ' + categoryArray[0].toUpperCase();
+                    const obj = {
+                        assortment_id: pdfResources[i].assortment_id,
+                        name: name,
+                        description: toTitleCase(courseResource[0].description.replace(/\|/g, ' | ')),
+                        is_active: 1,
+                        type: 'subscription',
+                        min_limit: 5,
+                        duration_in_days: 365,
+                    }
+                    console.log(obj)
+                    const insert = await insertPackage(obj);
+                    const varObj = {
+                        package_id: insert.insertId,
+                        base_price: 15,
+                        display_price: 5,
+                        is_default: 1,
+                        is_show: 1,
+                        is_active: 1
+                    }
+                    await insertVariants(varObj);
+
+                }
+            }
+        }
+
+        const testResources = await getTestResources();
+        for (let i = 0; i < testResources.length; i++) {
+            const assortmentType = await getAssortmentType(testResources[i].assortment_id);
+            const check = await checkAssortmentInPackages(chapterResources[i].assortment_id);
+            if (assortmentType && assortmentType.length > 0 && !check.length) {
+                if (assortmentType[0].schedule_type == 'recorded') {
+                    const courseResource = await getCourseResource(assortmentType[0].course_resource_id);
+                    const categoryArray = testResources[i].category.split('|');
+                    const nameArray = testResources[i].display_name.split('|');
+                    let name = nameArray[0] + ' | ' + toTitleCase(nameArray[1]) + ' | ' + toTitleCase(nameArray[2]) + ' for ' + categoryArray[0].toUpperCase();
+                    const obj = {
+                        assortment_id: testResources[i].assortment_id,
+                        name: name,
+                        description: toTitleCase(courseResource[0].description.replace(/\|/g, ' | ')),
+                        is_active: 1,
+                        type: 'subscription',
+                        min_limit: 5,
+                        duration_in_days: 365,
+                    }
+                    const insert = await insertPackage(obj);
+                    const varObj = {
+                        package_id: insert.insertId,
+                        base_price: 15,
+                        display_price: 5,
+                        is_default: 1,
+                        is_show: 1,
+                        is_active: 1
+                    }
+                    console.log(obj)
+                    await insertVariants(varObj);
+                } else if (assortmentType[0].schedule_type == 'scheduled') {
+                    const courseResource = await getCourseResource(assortmentType[0].course_resource_id);
+                    const description = toTitleCase(courseResource[0].description.replace(/\|/g, ' | '));
+                    const categoryArray = testResources[i].category.split('|');
+                    const nameArray = testResources[i].display_name.split('|');
+                    let name = nameArray[0] + ' | ' + toTitleCase(nameArray[1]) + ' | ' + toTitleCase(nameArray[2]) + ' for ' + categoryArray[0].toUpperCase();
+                    const obj = {
+                        assortment_id: testResources[i].assortment_id,
+                        name: name,
+                        description: toTitleCase(courseResource[0].description.replace(/\|/g, ' | ')),
+                        is_active: 1,
+                        type: 'subscription',
+                        min_limit: 5,
+                        duration_in_days: 365,
+                    }
+                    console.log(obj)
+                    const insert = await insertPackage(obj);
+                    const varObj = {
+                        package_id: insert.insertId,
+                        base_price: 15,
+                        display_price: 5,
+                        is_default: 1,
+                        is_show: 1,
+                        is_active: 1
+                    }
+                    await insertVariants(varObj);
+
+                }
+            }
+        }
+
+        const allFreeCourse = await getAllFreeCourse();
+        for (let i = 0; i < allFreeCourse.length; i++) {
+            const courseMapping = await getCourseMapping(allFreeCourse[i].assortment_id);
+            //const check = await checkAssortmentInPackages(allFreeCourse[i].assortment_id);
+            if (courseMapping && courseMapping.length > 0) {
+                for (let j = 0; j < courseMapping.length; j++) {
+                    const type = await getType(courseMapping[j].course_resource_id);
+                    const check = await checkAssortmentInPackages(courseMapping[j].course_resource_id);
+                    if (type && type.length > 0 && !check.length) {
+                        if (type[0].assortment_type == 'class') {
+                            const categoryArray = type[0].category.split('|');
+                            let name = toTitleCase(type[0].display_name) + ' for ' + categoryArray[0].toUpperCase();
+                            const classPdf = await getClassPdf(type[0].assortment_id);
+                            const obj = {
+                                assortment_id: type[0].assortment_id,
+                                name: name,
+                                description: 'Master complete class for ' + categoryArray[0].toUpperCase(),
+                                is_active: 1,
+                                type: 'subscription',
+                                min_limit: 59,
+                                duration_in_days: 365,
+                            }
+                            if (courseMapping[j].schedule_type == 'recorded') {
+                                const duration = await getClassDurationCount(type[0].assortment_id);
+                                if (duration && duration.length > 0 && duration[0].duration != 0 && duration[0].count != 0) {
+                                    obj.description = obj.description + ' | ' + duration[0].count + ' classes - RECORDED - ' + Math.floor(duration[0].duration) + '+ minutes';
+                                }
+                            } else {
+                                obj.description = obj.description + ' | ' + 'Regular Live Classes Every Week | Recording Available'
+                            }
+                            if (classPdf && classPdf.length > 0) {
+                                obj.description = obj.description + ' - ' + classPdf.length + ' PDF'
+                            }
+
+                            console.log(obj)
+                            const insert = await insertPackage(obj);
+                            const varObj = {
+                                package_id: insert.insertId,
+                                base_price: 6000,
+                                display_price: 5000,
+                                is_default: 1,
+                                is_show: 1,
+                                is_active: 1
+                            }
+                            await insertVariants(varObj);
+                            // await updateAssortment(type[0].assortment_id);
+                        } else if (type[0].assortment_type == 'subject') {
+                            const categoryArray = type[0].category.split('|');
+                            let name = toTitleCase(type[0].display_name) + ' for ' + categoryArray[0].toUpperCase();
+                            const subjectTests = await getSubjectTests(type[0].assortment_id);
+                            const subjectPdf = await getSubjectPdf(type[0].assortment_id);
+                            const obj = {
+                                assortment_id: type[0].assortment_id,
+                                name: name,
+                                description: 'Master complete subject for ' + categoryArray[0].toUpperCase(),
+                                is_active: 1,
+                                type: 'subscription',
+                                min_limit: 59,
+                                duration_in_days: 365,
+                            }
+                            if (courseMapping[j].schedule_type == 'recorded') {
+                                const duration = await getSubjectDurationCount(type[0].assortment_id);
+                                if (duration && duration.length > 0 && duration[0].duration != 0 && duration[0].count != 0) {
+                                    // obj.description = obj.description + ' | ' + Math.floor(duration[0].duration) + '+ minutes of video on demand | '+duration[0].count+ ' videos on demand'
+                                    obj.description = obj.description + ' | ' + duration[0].count + ' classes - RECORDED - ' + Math.floor(duration[0].duration) + '+ minutes';
+                                }
+                            } else {
+                                obj.description = obj.description + ' | ' + 'Regular Live Classes Every Week | Recording Available'
+                            }
+                            if (subjectTests && subjectTests.length > 0) {
+                                obj.description = obj.description + ' - ' + subjectTests.length + ' Tests'
+                            }
+                            if (subjectPdf && subjectPdf.length > 0) {
+                                obj.description = obj.description + ' - ' + subjectPdf.length + ' PDF'
+                            }
+
+                            console.log(obj)
+                            const insert = await insertPackage(obj);
+                            const varObj = {
+                                package_id: insert.insertId,
+                                base_price: 1000,
+                                display_price: 699,
+                                is_default: 1,
+                                is_show: 1,
+                                is_active: 1
+                            }
+                            await insertVariants(varObj);
+                            // await updateAssortment(type[0].assortment_id);
+                        } else if (type[0].assortment_type == 'chapter') {
+                            const categoryArray = type[0].category.split('|');
+                            let name = toTitleCase(type[0].display_name) + ' for ' + categoryArray[0].toUpperCase();
+                            const chapterTests = await getChapterTests(type[0].assortment_id);
+                            const chapterPdf = await getChapterPdf(type[0].assortment_id);
+                            const obj = {
+                                assortment_id: type[0].assortment_id,
+                                name: name,
+                                description: 'All lectures in this series related to this chapter for ' + categoryArray[0].toUpperCase(),
+                                is_active: 1,
+                                type: 'subscription',
+                                min_limit: 59,
+                                duration_in_days: 365,
+                            }
+                            if (courseMapping[j].schedule_type == 'recorded') {
+                                const duration = await getChapterDurationCount(type[0].assortment_id);
+                                if (duration && duration.length > 0 && duration[0].duration != 0 && duration[0].count != 0) {
+                                    // obj.description = obj.description + ' | ' + Math.floor(duration[0].duration) + '+ minutes of video on demand | '+duration[0].count+ ' videos on demand'
+                                    obj.description = obj.description + ' | ' + duration[0].count + ' classes - RECORDED - ' + Math.floor(duration[0].duration) + '+ minutes';
+                                }
+                            } else {
+                                obj.description = obj.description + ' | ' + 'Regular Live Classes Every Week | Recording Available'
+                            }
+                            if (chapterTests && chapterTests.length > 0) {
+                                obj.description = obj.description + ' - ' + chapterTests.length + ' Tests'
+                            }
+                            if (chapterPdf && chapterPdf.length > 0) {
+                                obj.description = obj.description + ' - ' + chapterPdf.length + ' PDF'
+                            }
+                            console.log(obj)
+                            const insert = await insertPackage(obj);
+                            const varObj = {
+                                package_id: insert.insertId,
+                                base_price: 229,
+                                display_price: 159,
+                                is_default: 1,
+                                is_show: 1,
+                                is_active: 1
+                            }
+                            await insertVariants(varObj);
+                            // await updateAssortment(type[0].assortment_id);
+                        }
+                    }
+
+                }
+            }
+        }
+
+
+    } catch (e) {
+        console.log(e)
+        mysqlR.connection.end();
+        mysqlW.connection.end();
+    } finally {
+        console.log("the script successfully ran at " + new Date())
+        mysqlR.connection.end();
+        mysqlW.connection.end();
+    }
+}
+
+//is_free=0 and type='course'
+//assortment_id : course_mapping  iterate : course_details : type
+
+
+function getClassDurationCount(assortment_id) {
+    // let sql = `SELECT count(*) as count, sum(t2.duration)/60 as duration from (SELECT distinct a.assortment_id, a.display_name,c.resource_reference from (Select * from course_details where assortment_id in (SELECT course_resource_id FROM course_resource_mapping WHERE assortment_id = ${assortment_id})) as a left join course_resource_mapping as b on a.assortment_id = b.assortment_id  left join course_resource_mapping as d on b.course_resource_id = d.assortment_id left join (SELECT id,resource_type, resource_reference from course_resources where resource_type in (1,4,8)) as c on d.course_resource_id = c.id where d.resource_type='resource' and c.id is not null ORDER BY b.resource_type  DESC) as t1 left join answers as t2 on t1.resource_reference = t2.question_id`;
+    let sql = `SELECT count(t1.resource_reference) as count, sum(t2.duration)/60 as duration  from (SELECT * from course_resources where id in (SELECT course_resource_id from course_resource_mapping where assortment_id in (SELECT course_resource_id from course_resource_mapping WHERE assortment_id in (SELECT course_resource_id  FROM course_resource_mapping WHERE assortment_id in (SELECT course_resource_id  FROM course_resource_mapping WHERE assortment_id = ${assortment_id} ORDER BY live_at  ASC)))) and resource_type in (1,4,8)) as t1 left join answers as t2 on t1.resource_reference = t2.question_id`;
+    return mysqlR.query(sql);
+}
+
+
+function getClassPdf(assortment_id) {
+    // let sql =`SELECT a.assortment_id, a.display_name,d.course_resource_id,d.resource_type from (Select * from course_details where assortment_id in (SELECT course_resource_id FROM course_resource_mapping WHERE assortment_id = ${assortment_id})) as a left join course_resource_mapping as b on a.assortment_id = b.assortment_id  left join course_resource_mapping as d on b.course_resource_id = d.assortment_id left join (SELECT id,resource_type, resource_reference from course_resources where resource_type in (2)) as c on d.course_resource_id = c.id where d.resource_type='resource' and c.id is not null ORDER BY b.resource_type  DESC`;
+    let sql = `SELECT t1.resource_reference from (SELECT * from course_resources where id in (SELECT course_resource_id from course_resource_mapping where assortment_id in (SELECT course_resource_id from course_resource_mapping WHERE assortment_id in (SELECT course_resource_id  FROM course_resource_mapping WHERE assortment_id in (SELECT course_resource_id  FROM course_resource_mapping WHERE assortment_id = ${assortment_id} ORDER BY live_at  ASC)))) and resource_type in (2)) as t1`;
+    return mysqlR.query(sql);
+}
+
+
+function getChapterDurationCount(assortment_id) {
+    // let sql = `Select count(*) as count, sum(t2.duration)/60 as duration from (SELECT distinct a.assortment_id, c.resource_reference from (SELECT *  FROM course_details WHERE assortment_id = ${assortment_id}) as a left join course_resource_mapping as b on a.assortment_id = b.assortment_id left join (SELECT id, case when player_type = 'youtube' then meta_info else resource_reference end as resource_reference from course_resources where resource_type in (1,4,8)) as c on b.course_resource_id = c.id) as t1 left join answers as t2 on t1.resource_reference = t2.question_id`;
+    let sql = `SELECT count(t1.resource_reference) as count,sum(t2.duration)/60 as duration from (SELECT case when player_type = 'youtube' then meta_info else resource_reference end as resource_reference from course_resources where id in (SELECT course_resource_id from course_resource_mapping where assortment_id in (SELECT course_resource_id  FROM course_resource_mapping WHERE assortment_id = ${assortment_id} ORDER BY live_at  ASC)) and resource_type in (1,4,8) ORDER BY id  ASC) as t1 left JOIN answers as t2 on t1.resource_reference = t2.question_id`;
+    return mysqlR.query(sql);
+}
+
+function getSubjectDurationCount(assortment_id) {
+    // let sql = `SELECT count(*) as count, sum(t2.duration)/60 as duration from (SELECT distinct a.assortment_id, a.display_name,c.resource_reference from (Select * from course_details where assortment_id in (SELECT course_resource_id FROM course_resource_mapping WHERE assortment_id = ${assortment_id})) as a left join course_resource_mapping as b on a.assortment_id = b.assortment_id left join (SELECT id, case when player_type = 'youtube' then meta_info else resource_reference end as resource_reference from course_resources where resource_type in (1,4,8)) as c on b.course_resource_id = c.id where b.resource_type='resource' and c.id is not null ORDER BY b.resource_type  DESC) as t1 left join answers as t2 on t1.resource_reference=t2.question_id`;
+    let sql = `SELECT count(t1.resource_reference) as count, sum(t2.duration)/60 as duration from (SELECT case when player_type = 'youtube' then meta_info else resource_reference end as resource_reference from course_resources where id in (SELECT course_resource_id from course_resource_mapping where assortment_id in (SELECT course_resource_id from course_resource_mapping where assortment_id in (SELECT course_resource_id  FROM course_resource_mapping WHERE assortment_id = ${assortment_id} ORDER BY live_at  ASC))) and resource_type in (1,4,8) ORDER BY id  ASC) as t1 left JOIN answers as t2 on t1.resource_reference = t2.question_id`;
+    return mysqlR.query(sql);
+}
+
+function updateAssortment(assortment_id) {
+    let sql = `update course_details set is_free=0 where assortment_id=${assortment_id}`;
+    return mysqlW.query(sql);
+}
+
+function getChapterPdf(assortment_id) {
+    //let sql =`SELECT distinct a.assortment_id,c.id,c.resource_type, c.resource_reference from (SELECT *  FROM course_details WHERE assortment_id = ${assortment_id} ) as a left join course_resource_mapping as b on a.assortment_id = b.assortment_id left join (SELECT id,resource_type, resource_reference from course_resources where resource_type in (2)) as c on b.course_resource_id = c.id where b.resource_type='resource' and c.id is not null`;
+    let sql = `SELECT id from course_resources where id in (SELECT course_resource_id from course_resource_mapping where assortment_id in (SELECT course_resource_id  FROM course_resource_mapping WHERE assortment_id = ${assortment_id} ORDER BY live_at  ASC)) and resource_type in (2)`;
+    return mysqlR.query(sql);
+}
+
+function getChapterTests(assortment_id) {
+    // let sql =`SELECT distinct a.assortment_id,c.id,c.resource_type, c.resource_reference from (SELECT *  FROM course_details WHERE assortment_id = ${assortment_id} ) as a left join course_resource_mapping as b on a.assortment_id = b.assortment_id left join (SELECT id,resource_type, resource_reference from course_resources where resource_type in (9)) as c on b.course_resource_id = c.id where b.resource_type='resource' and c.id is not null`;
+    let sql = `SELECT id from course_resources where id in (SELECT course_resource_id from course_resource_mapping where assortment_id in (SELECT course_resource_id  FROM course_resource_mapping WHERE assortment_id = ${assortment_id} ORDER BY live_at  ASC)) and resource_type in (9)`;
+    return mysqlR.query(sql);
+}
+
+
+function getSubjectPdf(assortment_id) {
+    // let sql =` SELECT a.assortment_id, a.display_name,b.course_resource_id,b.resource_type from (Select * from course_details where assortment_id in (SELECT course_resource_id FROM course_resource_mapping WHERE assortment_id = ${assortment_id})) as a left join course_resource_mapping as b on a.assortment_id = b.assortment_id  left join (SELECT id,resource_type, resource_reference from course_resources where resource_type in (2)) as c on b.course_resource_id = c.id where b.resource_type='resource' and c.id is not null ORDER BY b.resource_type  DESC`;
+    let sql = `SELECT id from course_resources where id in (SELECT course_resource_id from course_resource_mapping where assortment_id in (SELECT course_resource_id from course_resource_mapping where assortment_id in (SELECT course_resource_id  FROM course_resource_mapping WHERE assortment_id = ${assortment_id} ORDER BY live_at  ASC))) and resource_type in (2) ORDER BY id  ASC`;
+    return mysqlR.query(sql);
+}
+
+function getSubjectTests(assortment_id) {
+    // let sql =`SELECT a.assortment_id, a.display_name,b.course_resource_id,b.resource_type from (Select * from course_details where assortment_id in (SELECT course_resource_id FROM course_resource_mapping WHERE assortment_id = ${assortment_id})) as a left join course_resource_mapping as b on a.assortment_id = b.assortment_id  left join (SELECT id,resource_type, resource_reference from course_resources where resource_type in (9)) as c on b.course_resource_id = c.id where b.resource_type='resource' and c.id is not null ORDER BY b.resource_type  DESC`;
+    let sql = `SELECT count(id) from course_resources where id in (SELECT course_resource_id from course_resource_mapping where assortment_id in (SELECT course_resource_id from course_resource_mapping where assortment_id in (SELECT course_resource_id  FROM course_resource_mapping WHERE assortment_id = ${assortment_id} ORDER BY live_at  ASC))) and resource_type in (9) ORDER BY id  ASC`
+    return mysqlR.query(sql);
+}
+
+function getType(res_id) {
+    let sql = `select distinct assortment_id, assortment_type,category, display_name from course_details where assortment_id = ${res_id}`;
+    return mysqlR.query(sql);
+}
+
+function getCourseMapping(assortment_id) {
+    let sql = `select * from course_resource_mapping where assortment_id=${assortment_id}`;
+    return mysqlR.query(sql);
+}
+
+function getAllFreeCourse() {
+    //let sql =`select distinct assortment_id from course_details where is_free=0 and assortment_type='course' and assortment_id =58144`;
+    let sql = `select distinct assortment_id from course_details where is_free=0 and assortment_type  not in ('chapter', 'resource_video', 'resource_pdf', 'resource_test','resource_quiz')`;
+    return mysqlR.query(sql);
+
+}
+
+function getAllFreeCourseChapter() {
+    //let sql =`select distinct assortment_id from course_details where is_free=0 and assortment_type='subject' and assortment_id not in (SELECT assortment_id from package group by assortment_id)`;
+    let sql = `select distinct assortment_id from course_details where is_free=0 and assortment_type='subject' and assortment_id not in (SELECT assortment_id from package group by assortment_id)`;
+    return mysqlR.query(sql);
+}
+
+function getAllFreeCourseSubjectFromClass() {
+    let sql = `select distinct assortment_id from course_details where is_free=0 and assortment_type='class' and assortment_id not in (SELECT assortment_id from package group by assortment_id)`;
+    return mysqlR.query(sql);
+}
+
+function getChapterNotes(assortment_id) {
+    let sql = `SELECT distinct a.assortment_id,c.id,c.resource_type, c.resource_reference from (SELECT *  FROM course_details WHERE assortment_id = ${assortment_id} ) as a left join course_resource_mapping as b on a.assortment_id = b.assortment_id left join (SELECT id,resource_type, resource_reference from course_resources where resource_type in (2)) as c on b.course_resource_id = c.id where b.resource_type='resource' and c.id is not null`;
+    return mysqlR.query(sql);
+}
+
+function getChapterTests(assortment_id) {
+    let sql = `SELECT distinct a.assortment_id,c.id,c.resource_type, c.resource_reference from (SELECT *  FROM course_details WHERE assortment_id = ${assortment_id} ) as a left join course_resource_mapping as b on a.assortment_id = b.assortment_id left join (SELECT id,resource_type, resource_reference from course_resources where resource_type in (9)) as c on b.course_resource_id = c.id where b.resource_type='resource' and c.id is not null`;
+    return mysqlR.query(sql);
+}
+
+function getChapterDuration(assortment_id) {
+    let sql = `Select sum(t2.duration) as secs from (SELECT distinct a.assortment_id, c.resource_reference from (SELECT *  FROM course_details WHERE assortment_id = ${assortment_id}) as a left join course_resource_mapping as b on a.assortment_id = b.assortment_id left join (SELECT id, case when player_type = 'youtube' then meta_info else resource_reference end as resource_reference from course_resources where resource_type in (1,4,8)) as c on b.course_resource_id = c.id) as t1 left join answers as t2 on t1.resource_reference = t2.question_id`;
+    return mysqlR.query(sql);
+}
+
+function getAllCourseResource(course_resource_id) {
+    let sql = `select * from course_resources where id=${course_resource_id}`;
+    return mysqlR.query(sql);
+}
+
+function getAllAssortmentType(assortment_id) {
+    let sql = `select * from (select * from course_resource_mapping where assortment_id=${assortment_id}) as a left join course_resources on a.course_resource_id=b.id where b.id is not null`;
+    return mysqlR.query(sql);
+}
+
+function getCourseResource(course_resource_id) {
+    let sql = `select case when player_type = 'youtube' then meta_info else resource_reference end as resource_reference, description, expert_name from course_resources where id=${course_resource_id}  limit 1`;
+    return mysqlR.query(sql);
+}
+
+function toTitleCase(str) {
+    return str.replace(
+        /\w\S*/g,
+        function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        }
+    );
+}
+
+
+function getAssortmentType(assortment_id) {
+    let sql = `select * from course_resource_mapping where assortment_id=${assortment_id} limit 1`;
+    console.log(sql);
+    return mysqlR.query(sql);
+}
+
+function getDuration(question_id) {
+    let sql = `select * from answers where question_id=${question_id} order by answer_id DESC`;
+    return mysqlR.query(sql);
+}
+
+function getChapterResources() {
+    // let sql = `SELECT * FROM (select * from course_details where assortment_id >=1541 and assortment_type = 'resource_video') as a left join (select assortment_id, schedule_type,course_resource_id from course_resource_mapping) as b on a.assortment_id=b.assortment_id left join (select * from course_resources where resource_type=4) as c on b.course_resource_id=c.id where b.assortment_id is not null and c.id is not null`;
+    // let sql = `SELECT * FROM (select * from course_details where assortment_id >=1541 and assortment_type = 'resource_video') as a left join (select assortment_id, schedule_type,course_resource_id from course_resource_mapping) as b on a.assortment_id=b.assortment_id where b.assortment_id is not null`;
+    let sql = `select * from course_details where assortment_type = 'chapter' and is_free=0 order by assortment_id ASC`;
+    console.log(sql)
+    return mysqlR.query(sql);
+
+}
+
+function getVideoResources() {
+    // let sql = `SELECT * FROM (select * from course_details where assortment_id >=1541 and assortment_type = 'resource_video') as a left join (select assortment_id, schedule_type,course_resource_id from course_resource_mapping) as b on a.assortment_id=b.assortment_id left join (select * from course_resources where resource_type=4) as c on b.course_resource_id=c.id where b.assortment_id is not null and c.id is not null`;
+    // let sql = `SELECT * FROM (select * from course_details where assortment_id >=1541 and assortment_type = 'resource_video') as a left join (select assortment_id, schedule_type,course_resource_id from course_resource_mapping) as b on a.assortment_id=b.assortment_id where b.assortment_id is not null`;
+    let sql = `SELECT distinct a.assortment_id, a.category, a.display_name from (SELECT *  FROM course_details WHERE assortment_type = 'resource_video' and is_free = 0) as a left join package as b on a.assortment_id = b.assortment_id where b.id is null order by a.assortment_id asc`;
+    console.log(sql)
+    return mysqlR.query(sql);
+
+}
+function getPDFResources() {
+    // let sql = `SELECT * FROM (select * from course_details where assortment_id >=1541 and assortment_type = 'resource_video') as a left join (select assortment_id, schedule_type,course_resource_id from course_resource_mapping) as b on a.assortment_id=b.assortment_id left join (select * from course_resources where resource_type=4) as c on b.course_resource_id=c.id where b.assortment_id is not null and c.id is not null`;
+    // let sql = `SELECT * FROM (select * from course_details where assortment_id >=1541 and assortment_type = 'resource_video') as a left join (select assortment_id, schedule_type,course_resource_id from course_resource_mapping) as b on a.assortment_id=b.assortment_id where b.assortment_id is not null`;
+    let sql = `SELECT distinct a.assortment_id, a.category, a.display_name from (SELECT *  FROM course_details WHERE assortment_type = 'resource_pdf' and is_free = 0) as a left join package as b on a.assortment_id = b.assortment_id where b.id is null order by a.assortment_id asc`;
+    console.log(sql)
+    return mysqlR.query(sql);
+
+}
+
+function getTestResources() {
+    let sql = `SELECT distinct a.assortment_id, a.category, a.display_name from (SELECT *  FROM course_details WHERE assortment_type = 'resource_test' and is_free = 0) as a left join package as b on a.assortment_id = b.assortment_id where b.id is null order by a.assortment_id asc`;
+    console.log(sql)
+    return mysqlR.query(sql);
+}
+
+
+
+
+function insertPackage(obj) {
+    let sql = "insert into package set ?";
+    return mysqlW.query(sql, [obj]);
+}
+
+function insertVariants(obj) {
+    let sql = "insert into variants set ?";
+    return mysqlW.query(sql, [obj]);
+}
+
+function checkAssortmentInPackages(aId) {
+    let sql = `select * from package where assortment_id=${aId}`;
+    return mysqlR.query(sql);
+}

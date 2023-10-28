@@ -1,0 +1,98 @@
+{
+    "limelight": [
+        {
+            "input": "https://d10lpgp6xz60nq.cloudfront.net/images/upload_26463170_1612911468.png",
+            "output": "https://d10lpgp6xz60nq.cloudfront.net/images/upload_26463170_1612911468.png",
+            "sendVideoCDNUrl": false
+        },
+        {
+            "input": "https://d10lpgp6xz60nq.cloudfront.net/images/upload_26463170_1612911468.png",
+            "output": "https://d10lpgp6xz60nq.cloudfront.net/images/upload_26463170_1612911468.png",
+            "sendVideoCDNUrl": false
+        },
+        {
+            "input": "/images/upload_26463170_1612911468.png",
+            "output": "https://d10lpgp6xz60nq.cloudfront.net/images/upload_26463170_1612911468.png",
+            "sendVideoCDNUrl": false
+        },
+        {
+            "input": "",
+            "output": "",
+            "sendVideoCDNUrl": false
+        },
+        {
+            "input": "https://d3cvwyf9ksu0h5.cloudfront.net/TN/LC/600548238/97b5b3e32d491cd0d23ddd4b91066882.m3u8",
+            "output": "https://d3cvwyf9ksu0h5.cloudfront.net/TN/LC/600548238/97b5b3e32d491cd0d23ddd4b91066882.m3u8",
+            "sendVideoCDNUrl": true
+        },
+        {
+            "input": "https://d3cvwyf9ksu0h5.cloudfront.net/TN/LC/600548238/97b5b3e32d491cd0d23ddd4b91066882.m3u8",
+            "output": "https://d3cvwyf9ksu0h5.cloudfront.net/TN/LC/600548238/97b5b3e32d491cd0d23ddd4b91066882.m3u8",
+            "sendVideoCDNUrl": true
+        },
+        {
+            "input": "/TN/LC/600548238/97b5b3e32d491cd0d23ddd4b91066882.m3u8",
+            "output": "https://d3cvwyf9ksu0h5.cloudfront.net/TN/LC/600548238/97b5b3e32d491cd0d23ddd4b91066882.m3u8",
+            "sendVideoCDNUrl": true
+        },
+        {
+            "input": "",
+            "output": "",
+            "sendVideoCDNUrl": true
+        },
+        {
+            "input": "https://d3cvwyf9ksu0h5.cloudfront.net/TN/LC/600548238/97b5b3e32d491cd0d23ddd4b91066882.m3u8",
+            "output": "https://d3cvwyf9ksu0h5.cloudfront.net/TN/LC/600548238/97b5b3e32d491cd0d23ddd4b91066882.m3u8",
+            "sendVideoCDNUrl": true,
+            "isURLNotInVideoCDNs": true
+        }
+    ],
+    "cloudfront": [
+        {
+            "input": "https://d10lpgp6xz60nq.cloudfront.net/images/upload_26463170_1612911468.png",
+            "output": "https://d10lpgp6xz60nq.cloudfront.net/images/upload_26463170_1612911468.png",
+            "sendVideoCDNUrl": false
+        },
+        {
+            "input": "https://d10lpgp6xz60nq.cloudfront.net/images/upload_26463170_1612911468.png",
+            "output": "https://d10lpgp6xz60nq.cloudfront.net/images/upload_26463170_1612911468.png",
+            "sendVideoCDNUrl": false
+        },
+        {
+            "input": "/images/upload_26463170_1612911468.png",
+            "output": "https://d10lpgp6xz60nq.cloudfront.net/images/upload_26463170_1612911468.png",
+            "sendVideoCDNUrl": false
+        },
+        {
+            "input": "",
+            "output": "",
+            "sendVideoCDNUrl": false
+        },
+        {
+            "input": "https://d3cvwyf9ksu0h5.cloudfront.net/TN/LC/600548238/97b5b3e32d491cd0d23ddd4b91066882.m3u8",
+            "output": "https://d3cvwyf9ksu0h5.cloudfront.net/TN/LC/600548238/97b5b3e32d491cd0d23ddd4b91066882.m3u8",
+            "sendVideoCDNUrl": true
+        },
+        {
+            "input": "https://d3cvwyf9ksu0h5.cloudfront.net/TN/LC/600548238/97b5b3e32d491cd0d23ddd4b91066882.m3u8",
+            "output": "https://d3cvwyf9ksu0h5.cloudfront.net/TN/LC/600548238/97b5b3e32d491cd0d23ddd4b91066882.m3u8",
+            "sendVideoCDNUrl": true
+        },
+        {
+            "input": "/TN/LC/600548238/97b5b3e32d491cd0d23ddd4b91066882.m3u8",
+            "output": "https://d3cvwyf9ksu0h5.cloudfront.net/TN/LC/600548238/97b5b3e32d491cd0d23ddd4b91066882.m3u8",
+            "sendVideoCDNUrl": true
+        },
+        {
+            "input": "",
+            "output": "",
+            "sendVideoCDNUrl": true
+        },
+        {
+            "input": "https://d3cvwyf9ksu0h5.cloud2front.net/TN/LC/600548238/97b5b3e32d491cd0d23ddd4b91066882.m3u8",
+            "output": "https://d3cvwyf9ksu0h5.cloud2front.net/TN/LC/600548238/97b5b3e32d491cd0d23ddd4b91066882.m3u8",
+            "sendVideoCDNUrl": true,
+            "isURLNotInVideoCDNs": true
+        }
+    ]
+}

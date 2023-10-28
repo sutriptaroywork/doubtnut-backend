@@ -1,0 +1,31 @@
+{
+  "name": "faraday",
+  "version": "1.0.0",
+  "description": "repo for factnut",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/doubtnut_tech/faraday.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/doubtnut_tech/faraday#readme",
+  "dependencies": {
+    "aws-sdk": "^2.521.0",
+    "bluebird": "^3.5.5",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "lodash": "^4.17.15",
+    "mongodb": "^3.3.2",
+    "mongoose": "^5.6.12",
+    "multer": "^1.4.2",
+    "multer-s3": "^2.9.0",
+    "mysql": "^2.17.1",
+    "path": "^0.12.7",
+    "puppeteer": "^1.19.0"
+  }
+}

@@ -1,0 +1,58 @@
+const express = require('express');
+const authGuard = require('../../middlewares/auth');
+const sendResponse = require('../../middlewares/sendResponse');
+
+const contestRoutes = require('./contest/contest.route');
+const answerRoutes = require('./answer/answer.route');
+const statsRoutes = require('./stats/stats.route');
+const classRoutes = require('./class/class.route');
+const searchRoutes = require('./search/search.route');
+const studentRoutes = require('./student/student.route');
+const testRoutes = require('./test/test.route');
+const iconsRoute = require('./icons/icons.route');
+const gamificationRoutes = require('./gamification/gamification.route');
+const libraryRoutes = require('./library/library.route');
+const playlistRoutes = require('./playlist/playlist.route');
+const commentRoutes = require('./comment/comment.route');
+const feedRoutes = require('./feed/feed.route');
+const questionRoutes = require('./question/question.route');
+const newHomepage = require('./homepage/homepage.route');
+const structuredCourseRoutes = require('./structuredcourse/structuredcourse.route');
+const feedbackRoutes = require('./feedback/feedback.route');
+const homeRoutes = require('./home/home.route');
+const communityRoutes = require('./community/community.route');
+const packageRoutes = require('./package/package.route');
+const teslaRoutes = require('./tesla/tesla.route');
+const courseRoutes = require('./course/course.route');
+const paymentRoutes = require('./payment/payment.route');
+const quizRoutes = require('./quiz/quiz.routes');
+
+const router = express.Router();
+
+router.use('/answers', answerRoutes);
+router.use('/search', authGuard, searchRoutes);
+router.use('/library', authGuard, libraryRoutes);
+router.use('/playlist', authGuard, playlistRoutes);
+router.use('/community', authGuard, communityRoutes);
+router.use('/feed', feedRoutes);
+router.use('/comment', authGuard, commentRoutes);
+router.use('/homepage', newHomepage);
+router.use('/feedback', authGuard, feedbackRoutes);
+router.use('/home', homeRoutes);
+router.use('/contest', authGuard, contestRoutes);
+router.use('/answers', authGuard, answerRoutes);
+router.use('/stats', authGuard, statsRoutes);
+router.use('/class', classRoutes);
+router.use('/icons', iconsRoute);
+router.use('/structured-course', structuredCourseRoutes);
+router.use('/student', studentRoutes);
+router.use('/test', testRoutes);
+router.use('/questions', questionRoutes);
+router.use('/package', packageRoutes);
+router.use('/gamification', gamificationRoutes);
+router.use('/tesla', teslaRoutes, sendResponse);
+router.use('/course', courseRoutes);
+router.use('/payment', paymentRoutes);
+router.use('/quiz', authGuard, quizRoutes, sendResponse);
+
+module.exports = router;
